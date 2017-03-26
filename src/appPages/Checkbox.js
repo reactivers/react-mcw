@@ -8,6 +8,7 @@ import {getCorrectEventName} from '@material/animation/dist/mdc.animation';
 import {MDCRipple, MDCRippleFoundation} from '@material/ripple/dist/mdc.ripple';
 import {MDCCheckboxFoundation} from '@material/checkbox/dist/mdc.checkbox';
 import '@material/checkbox/dist/mdc.checkbox.css';
+import '@material/form-field/dist/mdc.form-field.css';
 
 function getMatchesProperty(HTMLElementPrototype) {
     return [
@@ -33,7 +34,8 @@ export default class Checkbox extends PureComponent {
         checked: false,
         disabled: false,
         indeterminate: false,
-        onChange: () => {}
+        onChange: () => {
+        }
     }
 
     state = {
@@ -134,33 +136,36 @@ export default class Checkbox extends PureComponent {
     render() {
         // Within render, we generate the html needed to render a proper MDC-Web checkbox.
         return (
-            <div ref="root" className={`mdc-checkbox ${this.state.classes.toJS().join(' ')}`}>
-                <input ref="nativeCb"
-                       id={this.props.id}
-                       type="checkbox"
-                       className="mdc-checkbox__native-control"
-                       aria-labelledby={this.props.labelId}
-                       checked={this.state.checkedInternal}
-                       disabled={this.state.disabledInternal}
-                       onChange={evt => {
-                           this.setState({
-                               checkedInternal: this.refs.nativeCb.checked,
-                               indeterminateInternal: false
-                           });
-                           this.props.onChange(evt);
-                       }}/>
-                <div className="mdc-checkbox__background">
-                    <svg version="1.1"
-                         className="mdc-checkbox__checkmark"
-                         xmlns="http://www.w3.org/2000/svg"
-                         viewBox="0 0 24 24">
-                        <path className="mdc-checkbox__checkmark__path"
-                              fill="none"
-                              stroke="white"
-                              d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-                    </svg>
-                    <div className="mdc-checkbox__mixedmark"></div>
+            <div className="mdc-form-field">
+                <div ref="root" className={`mdc-checkbox ${this.state.classes.toJS().join(' ')}`}>
+                    <input ref="nativeCb"
+                           id={this.props.id}
+                           type="checkbox"
+                           className="mdc-checkbox__native-control"
+                           aria-labelledby={this.props.labelId}
+                           checked={this.state.checkedInternal}
+                           disabled={this.state.disabledInternal}
+                           onChange={evt => {
+                               this.setState({
+                                   checkedInternal: this.refs.nativeCb.checked,
+                                   indeterminateInternal: false
+                               });
+                               this.props.onChange(evt);
+                           }}/>
+                    <div className="mdc-checkbox__background">
+                        <svg version="1.1"
+                             className="mdc-checkbox__checkmark"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 24 24">
+                            <path className="mdc-checkbox__checkmark__path"
+                                  fill="none"
+                                  stroke="white"
+                                  d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                        </svg>
+                        <div className="mdc-checkbox__mixedmark"></div>
+                    </div>
                 </div>
+                <label htmlFor={this.props.id}>My Checkbox Label</label>
             </div>
         );
     }
@@ -171,6 +176,7 @@ export default class Checkbox extends PureComponent {
         this.foundation.init();
         this.rippleFoundation.init();
     }
+
     componentWillUnmount() {
         this.rippleFoundation.destroy();
         this.foundation.destroy();

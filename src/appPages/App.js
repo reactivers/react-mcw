@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import IconToggle from './IconToggle/IconToggle'
 import './App.css';
-import Checkbox from './Checkbox';
-
 class App extends Component {
   render() {
     return (
-      <div className="App">
-            <Checkbox/>
+      <div>
+        <div><IconToggle/></div>
       </div>
     );
   }
