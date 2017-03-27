@@ -10,7 +10,7 @@ export default class FAB extends React.PureComponent {
         buttonColor: PropTypes.string,
         buttonSize: PropTypes.number,
         mini: PropTypes.bool,
-        icon: PropTypes.object
+        icon: PropTypes.string
     };
 
     render() {

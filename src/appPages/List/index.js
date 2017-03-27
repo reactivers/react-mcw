@@ -41,7 +41,7 @@ class ListItem extends PureComponent {
         subText: PropTypes.object,
         iconName: PropTypes.string,
         avatar: PropTypes.object,
-        actionIconName: PropTypes.string,
+        action: PropTypes.object,
         dividerInset: PropTypes.bool,
         dividerOutset: PropTypes.bool,
 
@@ -49,7 +49,7 @@ class ListItem extends PureComponent {
 
     render() {
 
-        const {className, children, subText, iconName, avatar, actionIconName, dividerInset, dividerOutset, ...otherProps} = this.props
+        const {className, children, subText, iconName, avatar, action, dividerInset, dividerOutset, ...otherProps} = this.props
 
         return (
             <span>
@@ -57,17 +57,19 @@ class ListItem extends PureComponent {
                 {iconName ?
                     <i className="mdc-list-item__start-detail material-icons" aria-hidden="true">{iconName}</i>
                     : avatar ?
-                        avatar
+                        <span className="mdc-list-item__start-detail">
+                            {avatar}
+                        </span>
                         : null
                 }
                 {subText ?
                     <span className={classnames("mdc-list-item__text", className)}>
                         <span className="mdc-list-item__text__primary">{children}</span>
                         <span className="mdc-list-item__text__secondary">{subText}</span>
-                        {actionIconName ?
-                            <i className="mdc-list-item__end-detail material-icons">
-                                {actionIconName}
-                            </i> : null
+                        {action ?
+                            <span className="mdc-list-item__end-detail">
+                                {action}
+                            </span> : null
                         }
                     </span>
                     :
@@ -76,10 +78,10 @@ class ListItem extends PureComponent {
                         {children}
                     </span>
                 }
-                {actionIconName ?
-                    <a className="mdc-list-item__end-detail material-icons">
-                        {actionIconName}
-                    </a> : null
+                {action ?
+                    <span className="mdc-list-item__end-detail">
+                                {action}
+                            </span> : null
                 }
             </li>
                 {dividerOutset ? <li role="separator" className="mdc-list-divider"></li> : dividerInset ?  <li role="separator" className="mdc-list-divider mdc-list-divider--inset"></li> : null }

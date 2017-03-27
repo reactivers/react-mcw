@@ -1,0 +1,61 @@
+
+.edit-button {
+    background-color: #81C784 !important;
+    color: white !important;
+}
+
+.delete-button {
+    background-color: #E57373 !important;
+    color: white !important;
+    margin-left: 8px;
+}
+
+.decline-button {
+    background-color: #ecf0f1 !important;
+    color: black !important;
+    margin-left: 8px;
+}
+
+.save-button {
+    background-color: #2196f3 !important;
+    color: white !important;
+    margin-left: 8px;
+}
+
+.hover-none:hover {
+    background-color: white !important;
+    cursor: default;
+}
+
+.add-button {
+    background-color: #2196f3 !important;
+    color: white !important;
+    margin-left: 8px;
+}
+
+.disabled-button {
+    background-color: #bdc3c7 !important;
+    color: #ecf0f1 !important;
+    cursor: not-allowed !important;
+    margin-left: 8px;
+}
+
+.person-add {
+    background-color: #3f51b5 !important;
+    color: white !important;
+}
+
+.copy-button {
+    background-color: #F57F17 !important;
+    color: white !important;
+}
+
+.search-button {
+    background-color: #9c27b0 !important;
+    color: white !important;
+}
+
+.menu-button {
+    background-color: #00BCD4 !important;
+    color: white !important;
+}
