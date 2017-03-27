@@ -15,7 +15,7 @@ export default class TextField extends React.PureComponent {
         helpText: PropTypes.string,
         placeholder: PropTypes.string,
         disabled: PropTypes.bool,
-        onChange : PropTypes.bool,
+        onChange : PropTypes.func,
     }
     copmonentWillMount() {
         this.textFieldId = generateId();
@@ -25,7 +25,7 @@ export default class TextField extends React.PureComponent {
     }
 
     render() {
-        const {label, error, floatingLabel, helpText, placeholder, ...rest} = this.props;
+        const {label, error, floatingLabel, helpText, style, textfieldStyle,placeholder, ...rest} = this.props;
         console.log('Float', floatingLabel)
         const inputClass = classNames("mdc-textfield__input", {
             "placeholderClass": !!floatingLabel && placeholder,
@@ -34,10 +34,10 @@ export default class TextField extends React.PureComponent {
             "mdc-textfield-helptext--validation-msg": error
         });
         return (
-            <div>
-                <div className={"mdc-textfield"}>
+            <div style={style}>
+                <div className={"mdc-textfield"} style={style}>
                     <input className={inputClass} id={this.textFieldId}
-                           {...rest}
+                           {...rest} style={textfieldStyle}
                            placeholder={!floatingLabel ? label : placeholder}/>
                     { !!floatingLabel &&
                     <label htmlFor={this.textFieldId} className="mdc-textfield__label">{label}</label>}
