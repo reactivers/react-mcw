@@ -37,7 +37,7 @@ export default class Button extends React.PureComponent{
         let buttonStyle = Object.assign({},style,{backgroundColor : buttonColor,color:textColor});
         return(
             <button className={classes} key={this.props.key || this.buttonId} style={buttonStyle} {...rest}>
-                Flat button
+                {this.props.children}
             </button>
         )
     }
