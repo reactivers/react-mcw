@@ -1,3 +1,10 @@
 body{
   margin: 0;
 }
+
+
+.rmd-centered-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
