@@ -14,7 +14,11 @@ export default class Drawer extends PureComponent {
 
         this.drawer = new MDCTemporaryDrawer(document.querySelector(this.props.open !== undefined ? '.mdc-temporary-drawer' : 'mdc-permanent-drawer'));
 
-        document.querySelector(this.props.open !== undefined ? '.mdc-temporary-drawer' : 'mdc-permanent-drawer').addEventListener('click',(e)=> e.target.tagName === "ASIDE" && this.props.onClose());
+        if(this.props.hasButton) {
+            this.drawer.foundation_.adapter_.deregisterInteractionHandler('click', this.drawer.foundation_.componentClickHandler_);
+            this.drawer.foundation_.adapter_.deregisterDrawerInteractionHandler('click', this.drawer.foundation_.drawerClickHandler_);
+        }
+        document.querySelector(this.props.open !== undefined ? '.mdc-temporary-drawer' : 'mdc-permanent-drawer').addEventListener('click', (e) => e.target.tagName === "ASIDE" && this.props.onClose());
 
         window.drawer = this.drawer
     }
@@ -33,7 +37,7 @@ export default class Drawer extends PureComponent {
 
         if (this.props.open !== undefined)
             return (
-                <aside className="mdc-temporary-drawer mdc-typography" style={{zIndex:99}}>
+                <aside className="mdc-temporary-drawer mdc-typography" style={{zIndex: 99}}>
                     <nav className="mdc-temporary-drawer__drawer">
                         <header className="mdc-temporary-drawer__header">
                             <div className="mdc-temporary-drawer__header-content" style={this.props.headerStyle}>
@@ -71,6 +75,7 @@ export default class Drawer extends PureComponent {
         header: PropTypes.any,
         onClose: PropTypes.func,
         open: PropTypes.bool,
+        hasButton: PropTypes.bool,
         headerStyle: PropTypes.object,
     };
 
