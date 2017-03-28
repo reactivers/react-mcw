@@ -15,9 +15,9 @@ export default class Icon extends React.Component {
         const {iconSize, iconColor, style, iconName,...rest} = this.props;
         let iconStyle = Object.assign({}, style, {color: iconColor, fontSize: iconSize});
         return (
-            <span className="mdc-fab__icon" style={iconStyle} {...rest}>
+            <i className="material-icons" style={iconStyle} {...rest}>
                 {iconName}
-            </span>
+            </i>
         )
     }
 }
