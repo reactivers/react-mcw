@@ -34,7 +34,7 @@ class App extends Component {
                         onClose={() => this.setState({open: !this.state.open})}>
                     <div>
                     <RadioButton label="Clicked" setChecked={this.state.radio} isChecked={e=>console.log("isChecked",e)} onChange={e=>console.log("onchange",e)}/>
-                    <button id="btn" onClick={this.radioBtnHandler.bind(this)}>radioChanger</button>
+                    <button id="btn" onClick={()=>console.log("aaa")}>radioChanger</button>
                     <List>
                         <ListItem dividerInset>Başlık</ListItem>
                         <ListItem dividerInset>İçerik</ListItem>
@@ -42,7 +42,7 @@ class App extends Component {
                     </List>
                     </div>
                 </Drawer>
-                <button onClick={this.radioBtnHandler.bind(this)}>radioChanger</button>
+                <button onClick={()=>console.log("aaa")}>radioChanger</button>
                 <button onClick={() => this.setState({open: !this.state.open})}>open</button>
                 <FABMenu showAdd={1} showCopy={2} showDelete={3} showPeopleAdd={4} showSearch={5}/>
             </div>
