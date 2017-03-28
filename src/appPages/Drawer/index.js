@@ -2,7 +2,7 @@
  * Created by muratguney on 26/03/2017.
  */
 
-import React, {PureComponent,PropTypes} from 'react';
+import React, {PureComponent, PropTypes} from 'react';
 import "@material/drawer/dist/mdc.drawer.css";
 import "@material/drawer/permanent/mdc-permanent-drawer.scss";
 import {MDCTemporaryDrawer} from  "@material/drawer/dist/mdc.drawer";
@@ -12,28 +12,31 @@ export default class Drawer extends PureComponent {
 
     componentDidMount() {
 
-        if (document.querySelector('.mdc-temporary-drawer')) {
-            this.drawer = new MDCTemporaryDrawer(document.querySelector('.mdc-temporary-drawer'));
-            document.querySelector('.mdc-temporary-drawer').addEventListener('click', this.props.onClose);
+        this.drawer = new MDCTemporaryDrawer(document.querySelector(this.props.open !== undefined ? '.mdc-temporary-drawer' : 'mdc-permanent-drawer'));
+
+        document.querySelector(this.props.open !== undefined ? '.mdc-temporary-drawer' : 'mdc-permanent-drawer').addEventListener('click',(e)=> e.target.tagName === "ASIDE" && this.props.onClose());
+
+        window.drawer = this.drawer
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.open !== undefined) {
+            this.drawer.open = nextProps.open;
+        } else {
+            this.drawer.open = true
         }
-        this.render();
+
     }
 
     render() {
-        if (this.drawer) {
-            if(this.props.open !== undefined) {
-                this.drawer.open  = this.props.open;
-            }else{
-                this.drawer.open = true
-            }
-        }
-        console.log(this.props.open);
+
         if (this.props.open !== undefined)
             return (
-                <aside className="mdc-temporary-drawer mdc-typography">
+                <aside className="mdc-temporary-drawer mdc-typography" style={{zIndex:99}}>
                     <nav className="mdc-temporary-drawer__drawer">
                         <header className="mdc-temporary-drawer__header">
-                            <div className="mdc-temporary-drawer__header-content">
+                            <div className="mdc-temporary-drawer__header-content" style={this.props.headerStyle}>
                                 {this.props.header}
                             </div>
                         </header>
@@ -46,16 +49,20 @@ export default class Drawer extends PureComponent {
             );
         else
             return (
-                <div className="content">
-                    <nav className="mdc-permanent-drawer mdc-typography">
-                        <div className="mdc-permanent-drawer__toolbar-spacer">{this.props.header}</div>
-                        <div className="mdc-permanent-drawer__content">
-                            <nav id="icon-with-text-demo" className="mdc-list">
-                                {this.props.children}
-                            </nav>
-                        </div>
+
+                <nav className="mdc-permanent-drawer mdc-typography">
+                    <nav id="icon-with-text-demo" className="mdc-list">
+                        <a className="mdc-list-item mdc-permanent-drawer--selected" href="#">
+                            <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
+                        </a>
+                        <a className="mdc-list-item" href="#">
+                            <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
+                        </a>
                     </nav>
-                </div>
+                    <main>
+                        Page content goes here.
+                    </main>
+                </nav>
             )
     }
 
@@ -64,6 +71,7 @@ export default class Drawer extends PureComponent {
         header: PropTypes.any,
         onClose: PropTypes.func,
         open: PropTypes.bool,
+        headerStyle: PropTypes.object,
     };
 
 }
