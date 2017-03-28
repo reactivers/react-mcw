@@ -26,7 +26,6 @@ export default class TextField extends React.PureComponent {
 
     render() {
         const {label, error, floatingLabel, helpText, style, textfieldStyle,placeholder, ...rest} = this.props;
-        console.log('Float', floatingLabel)
         const inputClass = classNames("mdc-textfield__input", {
             "placeholderClass": !!floatingLabel && placeholder,
         });

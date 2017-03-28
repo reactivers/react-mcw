@@ -23,30 +23,32 @@ class RadioButton extends PureComponent {
     }
 
     componentDidMount() {
-        this.radio = new MDCRadio.attachTo(document.querySelector('#' + this.generateId));
-        this.render();
+        this.radio = new MDCRadio(document.querySelector('#' + this.generateId));
+
         window.radio = this.radio
     }
 
-    shouldComponentUpdate(){
-        return true
+    componentWillReceiveProps(nextProps,nextState){
+            if(nextProps.isDisabled)
+                nextProps.isDisabled(this.radio.foundation_.isDisabled());
+
+            if (nextProps.setChecked !== undefined) {
+                this.radio.foundation_.setChecked(nextProps.setChecked);
+            }
+
+            if(nextProps.setDisabled)
+                this.radio.foundation_.setDisabled(nextProps.setDisabled);
+
+            if(nextProps.isChecked)
+                nextProps.isChecked(this.radio.foundation_.isChecked());
+
+            if(nextProps.onChange)
+                nextProps.onChange(this.radio.foundation_.isChecked())
     }
 
     render() {
-        const {label, onChange, isChecked, isDisabled, setChecked, setDisabled, name, ...otherProps} = this.props;
-        console.log(this.radio);
-        if (this.radio) {
-            if(isChecked)
-                isChecked(this.radio.foundation_.isChecked());
-            if(isDisabled)
-                isDisabled(this.radio.foundation_.isDisabled());
-            if (setChecked) {
-                this.radio.foundation_.setChecked(setChecked);
-            }
-            if(setDisabled)
-                this.radio.foundation_.setDisabled(setDisabled);
-        }
-        console.log(this.generateId);
+        const {label, onChange, isChecked, isDisabled, setChecked, setDisabled, value,name, ...otherProps} = this.props;
+
         return (
             <div {...otherProps}>
                 <div id={this.generateId} className="mdc-radio">
