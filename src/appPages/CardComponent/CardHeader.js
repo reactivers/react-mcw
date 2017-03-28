@@ -12,7 +12,7 @@ export default class CardHeader extends React.PureComponent{
     };
     render(){
         const {className, ...rest} = this.props;
-        const classes = classNames("mdc-card__actions", className)
+        const classes = classNames("mdc-card__primary", className)
         return(
                 <section className={classes} {...rest}>
                     {this.props.title ? <h1 className="mdc-card__title mdc-card__title--large">
