@@ -2,10 +2,10 @@
  * Created by muratguney on 27/03/2017.
  */
 import React,{PropTypes} from 'react';
-import Fab from '../FAB';
+import Fab from '../FAB/index';
 import IconButton from '../IconButton';
 import './main.css'
-import TextField from '../TextField/TextField';
+import TextField from '../TextField/index';
 
 const defaultStyle={
     menuOff:{

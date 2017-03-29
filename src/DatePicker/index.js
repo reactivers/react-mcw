@@ -5,7 +5,7 @@ import React from 'react';
 import './DatePicker.css';
 import moment from 'moment';
 moment.locale("tr");
-import {Card} from '../CardComponent';
+import {Card} from '../Card';
 import IconButton from '../IconButton';
 import Button from '../Button';
 export default class DatePicker extends React.PureComponent {

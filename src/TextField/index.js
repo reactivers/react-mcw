@@ -48,18 +48,3 @@ export default class TextField extends React.PureComponent {
         )
     }
 }
-/*
- import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable';
-state = {
- rootClasses : new ImmutableSet()
- }
- import {MDCTextfieldFoundation} from '@material/textfield/dist/mdc.textfield';
- foundation = MDCTextfieldFoundation({
- addClass: className => this.setState(prevState => ({
- classes: prevState.rootClasses.add(className)
- })),
- removeClass: className => this.setState(prevState => ({
- classes: prevState.rootClasses.remove(className)
- })),
- })*/
-//mdc-textfield-helptext--validation-msg

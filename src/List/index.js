@@ -4,7 +4,8 @@
 import React, {PureComponent, PropTypes} from 'react'
 import "@material/list/dist/mdc.list.css";
 import "@material/list/mdc-list.scss";
-import classnames from 'classnames'
+import classnames from 'classnames';
+import './List.css';
 
 class List extends PureComponent {
 
@@ -49,11 +50,10 @@ class ListItem extends PureComponent {
 
     render() {
 
-        const {className, children, subText, iconName, avatar, action, dividerInset, dividerOutset, ...otherProps} = this.props
-
+        const {className,onClick,children, subText, iconName, avatar, action, dividerInset, dividerOutset, ...otherProps} = this.props
         return (
             <span>
-            <li className={classnames("mdc-list-item", {}, className)} {...otherProps}>
+            <li className={classnames("mdc-list-item","asd",{"rmd-hover-list-item":onClick}, className)} {...otherProps} onClick={onClick}>
                 {iconName ?
                     <i className="mdc-list-item__start-detail material-icons" aria-hidden="true">{iconName}</i>
                     : avatar ?

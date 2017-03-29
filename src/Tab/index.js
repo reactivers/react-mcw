@@ -4,6 +4,7 @@
 import React, {PureComponent, PropTypes} from 'react';
 import Button from '../Button'
 import generateId from '../utils/generateId';
+import './Tab.css';
 
 class Tabs extends React.Component {
     constructor(props) {

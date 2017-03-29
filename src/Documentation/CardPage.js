@@ -3,15 +3,15 @@
  */
 import React, {Component} from 'react';
 import '../App.css';
-import {AppBar, AppBarTitle} from '../AppBar'
+import {AppBar, AppBarTitle} from '../AppBar/index'
 import IconButton from '../IconButton';
 import Icon from '../Icon'
 import Drawer from '../Drawer';
 import {List, ListItem} from '../List';
 import FabMenu from '../FabMenu'
-import FabButton from '../FAB'
-import {Card, CardHeader, CardActions, CardBody} from '../CardComponent';
-import {Grid,GridContainer} from '../Grid/Grid';
+import FabButton from '../FAB/index'
+import {Card, CardHeader, CardActions, CardBody} from '../Card';
+import {Grid,GridContainer} from '../Grid/index';
 
 
 export default class CardPage extends React.Component{

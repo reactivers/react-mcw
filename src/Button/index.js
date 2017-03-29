@@ -4,7 +4,7 @@
 import React,{PropTypes} from 'react';
 import '@material/button/dist/mdc.button.css';
 import classNames from 'classnames';
-import generateId from './utils/generateId';
+import generateId from '../utils/generateId';
 export default class Button extends React.PureComponent{
 
     static propTypes={

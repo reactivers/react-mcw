@@ -4,7 +4,7 @@
 import React,{PropTypes} from 'react';
 import '@material/switch/dist/mdc.switch.css';
 import classNames from 'classnames';
-import generateId from './utils/generateId';
+import generateId from '../utils/generateId';
 
 export default class Switch extends React.PureComponent {
     static propTypes = {

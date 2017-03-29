@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../App.css';
-import {AppBar, AppBarTitle} from '../AppBar'
+import {AppBar, AppBarTitle} from '../AppBar/index'
 import IconButton from '../IconButton';
 import Icon from '../Icon'
 import Drawer from '../Drawer';
@@ -28,9 +28,9 @@ import FabMenuPage from './FabMenuPage'
 import ElevationPage from './ElevationPage'
 import DrawerPage from './DrawerPage'
 import DialogPage from './DialogPage'
-import FabButton from '../FAB'
-import {Card, CardHeader, CardActions, CardBody} from '../CardComponent';
-import {Grid, GridContainer} from '../Grid/Grid';
+import FabButton from '../FAB/index'
+import {Card, CardHeader, CardActions, CardBody} from '../Card';
+import {Grid, GridContainer} from '../Grid/index';
 
 const pages = [
     {dsc: 'Card', value: 'card'},
@@ -86,7 +86,7 @@ class App extends Component {
         return (
             <div style={{
                 fontFamily: "Roboto",
-                height: "100%",
+                height: "100vh",
                 background: "linear-gradient(to bottom right,white,#ccc)"
             }}>
                 <AppBar
