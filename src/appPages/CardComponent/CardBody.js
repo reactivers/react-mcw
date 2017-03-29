@@ -8,6 +8,7 @@ import '@material/card/dist/mdc.card.css';
 export default class CardBody extends React.PureComponent{
     static propTypes={
         className : PropTypes.string,
+        style : PropTypes.object,
     };
     render(){
         const {className,...rest} = this.props;

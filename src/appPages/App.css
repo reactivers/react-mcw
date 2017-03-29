@@ -8,3 +8,23 @@ body{
   justify-content: center;
   align-items: center;
 }
+
+.rmd-hover-list-item{
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  -webkit-transition: 0.4s time;
+  -moz-transition: 0.4s time;
+  -ms-transition: 0.4s time;
+  -o-transition: 0.4s time;
+  transition: 0.4s time;
+
+}
+.rmd-hover-list-item:hover{
+  background-color:#eee ;
+  -webkit-transition: 0.4s time;
+  -moz-transition: 0.4s time;
+  -ms-transition: 0.4s time;
+  -o-transition: 0.4s time;
+  transition: 0.4s time;
+
+}

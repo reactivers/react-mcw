@@ -63,7 +63,7 @@ class ListItem extends PureComponent {
                         : null
                 }
                 {subText ?
-                    <span className={classnames("mdc-list-item__text", className)}>
+                    <span className="mdc-list-item__text">
                         <span className="mdc-list-item__text__primary">{children}</span>
                         <span className="mdc-list-item__text__secondary">{subText}</span>
                         {action ?
@@ -74,7 +74,7 @@ class ListItem extends PureComponent {
                     </span>
                     :
 
-                    <span className={classnames("mdc-list-item__text", className)}>
+                    <span className="mdc-list-item__text">
                         {children}
                     </span>
                 }
