@@ -1,114 +1,111 @@
 import React, {Component} from 'react';
 import './App.css';
 import {AppBar, AppBarTitle} from './AppBar';
-import {default as AutoComplete} from './AutoComplete';
-import {default as Button} from './Button';
-import {Card, CardActions, CardBody, CardHeader} from './Card';
-import {default as Checkbox} from './Checkbox';
-import {default as DatePicker} from './DatePicker';
-import {Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle} from './Dialog';
-import {default as Drawer} from './Drawer';
-import {default as Elevation} from './Elevation';
-import {default as FAB} from './FAB';
-import {default as FabMenu} from './FabMenu';
-import {Grid, GridContainer} from './Grid';
 import {default as Icon} from './Icon';
 import {default as IconButton} from './IconButton';
-import {default as IconToggle} from './IconToggle';
 import {List, ListItem} from './List';
-import {Menu, MenuItem} from './Menu';
-import {default as RadioButton} from './RadioButton';
-import {Option, SelectField} from './SelectField';
-import {default as Snackbar} from './Snackbar';
-import {default as Switch} from './Switch';
-import {Tabs, Tab} from './Tab';
-import {default as TextField} from './TextField';
+import CardPage from './Documentation/CardPage';
+import DialogPage from './Documentation/DialogPage';
+import DrawerPage from './Documentation/DrawerPage';
+import ElevationPage from './Documentation/ElevationPage';
+import FabMenuPage from './Documentation/FabMenuPage';
+import IconButtonPage from './Documentation/IconButtonPage';
+import IconTogglePage from './Documentation/IconTogglePage';
+import ListPage from './Documentation/ListPage';
+import {Grid, GridContainer} from './Grid';
+import MenuPage from './Documentation/MenuPage';
+import RadioButtonPage from './Documentation/RadioButtonPage';
+import SelectFieldPage from './Documentation/SelectFieldPage';
+import SnackbarPage from './Documentation/SnackbarPage';
+import TabPage from './Documentation/TabPage';
+import TextFieldPage from './Documentation/TextFieldPage';
+import ButtonPage from './Documentation/ButtonPage';
+import CheckBoxPage from './Documentation/CheckBoxPage';
+import FabPage from './Documentation/FabPage';
+import SwitchPage from './Documentation/SwitchPage';
+import IconPage from './Documentation/IconPage';
+import {browserHistory} from 'react-router';
+import {Route, Link} from 'react-router-dom'
+
+const pages = [
+    {dsc: 'Card', value: 'card'},
+    {dsc: 'Dialog', value: 'dialog'},
+    {dsc: 'Drawer', value: 'drawer'},
+    {dsc: 'Elevation', value: 'elevation'},
+    {dsc: 'FabMenu', value: 'fabmenu'},
+    {dsc: 'IconButton', value: 'iconbutton'},
+    {dsc: 'IconToggle', value: 'icontoggle'},
+    {dsc: 'List', value: 'list'},
+    {dsc: 'Menu', value: 'menu'},
+    {dsc: 'Radio Button', value: 'radio'},
+    {dsc: 'SelectField', value: 'selectfield'},
+    {dsc: 'Snackar', value: 'snackbar'},
+    {dsc: 'Tab', value: 'tab'},
+    {dsc: 'TextField', value: 'textfield'},
+    {dsc: 'Button', value: 'button'},
+    {dsc: 'CheckBox', value: 'checkbox'},
+    {dsc: 'Fab', value: 'fab'},
+    {dsc: 'Switch', value: 'switch'},
+    {dsc: 'Icon', value: 'icon'},
+];
+const pageComponents = {
+    card: CardPage,
+    dialog: DialogPage,
+    drawer: DrawerPage,
+    elevation: ElevationPage,
+    fabmenu: FabMenuPage,
+    iconbutton: IconButtonPage,
+    icontoggle: IconTogglePage,
+    list: ListPage,
+    menu: MenuPage,
+    radio: RadioButtonPage,
+    selectfield: SelectFieldPage,
+    snackbar: SnackbarPage,
+    tab: TabPage,
+    textfield: TextFieldPage,
+    button: ButtonPage,
+    checkbox: CheckBoxPage,
+    fab: FabPage,
+    switch: SwitchPage,
+    icon: Icon,
+
+};
+
 
 class App extends Component {
     state = {
         isDrawerOpen: false
     }
-
     render() {
+        console.log(this.props)
         return (
             <div>
-                <AppBar leftElements={<AppBarTitle title={"Deneme"}
-                                                   icon={<IconButton iconName={"menu"} iconColor={"white"}
-                                                                     onClick={ () => this.setState((prevState) => {
-                                                                         return {isDrawerOpen: !prevState.isDrawerOpen}
-                                                                     })}/>}/>}/>
-                <Drawer onClose={  () => this.setState((prevState) => {
-                    return {isDrawerOpen: !prevState.isDrawerOpen}
-                })} headerStyle={{padding : '0'}} header={<div style={{backgroundColor : "#3f51b5",height : "100%",width : "100%",color : "white",display :'flex',justifyContent:'center',alignItems : "center",flexDirection : "column"}} > <h1>Reactivers Material Design</h1><h3>for ReactJS</h3> </div>} open={this.state.isDrawerOpen}>
-                    <List>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        AutoComplete
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        Button
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        Card
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        Checkbox
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        DatePicker
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        Dialog
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        Drawer
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        Elevation
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        FAB
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        FabMenu
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        Grid
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        Icon
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        IconButton
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        IconToggle
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        List
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        Menu
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        RadioButton
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        SelectField
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        Snackbar
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        Switch
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        Tab
-                        </ListItem>
-                        <ListItem clickable={true} style={{fontSize : "18px"}}>
-                        TextField
-                        </ListItem>
-                    </List>
-                </Drawer>
+                <AppBar leftElements={<AppBarTitle title={"react-material-design"}/>}/>
+                <GridContainer style={{height : "calc(100vh - 64px)",padding: 0, margin: 0}}>
+
+                    <Grid col={2} style={{padding: 0, margin: 0, boxShadow: "5px 5px 17px 0px rgba(0,0,0,0.39)"}}>
+                        <List style={{paddingRight : 0,paddingLeft :0,textIndent : "10px"}}>
+                            {pages.map((page, index) => {
+                                return (
+                                    <Link key={"li"+index} to={"/" + page.value} style={{textDecoration :"none",color : "black"}}>
+                                        <ListItem style={{fontSize: "18px"}} onClick={ () => null}>
+                                            {page.dsc}
+                                        </ListItem>
+                                    </Link>
+                                )
+                            })}
+                        </List>
+                    </Grid>
+                    <Grid col={10} style={{padding: 0, margin: 0}}>
+                        <div style={{padding: 8, margin: 8}}>
+                            {pages.map((page, index) => {
+                                return (
+                                    <Route key={index} path={"/" + page.value} component={pageComponents[page.value]}/>
+                                )
+                            })}
+                        </div>
+                    </Grid>
+                </GridContainer>
             </div>
         )
     }
