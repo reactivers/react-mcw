@@ -2,7 +2,7 @@
  * Created by Utku on 26/03/2017.
  */
 import React,{PropTypes} from 'react';
-import generateId from "../../utils/generateId";
+import generateId from "../utils/generateId";
 import '@material/icon-toggle/dist/mdc.icon-toggle.css'
 import {MDCIconToggle} from "@material/icon-toggle/dist/mdc.iconToggle";
 import classNames from 'classnames';

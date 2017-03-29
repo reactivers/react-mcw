@@ -3,7 +3,7 @@
  */
 import React, {PureComponent, PropTypes} from 'react';
 import "@material/dialog/dist/mdc.dialog.css";
-import generateId from '../../utils/generateId';
+import generateId from '../utils/generateId';
 import classnames from 'classnames'
 
 class Dialog extends PureComponent {

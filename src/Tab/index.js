@@ -3,7 +3,7 @@
  */
 import React, {PureComponent, PropTypes} from 'react';
 import Button from '../Button'
-import generateId from '../../utils/generateId';
+import generateId from '../utils/generateId';
 
 class Tabs extends React.Component {
     constructor(props) {

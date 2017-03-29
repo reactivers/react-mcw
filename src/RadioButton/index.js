@@ -4,7 +4,7 @@
 import React, {PureComponent, PropTypes} from 'react'
 import '@material/radio/dist/mdc.radio.css'
 import {MDCRadio} from '@material/radio/dist/mdc.radio'
-import generateid from '../../utils/generateId'
+import generateid from '../utils/generateId'
 
 class RadioButton extends PureComponent {
 
