@@ -23,7 +23,7 @@ $ npm start
 ## Usage
 
 ```js
-import {FABMenu, Card, CardBody} from 'reac-material-design';
+import {FABMenu, Card, CardBody} from 'react-material-design';
 import IconButton from 'react-material-design/lib/IconButton';
 ```
 
