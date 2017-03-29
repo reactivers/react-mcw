@@ -4,6 +4,7 @@
 import React, {PropTypes} from 'react';
 import '@material/toolbar/dist/mdc.toolbar.css';
 import classNames from 'classnames';
+
 export class AppBarTitle extends React.PureComponent {
     static propTypes = {
         iconAlignment: PropTypes.string,

@@ -4,17 +4,18 @@
 import React, {PropTypes} from 'react';
 import Button from '../Button'
 
-export default class Icon extends React.Component {
+export default class IconButton extends React.Component {
     static propTypes = {
         iconName: PropTypes.string,
         iconSize: PropTypes.number,
         iconColor: PropTypes.string,
-        buttonStyle: PropTypes.object
+        style: PropTypes.object,
+        onClick: PropTypes.func,
     };
 
     render() {
-        const {iconSize, iconColor, style, iconName, buttonStyle, ...rest} = this.props;
-        let iconStyle = Object.assign({}, style, {color: iconColor, fontSize: iconSize});
+        const {iconSize, iconColor, onClick, style, iconName, ...rest} = this.props;
+        let iconStyle = Object.assign({}, {color: iconColor, fontSize: iconSize});
         const iconButtonStyle = {
             borderRadius: 36,
             width: 36,
@@ -26,8 +27,7 @@ export default class Icon extends React.Component {
             alignItems: "center",
         }
         return (
-
-            <Button style={{...iconButtonStyle, ...buttonStyle}}>
+            <Button style={{...iconButtonStyle, ...style}} onClick={onClick}>
                 <i className="material-icons" style={iconStyle} {...rest}>
                     {iconName}
                 </i>

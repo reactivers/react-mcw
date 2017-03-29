@@ -4,6 +4,7 @@
 
 import React, {PureComponent, PropTypes} from 'react';
 import "@material/drawer/dist/mdc.drawer.css";
+import "@material/list/dist/mdc.list.css";
 import "@material/drawer/permanent/mdc-permanent-drawer.scss";
 import {MDCTemporaryDrawer} from  "@material/drawer/dist/mdc.drawer";
 
@@ -11,13 +12,14 @@ import {MDCTemporaryDrawer} from  "@material/drawer/dist/mdc.drawer";
 export default class Drawer extends PureComponent {
 
     componentDidMount() {
+        if(this.props.open !== undefined )
+        this.drawer = new MDCTemporaryDrawer(document.querySelector('.mdc-temporary-drawer'));
 
-        this.drawer = new MDCTemporaryDrawer(document.querySelector(this.props.open !== undefined ? '.mdc-temporary-drawer' : 'mdc-permanent-drawer'));
-
-        if(this.props.hasButton) {
+        if(this.props.hasButton && this.props.open !== undefined ) {
             this.drawer.foundation_.adapter_.deregisterInteractionHandler('click', this.drawer.foundation_.componentClickHandler_);
             this.drawer.foundation_.adapter_.deregisterDrawerInteractionHandler('click', this.drawer.foundation_.drawerClickHandler_);
         }
+        if(this.props.open !== undefined )
         document.querySelector(this.props.open !== undefined ? '.mdc-temporary-drawer' : 'mdc-permanent-drawer').addEventListener('click', (e) => e.target.tagName === "ASIDE" && this.props.onClose());
 
         window.drawer = this.drawer
@@ -25,10 +27,8 @@ export default class Drawer extends PureComponent {
 
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.open !== undefined) {
+        if (nextProps.open === true || nextProps.open === false ) {
             this.drawer.open = nextProps.open;
-        } else {
-            this.drawer.open = true
         }
 
     }
@@ -55,16 +55,11 @@ export default class Drawer extends PureComponent {
             return (
 
                 <nav className="mdc-permanent-drawer mdc-typography">
-                    <nav id="icon-with-text-demo" className="mdc-list">
-                        <a className="mdc-list-item mdc-permanent-drawer--selected" href="#">
-                            <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">inbox</i>Inbox
-                        </a>
-                        <a className="mdc-list-item" href="#">
-                            <i className="material-icons mdc-list-item__start-detail" aria-hidden="true">star</i>Star
-                        </a>
+                    <nav id="icon-with-text-demo" style={this.props.headerStyle} className="mdc-list">
+                        {this.props.header}
                     </nav>
                     <main>
-                        Page content goes here.
+                        {this.props.children}
                     </main>
                 </nav>
             )

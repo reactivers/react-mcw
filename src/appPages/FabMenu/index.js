@@ -75,6 +75,13 @@ const style=[
         zIndex:65,
         transition:"0.4s",
     },
+    {
+        position:"fixed",
+        right:417,
+        bottom:20,
+        zIndex:65,
+        transition:"0.4s",
+    },
 
 ];
 
@@ -101,6 +108,15 @@ class FabMenu extends React.Component{
 
         this.setState({ara: !this.state.ara})
 
+    }
+    componentWillMount(){
+        this.lastFabIndex()
+    }
+
+    lastFabIndex(){
+        let maxIndex = 0
+        Object.keys(this.props).map(key=> typeof this.props[key] === "number" && this.props[key]> maxIndex ? maxIndex = this.props[key] : maxIndex);
+        return maxIndex
     }
 
     searchField(e) {
@@ -149,13 +165,17 @@ class FabMenu extends React.Component{
 
                                 <IconButton
                                     onClick={this.state.search ? ()=> this.setState({search: ''},()=>this.props.onSearchFilterChange && this.props.onSearchFilterChange('')) : null}
-                                   buttonStyle={(this.state.search && this.state.ara) ? {...style[this.props.showSearch],right:10,color:'whitesmoke', cursor:"pointer",bottom:style[this.props.showSearch].bottom + 80,zIndex:68} : {...style[this.props.showSearch],right:-60,bottom:style[this.props.showSearch].bottom + 80}} iconName="clear" />
+                                   style={(this.state.search && this.state.ara) ? {...style[this.props.showSearch],right:10,color:'whitesmoke', cursor:"pointer",bottom:style[this.props.showSearch].bottom + 80,zIndex:68} : {...style[this.props.showSearch],right:-60,bottom:style[this.props.showSearch].bottom + 80}} iconName="clear" />
 
                     </span>
                 }
                 {this.props.children &&
                 <div style={!this.state.menuSwitcher ? defaultStyle.fabsOff : {...style[this.props.customStyle]}} >
-                    {this.props.children}
+                    {React.Children.map(this.props.children, (child,index)=>{
+                        return(
+                            React.cloneElement(child,{style:this.state.menuSwitcher ? (!this.state.ara ? {...style[this.lastFabIndex()],right: style[this.lastFabIndex()].right + (67* (index + 1))} : (this.lastFabIndex() + index + 1 > this.props.showSearch ? {...style[this.lastFabIndex()],right:style[this.lastFabIndex()].right + (67* (index))} : style[index]) ) : defaultStyle.fabsOff})
+                        )
+                    })}
                 </div>
                 }
 
