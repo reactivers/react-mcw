@@ -21,13 +21,18 @@ import TabPage from './Documentation/TabPage';
 import TextFieldPage from './Documentation/TextFieldPage';
 import ButtonPage from './Documentation/ButtonPage';
 import CheckBoxPage from './Documentation/CheckBoxPage';
+import AcordionPage from './Documentation/AcordionPage';
 import FabPage from './Documentation/FabPage';
+import ChipPage from './Documentation/ChipPage';
+import BadgePage from './Documentation/BadgePage';
 import SwitchPage from './Documentation/SwitchPage';
 import IconPage from './Documentation/IconPage';
+import WaveEffect from './WaveEffect'
 import {browserHistory} from 'react-router';
 import {Route, Link} from 'react-router-dom'
 
 const pages = [
+    {dsc: 'Acordion', value: 'acordion'},
     {dsc: 'Card', value: 'card'},
     {dsc: 'Dialog', value: 'dialog'},
     {dsc: 'Drawer', value: 'drawer'},
@@ -47,8 +52,11 @@ const pages = [
     {dsc: 'Fab', value: 'fab'},
     {dsc: 'Switch', value: 'switch'},
     {dsc: 'Icon', value: 'icon'},
+    {dsc: 'Chip', value: 'chip'},
+    {dsc: 'Badge', value: 'badge'},
 ];
 const pageComponents = {
+    acordion: AcordionPage,
     card: CardPage,
     dialog: DialogPage,
     drawer: DrawerPage,
@@ -67,7 +75,9 @@ const pageComponents = {
     checkbox: CheckBoxPage,
     fab: FabPage,
     switch: SwitchPage,
-    icon: Icon,
+    icon: IconPage,
+    chip: ChipPage,
+    badge: BadgePage,
 
 };
 
@@ -77,13 +87,13 @@ class App extends Component {
         isDrawerOpen: false
     }
     render() {
-        console.log(this.props)
         return (
             <div>
+
                 <AppBar leftElements={<AppBarTitle title={"react-material-design"}/>}/>
                 <GridContainer style={{height : "calc(100vh - 64px)",padding: 0, margin: 0}}>
 
-                    <Grid col={2} style={{padding: 0, margin: 0, boxShadow: "5px 5px 17px 0px rgba(0,0,0,0.39)"}}>
+                    <Grid col={2} phone={2} tablet={2} style={{padding: 0, margin: 0, boxShadow: "5px 5px 17px 0px rgba(0,0,0,0.39)"}}>
                         <List style={{paddingRight : 0,paddingLeft :0,textIndent : "10px"}}>
                             {pages.map((page, index) => {
                                 return (
@@ -96,7 +106,7 @@ class App extends Component {
                             })}
                         </List>
                     </Grid>
-                    <Grid col={10} style={{padding: 0, margin: 0}}>
+                    <Grid col={10} phone={6} tablet={6} style={{padding: 0, margin: 0}}>
                         <div style={{padding: 8, margin: 8}}>
                             {pages.map((page, index) => {
                                 return (
@@ -106,6 +116,7 @@ class App extends Component {
                         </div>
                     </Grid>
                 </GridContainer>
+                <WaveEffect/>
             </div>
         )
     }

@@ -1,0 +1,47 @@
+.rmd-chip-text{
+    color: rgba(0, 0, 0, 0.870588);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 32px;
+    min-height: 32px;
+    min-width: 50px;
+    padding-left: 12px;
+    padding-right: 12px;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.rmd-chip{
+    border: 10px;
+    box-sizing: border-box;
+    display: flex;
+    font-family: Roboto, sans-serif;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+    text-decoration: none;
+    margin: 4px;
+    padding: 0;
+    outline: none;
+    font-size: inherit;
+    font-weight: inherit;
+    position: relative;
+    z-index: 1;
+    background-color: rgb(224, 224, 224);
+    border-radius: 16px;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.rmd-chip-contact{
+    color: rgb(68, 68, 68);
+    background-color: rgb(188, 188, 188);
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    margin-right: -4px;
+}

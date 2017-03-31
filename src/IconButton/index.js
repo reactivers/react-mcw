@@ -9,17 +9,18 @@ export default class IconButton extends React.Component {
         iconName: PropTypes.string,
         iconSize: PropTypes.number,
         iconColor: PropTypes.string,
+        iconClassName: PropTypes.string,
         style: PropTypes.object,
         onClick: PropTypes.func,
     };
 
     render() {
-        const {iconSize, iconColor, onClick, style, iconName, ...rest} = this.props;
+        const {iconSize, iconColor, mini,onClick, style, iconClassName,iconName, ...rest} = this.props;
         let iconStyle = Object.assign({}, {color: iconColor, fontSize: iconSize});
         const iconButtonStyle = {
-            borderRadius: 36,
-            width: 36,
-            height: 36,
+            borderRadius: mini ? 30 :36,
+            width:  mini ? 30 :36,
+            height:  mini ? 30 :36,
             minWidth: 24,
             padding: 0,
             display: "flex",
@@ -27,7 +28,7 @@ export default class IconButton extends React.Component {
             alignItems: "center",
         }
         return (
-            <Button style={{...iconButtonStyle, ...style}} onClick={onClick}>
+            <Button style={{...iconButtonStyle, ...style}} className={iconClassName} onClick={onClick}>
                 <i className="material-icons" style={iconStyle} {...rest}>
                     {iconName}
                 </i>
