@@ -1,0 +1,78 @@
+.wave-effect{
+    overflow: hidden;
+}
+
+.iota-wave-effect{
+    animation: 1s wave linear forwards;
+    transition: 0.4s;
+    pointer-events: none;
+}
+
+@keyframes wave {
+    0%{
+        width:0;
+        height:0;
+        opacity:0.5;
+        border-radius: 0;
+        background-color: #bbb;
+    }
+    100%{
+        width:200px;
+        margin-left:-100px;
+        margin-top:-100px;
+        height:200px;
+        opacity:0.3;
+        background-color: #eee;
+        border-radius: 100px;
+    }
+}
+.iota-wave-effect-fade-out{
+    animation: wave-out 1s linear forwards;
+    animation-fill-mode: forwards;
+    pointer-events: none;
+    transition: 0.4s;
+    width:200px;
+    margin-left:-100px;
+    margin-top:-100px;
+    height:200px;
+    opacity:0.5;
+    background-color: #eee;
+    border-radius: 100px;
+}
+
+@keyframes wave-out {
+    100%{
+        width:1000px;
+        margin-left:-500px;
+        margin-top:-500px;
+        height:1000px;
+        opacity:0;
+        background-color: white;
+        border-radius: 500px;
+    }
+}
+
+.iota-wave-effect-standby{
+    animation: 0.5s bounceInDown linear infinite alternate;
+}
+
+@keyframes bounceInDown {
+    0%{
+        width:200px;
+        margin-left:-100px;
+        margin-top:-100px;
+        height:200px;
+        opacity:0.5;
+        background-color: #eee;
+        border-radius: 100px;
+    }
+    100%{
+        width:250px;
+        margin-left:-125px;
+        margin-top:-125px;
+        height:250px;
+        opacity:0.5;
+        background-color: #eee;
+        border-radius: 125px;
+    }
+}
