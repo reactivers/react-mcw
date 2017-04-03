@@ -1,111 +1,87 @@
 /**
  * Created by muratguney on 29/03/2017.
  */
-import React from 'react'
+import React from 'react';
 import {Card, CardHeader, CardActions, CardBody} from '../Card';
 import Chip from '../Chip';
-import Acordion from '../Acordion';
-import Button from '../Button';
-import {List, ListItem} from '../List';
-
-
-const data2 = [
-    {dsc: "List 7",id:1},
-    {dsc: "List 8",id:1},
-    {dsc: "List 9",id:1},
-    {dsc: "List 10",id:1},
-    {dsc: "List 11",id:1},
-    {dsc: "List 12",id:1},
-];
-const data3 = [
-    {dsc: "List 13",id:2},
-    {dsc: "List 14",id:2},
-    {dsc: "List 15",id:2},
-    {dsc: "List 16",id:3},
-    {dsc: "List 17",id:3},
-    {dsc: "List 18",id:3},
-];
-const data4 = [
-    {dsc: "List 19"},
-    {dsc: "List 20"},
-    {dsc: "List 21"},
-    {dsc: "List 22"},
-    {dsc: "List 23"},
-    {dsc: "List 24"},
-];
-
-const data5 = [
-    {dsc: "List 25"},
-    {dsc: "List 26"},
-    {dsc: "List 27"},
-    {dsc: "List 28"},
-    {dsc: "List 29"},
-    {dsc: "List 30"},
-];
-
-
-
-const data1 = [
-    {dsc: "List 1",id:1,children:data2},
-    {dsc: "List 2",id:2,children:data3},
-    {dsc: "List 3",id:3,children:data4},
-    {dsc: "List 4",id:4,children:data5},
-    {dsc: "List 5",id:5},
-    {dsc: "List 6",id:6},
-];
-
+import Icon from '../Icon';
+import Markdown from 'react-markdown'
+import {Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../Table';
 
 
 export default class ChipPage extends React.Component {
-    state = {};
+
+    state = {dialog: false};
 
     render() {
+
+        let document = [
+            '```js',
+            'import React from "react";',
+            'import {TextField} from "react-material-design";',
+            'export default class Example extends React.Component {',
+            '',
+            '     render(){',
+            '           return (',
+            '               <div>',
+            '                   <Chip>Default Chip</Chip>',
+            '                   <Chip avatar={<Icon iconName="people" ></Icon>}>Avatar Chip</Chip>',
+            '                   <Chip avatar={<Icon iconName="people" />} onCancel={this.onCancel}>Avatar Chip</Chip>',
+            '               </div>',
+            '            )',
+            '       }',
+            '  }',
+            '```',
+        ].join('\n');
+
         return (
-            <Card style={{justifyContent: "flex-start",height:"100%"}}>
-                <CardHeader title="Title"/>
-
-                <Chip avatar={<div>Selam</div>}
-                      avatarStyle={{width:"auto",padding:4,marginLeft:-4,fontSize:14}}
-                      onCancel={()=>{}}
-                      style={{backgroundColor:"lightblue"}}>
-                    Selam Ben Murat Gardaş
-                </Chip>
-
-
-
-                <Acordion label="İlk">
-                    <Acordion label="İki" />
-                    <Acordion label="Üç" />
-                    <Acordion label="Dört" />
-                </Acordion>
-                <Acordion label="Ana">
-                    <Acordion label="İki" />
-                    <Acordion label="Üç" />
-                    <Acordion label="Dört" />
-                </Acordion>
-
-
-                <Acordion itemHeight={48} data={data1} child={(child,index)=> {
-                    if(child.item.children)
-                        return(
-                            <Acordion data={child.item.children} child={(child2,index2)=>{
-                                return(
-                                    <Card style={{justifyContent: "flex-start",height:"100%"}}>
-                                        <CardHeader title="Title"/>
-                                        <CardBody>{child2.item.dsc}</CardBody>
-                                    </Card>
-                                )
-                            }} />
-                        );
-                    else {
-                        return(
-                            <span>aaa</span>
-                        )
-                    }
-                }
-                }>
-                </Acordion>
-
+            <Card style={{padding: 8}}>
+                <CardHeader title="Card"/>
+                <Card shadow={3} style={{padding: 29}}>
+                    <div style={{display:"flex"}}>
+                        <Chip>Default Chip</Chip>
+                        <Chip avatar={<Icon iconName={"people"} />}>Avatar Chip</Chip>
+                        <Chip avatar={<Icon iconName={"people"} />} onCancel={()=>null}>Avatar Chip</Chip>
+                    </div>
+                </Card>
+                <Markdown source={document}/>
+                <CardHeader title="Tabs properties"/>
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHeaderColumn>Props</TableHeaderColumn>
+                            <TableHeaderColumn>Type</TableHeaderColumn>
+                            <TableHeaderColumn>Description</TableHeaderColumn>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        <TableRow>
+                            <TableRowColumn>avatar</TableRowColumn>
+                            <TableRowColumn>Any</TableRowColumn>
+                            <TableRowColumn>You can set any avatar</TableRowColumn>
+                        </TableRow>
+                        <TableRow>
+                            <TableRowColumn>avatarStyle</TableRowColumn>
+                            <TableRowColumn>Object</TableRowColumn>
+                            <TableRowColumn>Style of avatar.</TableRowColumn>
+                        </TableRow>
+                        <TableRow>
+                            <TableRowColumn>style</TableRowColumn>
+                            <TableRowColumn>Object</TableRowColumn>
+                            <TableRowColumn longText>Set style of chip.</TableRowColumn>
+                        </TableRow>
+                        <TableRow>
+                            <TableRowColumn>cancelButtonStyle</TableRowColumn>
+                            <TableRowColumn>Object</TableRowColumn>
+                            <TableRowColumn longText>Style of cancel button.</TableRowColumn>
+                        </TableRow>
+                        <TableRow>
+                            <TableRowColumn>onCancel</TableRowColumn>
+                            <TableRowColumn>Boolean</TableRowColumn>
+                            <TableRowColumn longText>Fire when clicked cancel button.If you don't define any func cancel button doesn't shown.</TableRowColumn>
+                        </TableRow>
+                    </TableBody>
+                </Table>
             </Card>
         )
     }

@@ -39,7 +39,7 @@ export default class Drawer extends PureComponent {
     }
 
     render() {
-
+        console.log(this.props.open)
         if (this.props.open !== undefined)
             return (
                 <aside className="mdc-temporary-drawer mdc-typography" style={{zIndex: 99}}>

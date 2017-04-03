@@ -166,9 +166,6 @@ export default class CardPage extends React.Component {
                         </TableRow>
                     </TableBody>
                 </Table>
-
-
-
             </Card>
         )
     }

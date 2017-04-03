@@ -16,7 +16,13 @@ class Dialog extends PureComponent {
         style: PropTypes.object,
     };
 
-
+    componentWillReceiveProps(nextProps){
+        if(nextProps.open){
+            document.getElementsByTagName('body')[0].style.overflowY = "hidden"
+        }else {
+            document.getElementsByTagName('body')[0].style.overflow = "scroll"
+        }
+    }
     render() {
         const id = generateId();
         const {open, onClose, children, className, ...otherProps} = this.props;
