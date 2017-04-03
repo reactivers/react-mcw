@@ -6,7 +6,7 @@ import {Card, CardHeader, CardActions, CardBody} from '../Card';
 import Button from '../Button';
 import {Tabs, Tab} from '../Tab';
 import {Dialog, DialogHeader, DialogTitle, DialogContent, DialogFooter} from '../Dialog';
-import Markdown from 'react-markdown'
+import Highlight from 'react-highlight.js'
 import {Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../Table';
 
 
@@ -17,7 +17,7 @@ export default class TabPage extends React.Component {
     render() {
 
         let document = [
-            '```js',
+
             'import React from "react";',
             'import {Tabs,Tab} from "react-material-design";',
             'export default class Example extends React.Component {',
@@ -37,7 +37,7 @@ export default class TabPage extends React.Component {
             '            )',
             '       }',
             '  }',
-            '```',
+
         ].join('\n');
 
         return (
@@ -54,7 +54,7 @@ export default class TabPage extends React.Component {
                     </Tabs>
 
                 </Card>
-                <Markdown source={document}/>
+                <Highlight language="javascript">{document}</Highlight>
                 <CardHeader title="Tabs properties"/>
                 <Table>
                     <TableHeader>

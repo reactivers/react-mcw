@@ -4,7 +4,7 @@
 import React from 'react';
 import {Card, CardHeader, CardActions, CardBody} from '../Card';
 import Button from '../Button';
-import Markdown from 'react-markdown'
+import HighLight from 'react-highlight.js'
 import {Table,TableRow,TableHeaderColumn,TableHeader,TableRowColumn,TableBody} from '../Table';
 
 export default class CardPage extends React.Component {
@@ -13,7 +13,6 @@ export default class CardPage extends React.Component {
     render() {
 
         let document = [
-            '```js',
             'import React from "react";',
             'import {Card, CardHeader,CardActions, CardBody} from "react-material-design";',
             'export default class Example extends React.Component {',
@@ -35,7 +34,6 @@ export default class CardPage extends React.Component {
             '            )',
             '       }',
             '  }',
-            '```',
         ].join('\n');
 
         return (
@@ -60,7 +58,9 @@ export default class CardPage extends React.Component {
                         <Button primary raised>Action 2</Button>
                     </CardActions>
                 </Card>
-                <Markdown source={document}/>
+                <HighLight source="javascript">
+                    {document}
+                </HighLight>
 
                 <CardHeader title="Card properties" />
                 <Table>
