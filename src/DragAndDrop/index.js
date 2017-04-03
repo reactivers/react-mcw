@@ -1,5 +1,6 @@
 import React from 'react'
-class DragAndDrop extends React.Component{
+
+export default class DragAndDrop extends React.Component{
 
     state={};
 
@@ -10,7 +11,7 @@ class DragAndDrop extends React.Component{
 
         document.onmouseup = function (e) {
             this.setState({dad: false});
-            this.oldMouseUp(e)
+            this.oldMouseUp && this.oldMouseUp(e)
         }.bind(this);
 
         document.onmousedown = function (e) {
@@ -29,7 +30,7 @@ class DragAndDrop extends React.Component{
                 }
                 this.setState({dad: true,offset:{x:(e.clientX - position.left),y:(e.clientY - position.top)}});
             }
-            this.oldMouseDown(e)
+            this.oldMouseDown && this.oldMouseDown(e)
         }.bind(this);
 
         document.onmousemove = function (e) {
