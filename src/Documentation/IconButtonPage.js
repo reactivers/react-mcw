@@ -5,7 +5,7 @@ import React from 'react';
 import {Card, CardHeader, CardActions, CardBody} from '../Card';
 import Button from '../Button';
 import IconButton from '../IconButton';
-import Markdown from 'react-markdown'
+import Highlight from 'react-highlight.js'
 import {Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../Table';
 
 
@@ -16,7 +16,7 @@ export default class IconButtonPage extends React.Component {
     render() {
 
         let document = [
-            '```js',
+
             'import React from "react";',
             'import {Card, CardHeader,CardActions, CardBody} from "react-material-design";',
             'export default class Example extends React.Component {',
@@ -45,7 +45,7 @@ export default class IconButtonPage extends React.Component {
             '            )',
             '       }',
             '  }',
-            '```',
+
         ].join('\n');
 
         return (
@@ -58,7 +58,7 @@ export default class IconButtonPage extends React.Component {
                 </CardActions>
 
 
-                <Markdown source={document}/>
+                <Highlight language="javascript">{document}</Highlight>
 
                 <CardHeader title="IconButton properties"/>
                 <Table>

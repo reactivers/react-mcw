@@ -5,7 +5,7 @@ import React from 'react';
 import {Card, CardHeader, CardActions, CardBody} from '../Card';
 import Badge from '../Badge';
 import Icon from '../Icon';
-import Markdown from 'react-markdown'
+import HighLight from 'react-highlight.js'
 import {Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../Table';
 
 
@@ -16,7 +16,6 @@ export default class BadgePage extends React.Component {
     render() {
 
         let document = [
-            '```js',
             'import React from "react";',
             'import {Badge} from "react-material-design";',
             '',
@@ -25,13 +24,12 @@ export default class BadgePage extends React.Component {
             '     render(){',
             '           return (',
             '               <div>',
-            '                   <Badge iconName="notifications" label="10"></Badge>',
+            '                   <Badge iconName="notifications" label="10" ></Badge>',
             '                   <Badge iconName="notifications" label="10" iconSize={40} badgeColor={"purple"} />',
             '               </div>',
             '            )',
             '       }',
             '  }',
-            '```',
         ].join('\n');
 
         return (
@@ -43,7 +41,15 @@ export default class BadgePage extends React.Component {
                         <Badge iconName="notifications" label="10" iconSize={40} badgeColor={"purple"} />
                     </div>
                 </Card>
-                <Markdown source={document}/>
+
+                <pre>
+                    <code className="h">
+
+                    </code>
+                </pre>
+                <HighLight language="javascript">
+                    {document}
+                </HighLight>
                 <CardHeader title="Tabs properties"/>
                 <Table>
                     <TableHeader>

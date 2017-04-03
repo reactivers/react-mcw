@@ -5,7 +5,7 @@ import React from 'react';
 import {Card, CardHeader, CardActions, CardBody} from '../Card';
 import Drawer from '../Drawer';
 import IconButton from '../IconButton';
-import Markdown from 'react-markdown'
+import Highlight from 'react-highlight.js'
 import {Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../Table';
 
 
@@ -16,7 +16,7 @@ export default class ChipPage extends React.Component {
     render() {
 
         let document = [
-            '```js',
+
             'import React from "react";',
             'import {Menu, MenuItem} from "react-material-design";',
             'export default class Example extends React.Component {',
@@ -33,7 +33,7 @@ export default class ChipPage extends React.Component {
             '            )',
             '       }',
             '  }',
-            '```',
+
         ].join('\n');
 
         return (
@@ -45,7 +45,7 @@ export default class ChipPage extends React.Component {
                         Drawer Content
                     </Drawer>
                 </Card>
-                <Markdown source={document}/>
+                <Highlight language="javascript">{document}</Highlight>
                 <CardHeader title="Menu properties"/>
                 <Table>
                     <TableHeader>

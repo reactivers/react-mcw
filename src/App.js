@@ -85,6 +85,22 @@ const pageComponents = {
 
 };
 
+/*TODO
+    AcordionPage,
+    DrawerPage,
+    ElevationPage,
+    IconTogglePage,
+    ListPage,
+    RadioButtonPage,
+    SelectFieldPage,
+    SnackbarPage,
+    CheckBoxPage,
+    FABPage,
+    SwitchPage,
+    IconPage,
+
+*/
+
 
 class App extends Component {
     state = {
@@ -117,10 +133,11 @@ class App extends Component {
                 <GridContainer style={{height : "calc(100vh + 9px)",padding: 0, margin: 0}}>
 
                     <Drawer open={this.state.hide && this.state.open} onClose={()=>this.setState({open:false})}>
-                        <List style={{paddingRight : 0,paddingLeft :0,textIndent : "10px"}}>
+                        <List style={{paddingRight: 0, paddingLeft: 0, textIndent: "10px"}}>
                             {pages.map((page, index) => {
                                 return (
-                                    <Link key={"li"+index} to={"/" + page.value} style={{textDecoration :"none",color : "black"}}>
+                                    <Link key={"li" + index} to={"/" + page.value}
+                                          style={{textDecoration: "none", color: "black"}}>
                                         <ListItem style={{fontSize: "18px"}} onClick={ () => this.setState({a:Math.random()})}>
                                             {page.dsc}
                                         </ListItem>
@@ -137,7 +154,7 @@ class App extends Component {
                                 return (
                                     <Link key={"li" + index} to={"/" + page.value}
                                           style={{textDecoration: "none", color: "black"}}>
-                                        <ListItem style={{fontSize: "18px"}} onClick={ () => null}>
+                                        <ListItem style={{fontSize: "18px"}} onClick={ () => this.setState({a:Math.random()})}>
                                             {page.dsc}
                                         </ListItem>
                                     </Link>

@@ -4,7 +4,7 @@
 import React from 'react';
 import {Card, CardHeader, CardActions, CardBody} from '../Card';
 import Textfield from '../TextField';
-import Markdown from 'react-markdown'
+import Highlight from 'react-highlight.js'
 import {Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../Table';
 
 
@@ -15,7 +15,7 @@ export default class TabPage extends React.Component {
     render() {
 
         let document = [
-            '```js',
+
             'import React from "react";',
             'import {TextField} from "react-material-design";',
             'export default class Example extends React.Component {',
@@ -32,7 +32,7 @@ export default class TabPage extends React.Component {
             '            )',
             '       }',
             '  }',
-            '```',
+
         ].join('\n');
 
         return (
@@ -43,7 +43,7 @@ export default class TabPage extends React.Component {
                         <Textfield key="1" placeholder="placeholder" label="Label" error floatingLabel helpText="Some Help" />
                     </div>
                 </Card>
-                <Markdown source={document}/>
+                <Highlight language="javascript">{document}</Highlight>
                 <CardHeader title="Tabs properties"/>
                 <Table>
                     <TableHeader>

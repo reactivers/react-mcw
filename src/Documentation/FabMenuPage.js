@@ -6,7 +6,7 @@ import {Card, CardHeader, CardActions, CardBody} from '../Card';
 import FabMenu from '../FabMenu';
 import FAB from '../FAB';
 import Button from '../Button';
-import Markdown from 'react-markdown'
+import Highlight from 'react-highlight.js'
 import {Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../Table';
 
 export default class FabMenuPage extends React.Component {
@@ -16,7 +16,7 @@ export default class FabMenuPage extends React.Component {
     render() {
 
         let document = [
-            '```js',
+
             'import React from "react";',
             'import {FabMenu} from "react-material-design";',
             'export default class DefaultFabMenu extends React.Component {',
@@ -39,11 +39,11 @@ export default class FabMenuPage extends React.Component {
             '            )',
             '       }',
             '  }',
-            '```',
+
         ].join('\n');
 
         let document2 = [
-            '```js',
+
             'import React from "react";',
             'import {FabMenu,FAB} from "react-material-design";',
             'export default class Custom FabMenu extends React.Component {',
@@ -57,7 +57,7 @@ export default class FabMenuPage extends React.Component {
             '            )',
             '       }',
             '  }',
-            '```',
+
         ].join('\n');
 
         return (
@@ -87,8 +87,8 @@ export default class FabMenuPage extends React.Component {
                     }
 
                 </div>
-                <Markdown source={document}/>
-                <Markdown source={document2}/>
+                <Highlight language="javascript">{document}</Highlight>
+                <Highlight language="javascript">{document2}</Highlight>
 
                 <CardHeader title="FabMenu properties"/>
                 <Table>
