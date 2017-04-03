@@ -18,7 +18,13 @@ class Tabs extends React.Component {
 
     componentDidMount() {
         this.position = document.getElementById(this.id + '').getBoundingClientRect();
-        this.setState({a:2})
+        this.setState({a:Math.random()})
+        window.addEventListener('resize',this.resize.bind(this))
+    }
+
+    resize(){
+        this.position = document.getElementById(this.id + '').getBoundingClientRect();
+        this.setState({a:Math.random()})
     }
 
     render() {

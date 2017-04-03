@@ -4,13 +4,20 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "commonmark-react-renderer": "^4.3.2",
     "immutable": "^3.8.1",
+    "markdown": "^0.5.0",
     "material-components-web": "^0.7.0",
+    "@material": "^0.7.0",
     "moment": "^2.18.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-hljs": "^1.0.0",
+    "react-markdown": "^2.4.6",
+    "react-remarkable": "^1.1.1",
     "react-router": "^4.0.0",
-    "react-router-dom": "^4.0.0"
+    "react-router-dom": "^4.0.0",
+    "remarkable": "^1.7.1"
   },
   "devDependencies": {
     "autoprefixer": "6.7.2",

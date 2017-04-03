@@ -27,7 +27,9 @@ import ChipPage from './Documentation/ChipPage';
 import BadgePage from './Documentation/BadgePage';
 import SwitchPage from './Documentation/SwitchPage';
 import IconPage from './Documentation/IconPage';
+import TablePage from './Documentation/TablePage';
 import WaveEffect from './WaveEffect'
+import Drawer from './Drawer'
 import {browserHistory} from 'react-router';
 import {Route, Link} from 'react-router-dom'
 
@@ -54,6 +56,7 @@ const pages = [
     {dsc: 'Icon', value: 'icon'},
     {dsc: 'Chip', value: 'chip'},
     {dsc: 'Badge', value: 'badge'},
+    {dsc: 'Table', value: 'table'},
 ];
 const pageComponents = {
     acordion: AcordionPage,
@@ -78,26 +81,62 @@ const pageComponents = {
     icon: IconPage,
     chip: ChipPage,
     badge: BadgePage,
+    table: TablePage,
 
 };
 
 
 class App extends Component {
     state = {
-        isDrawerOpen: false
+        isDrawerOpen: false,
+        open:false,
+        hide:false,
+    };
+
+    componentWillMount(){
+        if(window.outerWidth<=768){
+            this.setState({hide:true})
+        }else {
+            this.setState({hide:false})
+        }
+        window.onresize = function (e) {
+            let width = e.target.outerWidth;
+            if(width<=768){
+                this.setState({hide:true})
+            }else {
+                this.setState({hide:false})
+            }
+        }.bind(this)
     }
+    
     render() {
         return (
             <div>
 
-                <AppBar leftElements={<AppBarTitle title={"react-material-design"}/>}/>
-                <GridContainer style={{height : "calc(100vh - 64px)",padding: 0, margin: 0}}>
+                <AppBar  leftElements={<AppBarTitle icon={this.state.hide ? <IconButton iconColor="white" iconName="menu" onClick={()=>this.setState({open:!this.state.open})}/> : <span></span>} title={"react-material-design"}/>}/>
+                <GridContainer style={{height : "calc(100vh + 9px)",padding: 0, margin: 0}}>
 
-                    <Grid col={2} phone={2} tablet={2} style={{padding: 0, margin: 0, boxShadow: "5px 5px 17px 0px rgba(0,0,0,0.39)"}}>
+                    <Drawer open={this.state.hide && this.state.open} onClose={()=>this.setState({open:false})}>
                         <List style={{paddingRight : 0,paddingLeft :0,textIndent : "10px"}}>
                             {pages.map((page, index) => {
                                 return (
                                     <Link key={"li"+index} to={"/" + page.value} style={{textDecoration :"none",color : "black"}}>
+                                        <ListItem style={{fontSize: "18px"}} onClick={ () => this.setState({a:Math.random()})}>
+                                            {page.dsc}
+                                        </ListItem>
+                                    </Link>
+                                )
+                            })}
+                        </List>
+                    </Drawer>
+
+                    <Grid col={2} phone={2} tablet={2}
+                          style={{marginLeft:this.state.hide ? "-100%" : "0%",left:this.state.hide ? "-100%" : "0%",position:this.state.hide ? "absolute" : "relative",transition:"0.4s",padding: 0, margin: 0, boxShadow: "5px 5px 17px 0px rgba(0,0,0,0.39)"}}>
+                        <List style={{paddingRight: 0, paddingLeft: 0, textIndent: "10px"}}>
+                            {pages.map((page, index) => {
+                                return (
+                                    <Link key={"li" + index} to={"/" + page.value}
+                                          style={{textDecoration: "none", color: "black"}}>
                                         <ListItem style={{fontSize: "18px"}} onClick={ () => null}>
                                             {page.dsc}
                                         </ListItem>
@@ -106,7 +145,7 @@ class App extends Component {
                             })}
                         </List>
                     </Grid>
-                    <Grid col={10} phone={6} tablet={6} style={{padding: 0, margin: 0}}>
+                    <Grid style={{transition:"0.4s"}} col={!this.state.hide ? 10 : 12} phone={!this.state.hide ? 6 : 12} tablet={!this.state.hide ? 6 : 12}>
                         <div style={{padding: 8, margin: 8}}>
                             {pages.map((page, index) => {
                                 return (

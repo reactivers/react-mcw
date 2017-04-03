@@ -7,12 +7,13 @@ import classNames from 'classnames';
 export default class CardActions extends React.PureComponent {
     static propTypes={
         className : PropTypes.string,
+        style : PropTypes.object,
     };
     render() {
-        const {className, ...rest} = this.props;
+        const {className, style,...rest} = this.props;
         const classes = classNames("mdc-card__actions", className)
         return (
-            <section className={classes} {...rest}>
+            <section className={classes} style={style} {...rest}>
                 {this.props.children}
             </section>
         )
