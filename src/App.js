@@ -134,7 +134,7 @@ class App extends Component {
                         <List style={{paddingRight: 0, paddingLeft: 0, textIndent: "10px"}}>
                             {pages.map((page, index) => {
                                 return (
-                                    <Link key={"li" + index} to={"/" + page.value}
+                                    <Link key={"li" + index} to={"/react-material-design/" + page.value}
                                           style={{textDecoration: "none", color: "black"}}>
                                         <ListItem style={{fontSize: "18px"}} onClick={ () => this.setState({open:false})}>
                                             {page.dsc}
@@ -150,7 +150,7 @@ class App extends Component {
                         <List style={{paddingRight: 0, paddingLeft: 0, textIndent: "10px"}}>
                             {pages.map((page, index) => {
                                 return (
-                                    <Link key={"li" + index} to={"/" + page.value}
+                                    <Link key={"li" + index} to={"/react-material-design/" + page.value}
                                           style={{textDecoration: "none", color: "black"}}>
                                         <ListItem style={{fontSize: "18px"}} onClick={ () => this.setState({a:Math.random()})}>
                                             {page.dsc}
@@ -164,7 +164,7 @@ class App extends Component {
                         <div style={{padding: 8, margin: 8}}>
                             {pages.map((page, index) => {
                                 return (
-                                    <Route key={index} path={"/" + page.value} component={pageComponents[page.value]}/>
+                                    <Route key={index} path={"/react-material-design/" + page.value} component={pageComponents[page.value]}/>
                                 )
                             })}
                         </div>
