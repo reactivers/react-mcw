@@ -16,6 +16,8 @@ class RadioButton extends PureComponent {
         setChecked: PropTypes.bool,
         setDisabled: PropTypes.bool,
         name: PropTypes.string,
+        style: PropTypes.object,
+        className: PropTypes.string,
     };
 
     componentWillMount() {
@@ -24,35 +26,40 @@ class RadioButton extends PureComponent {
 
     componentDidMount() {
         this.radio = new MDCRadio(document.querySelector('#' + this.generateId));
-
+        this.radioOptions(this.props)
         window.radio = this.radio
     }
 
+    radioOptions(nextProps){
+        if(nextProps.isDisabled)
+            nextProps.isDisabled(this.radio.foundation_.isDisabled());
+
+        if (nextProps.setChecked !== undefined) {
+            this.radio.foundation_.setChecked(nextProps.setChecked);
+        }
+
+        if(nextProps.setDisabled)
+            this.radio.foundation_.setDisabled(nextProps.setDisabled);
+
+        if(nextProps.isChecked)
+            nextProps.isChecked(this.radio.foundation_.isChecked());
+
+        if(nextProps.onChange)
+            nextProps.onChange(this.radio.foundation_.isChecked())
+    }
+
     componentWillReceiveProps(nextProps,nextState){
-            if(nextProps.isDisabled)
-                nextProps.isDisabled(this.radio.foundation_.isDisabled());
+        this.radioOptions(nextProps)
 
-            if (nextProps.setChecked !== undefined) {
-                this.radio.foundation_.setChecked(nextProps.setChecked);
-            }
-
-            if(nextProps.setDisabled)
-                this.radio.foundation_.setDisabled(nextProps.setDisabled);
-
-            if(nextProps.isChecked)
-                nextProps.isChecked(this.radio.foundation_.isChecked());
-
-            if(nextProps.onChange)
-                nextProps.onChange(this.radio.foundation_.isChecked())
     }
 
     render() {
-        const {label, onChange, isChecked, isDisabled, setChecked, setDisabled, value,name, ...otherProps} = this.props;
+        const {label, onChange, isChecked, isDisabled, setChecked, setDisabled, value,  style, className,name, ...otherProps} = this.props;
 
         return (
-            <div {...otherProps}>
+            <div className={"mdc-form-field" + className} style={{display:"flex",alignItems:"center",...style}} {...otherProps}>
                 <div id={this.generateId} className="mdc-radio">
-                    <input className="mdc-radio__native-control" type="radio" onChange={onChange}
+                    <input className="mdc-radio__native-control"  type="radio" onChange={onChange}
                            id={this.generateId + "radio"} name={name}/>
                     <div className="mdc-radio__background">
                         <div className="mdc-radio__outer-circle"></div>

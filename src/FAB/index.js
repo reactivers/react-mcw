@@ -9,12 +9,14 @@ export default class FAB extends React.PureComponent {
     static propTypes = {
         buttonColor: PropTypes.string,
         buttonSize: PropTypes.number,
+        style: PropTypes.object,
         mini: PropTypes.bool,
-        icon: PropTypes.string
+        icon: PropTypes.string,
+        onClick: PropTypes.func,
     };
 
     render() {
-        const {style, className, buttonColor, buttonSize, mini, icon, ...rest}=this.props;
+        const {style, className, buttonColor, onClick, buttonSize, mini, icon, ...rest} = this.props;
         let buttonStyle = Object.assign({}, style, {
             backgroundColor: buttonColor,
             width: buttonSize,
@@ -24,8 +26,8 @@ export default class FAB extends React.PureComponent {
             "mdc-fab--mini": mini
         }, className)
         return (
-            <button className={classes} style={buttonStyle} {...rest}>
-                {buttonSize ? React.cloneElement(icon, { iconSize : (buttonSize*44/100)}) : icon }
+            <button className={classes} style={buttonStyle} onClick={onClick} {...rest}>
+                {buttonSize ? React.cloneElement(icon, {iconSize: (buttonSize * 44 / 100)}) : icon }
             </button>
         )
     }

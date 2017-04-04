@@ -6,7 +6,7 @@ import '@material/switch/dist/mdc.switch.css';
 import classNames from 'classnames';
 import generateId from '../utils/generateId';
 
-export default class Switch extends React.PureComponent {
+export default class Switch extends React.Component {
     static propTypes = {
         checked: PropTypes.bool,
         className: PropTypes.string,

@@ -20,22 +20,32 @@ export default class Snackbar extends React.PureComponent{
     }
     componentDidMount(){
         this.snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
+        if(this.props.open){
+            this.snackbar.show({
+                message:this.props.message,
+                timeout:this.props.timeout,
+                actionHandler : ()  => this.props.onClose(),
+                actionText : this.props.buttonText,
+                multiline:this.props.multiline,
+                actionOnBottom : this.props.buttonOnBottom
+            });
+        }
     }
-    componentWillReceiveProps(){
-        this.snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
+    componentWillReceiveProps(nextProps){
+        if(nextProps.open){
+            this.snackbar.show({
+                message:nextProps.message,
+                timeout:nextProps.timeout,
+                actionHandler : ()  => nextProps.onClose(),
+                actionText : nextProps.buttonText,
+                multiline:nextProps.multiline,
+                actionOnBottom : nextProps.buttonOnBottom
+            });
+        }
     }
     render(){
         const{open,message,timeout,multiline,buttonOnBottom,buttonText,buttonColor,barColor,barTextColor,onClose} = this.props;
-        if(!!open){
-            this.snackbar.show({
-                message,
-                timeout,
-                actionHandler : ()  => onClose(),
-                actionText : buttonText,
-                multiline,
-                actionOnBottom : buttonOnBottom
-            });
-        }
+
         return(
             <div className="mdc-snackbar"
                  style={{backgroundColor : barColor}}
