@@ -17,7 +17,7 @@ export default class CardPage extends React.Component {
             <Card style={{padding: 8}}>
                 <CardHeader title="Checkbox"/>
 
-                <Checkbox label="Simple Checkbox" indeterminate={true} onChange={e=>console.log(e.target.labelId)} />
+                <Checkbox label="Simple Checkbox" indeterminate={true}/>
 
                 <HighLight source="javascript">
                     {document}

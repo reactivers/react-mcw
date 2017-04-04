@@ -50,7 +50,7 @@ export default class CheckBoxPage extends React.Component {
 
         return (
             <Card style={{padding: 8}}>
-                <CardHeader title="Card"/>
+                <CardHeader title="Dialog"/>
                 <CardActions>
                     <Button raised onClick={() => this.setState({dialog: true})}>Open Dialog</Button>
                 </CardActions>

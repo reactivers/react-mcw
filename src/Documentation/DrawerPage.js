@@ -15,38 +15,25 @@ export default class ChipPage extends React.Component {
 
     render() {
 
-        let document = [
-
-            'import React from "react";',
-            'import {Menu, MenuItem} from "react-material-design";',
-            'export default class Example extends React.Component {',
-            '',
-            '     render(){',
-            '           return (',
-            '               <div>',
-            '                   <Menu target={<IconButton iconName={"menu"} />}>',
-            '                       <MenuItem>Menu 1</MenuItem>',
-            '                       <MenuItem hoverableMenuItem>Menu 2</MenuItem>',
-            '                       <MenuItem>Menu 3</MenuItem>',
-            '                   </Menu>',
-            '               </div>',
-            '            )',
-            '       }',
-            '  }',
-
-        ].join('\n');
+        let document = `
+<IconButton onClick={this.openDrawer} iconName="menu"/>
+<Drawer hasButton={true} open={this.state.opens} onClose={this.handle}>
+    Drawer Content
+</Drawer>
+        `;
 
         return (
             <Card style={{padding: 8}}>
-                <CardHeader title="Card"/>
+                <CardHeader title="Drawer"/>
                 <Card shadow={3} style={{padding: 29}}>
-                    <IconButton onClick={()=>this.setState({opens:true})} iconName={"menu"}/>
-                    <Drawer key={2} open={this.state.opens} onClose={()=>this.setState({opens:false})}>
+                    <IconButton onClick={() => this.setState({opens: true})} iconName={"menu"}/>
+                    <Drawer hasButton={true} key={2} open={this.state.opens}
+                            onClose={() => this.setState({opens: false})}>
                         Drawer Content
                     </Drawer>
                 </Card>
                 <Highlight language="javascript">{document}</Highlight>
-                <CardHeader title="Menu properties"/>
+                <CardHeader title="Drawer properties"/>
                 <Table>
                     <TableHeader>
                         <TableRow>
@@ -57,36 +44,35 @@ export default class ChipPage extends React.Component {
                     </TableHeader>
                     <TableBody>
                         <TableRow>
-                            <TableRowColumn>target</TableRowColumn>
-                            <TableRowColumn>Any</TableRowColumn>
-                            <TableRowColumn>Target for show the menu</TableRowColumn>
+                            <TableRowColumn>header</TableRowColumn>
+                            <TableRowColumn>Component</TableRowColumn>
+                            <TableRowColumn>You can set your own component to header of drawer.</TableRowColumn>
                         </TableRow>
                         <TableRow>
-                            <TableRowColumn>getSelectedIndex</TableRowColumn>
+                            <TableRowColumn>onClose</TableRowColumn>
                             <TableRowColumn>Function</TableRowColumn>
-                            <TableRowColumn>Index of selected menu item</TableRowColumn>
+                            <TableRowColumn>Fires when drawer close.</TableRowColumn>
                         </TableRow>
                         <TableRow>
-                            <TableRowColumn>onMenuClose</TableRowColumn>
-                            <TableRowColumn>Function</TableRowColumn>
-                            <TableRowColumn longText>Fire when menu close.</TableRowColumn>
-                        </TableRow>
-                    </TableBody>
-                </Table>
-                <CardHeader title="MenuItem properties"/>
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHeaderColumn>Props</TableHeaderColumn>
-                            <TableHeaderColumn>Type</TableHeaderColumn>
-                            <TableHeaderColumn>Description</TableHeaderColumn>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        <TableRow>
-                            <TableRowColumn>hoverableMenuItem</TableRowColumn>
+                            <TableRowColumn>open</TableRowColumn>
                             <TableRowColumn>Boolean</TableRowColumn>
-                            <TableRowColumn>If true, on mouse enter the menu item backgrodund color changes.</TableRowColumn>
+                            <TableRowColumn>If true, drawer will open.</TableRowColumn>
+                        </TableRow>
+                        <TableRow>
+                            <TableRowColumn>hasButton</TableRowColumn>
+                            <TableRowColumn>Boolean</TableRowColumn>
+                            <TableRowColumn>In material design, drawer shouldn't have any button. So we add a props then
+                                you can add button on the drawer.</TableRowColumn>
+                        </TableRow>
+                        <TableRow>
+                            <TableRowColumn>headerStyle</TableRowColumn>
+                            <TableRowColumn>Object</TableRowColumn>
+                            <TableRowColumn>You can set header's style by inline-style.</TableRowColumn>
+                        </TableRow>
+                        <TableRow>
+                            <TableRowColumn>headerContentStyle</TableRowColumn>
+                            <TableRowColumn>Object</TableRowColumn>
+                            <TableRowColumn>You can set header's content's style by inline-style.</TableRowColumn>
                         </TableRow>
                     </TableBody>
                 </Table>

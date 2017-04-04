@@ -103,16 +103,25 @@ class App extends Component {
         }else {
             this.setState({hide:false})
         }
+        this.oldResize = window.onresize;
+
         window.onresize = function (e) {
-            let width = e.target.outerWidth;
-            if(width<=768){
-                this.setState({hide:true})
-            }else {
-                this.setState({hide:false})
-            }
+            this.oldResize && this.oldResize(e);
+            setTimeout(this.resize(e),500);
         }.bind(this)
+
     }
-    
+
+    resize(e){
+        let width = e.target.outerWidth;
+        if(width<=768){
+            this.setState({hide:true})
+        }else {
+            this.setState({hide:false})
+        }
+
+    }
+
     render() {
         return (
             <div>

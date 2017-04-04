@@ -3,6 +3,7 @@
  */
 import React, {PureComponent, PropTypes} from 'react';
 import Button from '../Button'
+import WaveEffect from '../WaveEffect'
 import generateId from '../utils/generateId';
 import './Tab.css';
 
@@ -16,29 +17,16 @@ class Tabs extends React.Component {
         this.content = this.props.children[this.state.selected] ? this.props.children[this.state.selected].props.children : this.props.children.props.children;
     }
 
-    componentDidMount() {
-        this.position = document.getElementById(this.id + '').getBoundingClientRect();
-        this.setState({a:Math.random()})
-        window.addEventListener('resize',this.resize.bind(this))
-    }
-
-    resize(){
-        this.position = document.getElementById(this.id + '').getBoundingClientRect();
-        this.setState({a:Math.random()})
-    }
-
     render() {
-            if(document.getElementById(this.state.id + '')) {
-                this.position = document.getElementById(this.state.id + '').getBoundingClientRect();
-            }
         const {defaultSelectedIndex, tabContentStyle, fullWidth, style, indicatorColor,selectedBackgroundColor, selectedLabelColor, content, changeTab, index, selectedTab, unSelectedBackgroundColor, unSelectedLabelColor, label, children, ...otherProps} = this.props;
         return (
             <div {...otherProps} style={{width:"100%",...style}}>
+                <WaveEffect/>
                 <div className="rmd-centered-item">
                     {React.Children.map(this.props.children, (child, index) => {
                         return React.cloneElement(child, {
                             selectedTab: this.state.selected,
-                            getId: (e,v) => {this.id = e; this.position = v},
+                            getId: (e) => this.id = e,
                             changeTab: (e, content, id) => {
                                 this.setState({selected: e, id}, () => this.props.onChange && this.props.onChange(e));
                                 this.content = content
@@ -53,9 +41,9 @@ class Tabs extends React.Component {
                             fullWidth
                         })
                     })}
-                   <Indicator position={this.position} selected={this.state.selected} {...this.props}/>
 
                 </div>
+                   <Indicator  selected={this.state.selected} {...this.props}/>
 
                 <div style={{margin: 8, padding: 8, ...tabContentStyle}} >{this.content}</div>
             </div>
@@ -74,7 +62,7 @@ class Tabs extends React.Component {
     };
 }
 
-class Tab extends PureComponent {
+class Tab extends React.Component {
 
     static propTypes = {
         label: PropTypes.string,
@@ -87,8 +75,7 @@ class Tab extends PureComponent {
     }
 
     componentDidMount() {
-        this.position = document.getElementById(this.id + '').getBoundingClientRect;
-        this.props.selectedTab === this.props.index && this.props.getId(this.id,this.position);
+        this.props.selectedTab === this.props.index && this.props.getId(this.id);
     }
 
     isSelected() {
@@ -101,7 +88,8 @@ class Tab extends PureComponent {
         return (
             <Button
                 id={this.id}
-                style={{width: fullWidth ? "100%" : "88px",...style}}
+                className="wave-effect"
+                style={{width: "100%",minHeight:48,...style}}
                 textColor={this.isSelected() ? (selectedLabelColor || "black") : (unSelectedLabelColor || "white")}
                 buttonColor={this.isSelected() ? (selectedBackgroundColor || "") : (unSelectedBackgroundColor || "") }
                 onClick={(e) => changeTab(index, children, this.id)}
@@ -120,16 +108,16 @@ class Indicator extends React.Component{
     render(){
         return(
             <div style={{
-                position: "absolute",
+                position: "relative",
                 margin:0,
                 padding:0,
                 backgroundColor: this.props.indicatorColor || "white",
                 transition: "0.4s",
-                top: this.props.position ? this.props.position.top + this.props.position.height -2 : 35,
                 height: 3,
+                top:-2,
                 zIndex: 99,
-                left: this.props.position ? this.props.position.left: 0,
-                width: this.props.position ? 88 : 1
+                left: this.props.selected*(100 / this.props.children.length)+"%",
+                width: 100/this.props.children.length+"%"
             }}/>
         )
     }

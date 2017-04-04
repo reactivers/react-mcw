@@ -30,7 +30,7 @@ export default class CardPage extends React.Component {
 
         return (
             <Card style={{padding: 8}}>
-                <CardHeader title="Card"/>
+                <CardHeader title="Elevation"/>
                 <div>
                     <GridContainer>
                         <Grid col={4} tablet={4} phone={4}>
@@ -159,7 +159,7 @@ export default class CardPage extends React.Component {
                     {document}
                 </HighLight>
 
-                <CardHeader title="Card properties"/>
+                <CardHeader title="Elevation properties"/>
                 <Table>
                     <TableHeader>
                         <TableRow>

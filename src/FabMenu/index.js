@@ -116,7 +116,6 @@ class FabMenu extends React.Component{
     lastFabIndex(){
         let maxIndex = 0;
         Object.keys(this.props).map(key=> typeof this.props[key] === "number" && this.props[key]> maxIndex ? maxIndex = this.props[key] : maxIndex);
-        console.log(maxIndex);
         return maxIndex
     }
 

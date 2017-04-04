@@ -15,42 +15,16 @@ export default class IconButtonPage extends React.Component {
 
     render() {
 
-        let document = [
+        let document = `
+<IconButton iconName="add" />
+<IconButton iconName="add" iconColor="blue" />
+<IconButton iconName="add" iconColor="red" />
+        `;
 
-            'import React from "react";',
-            'import {Card, CardHeader,CardActions, CardBody} from "react-material-design";',
-            'export default class Example extends React.Component {',
-            '',
-            'state = {dialog: false};',
-            '     render(){',
-            '           return (',
-            '               <div>',
-            '               <Button raised onClick={() => this.setState({dialog: true})}>Open Dialog</Button>',
-            '                   <Dialog open={this.state.dialog} onClose={() => this.setState({dialog: false})}>',
-            '                       <DialogHeader>',
-            '                           <DialogTitle>Example Dialog</DialogTitle>',
-            '                       </DialogHeader>',
-            '                       <DialogContent>',
-            '                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin mollis ',
-            '                       lectus cursus nulla euismod,eu pellentesque est blandit. Cras ac massa ',
-            '                       justo. Ut dapibus laoreet ligula, id venenatis risusplacerat nec. Aliquam dapibus odio ',
-            '                       vel lectus sagittis, id luctus erat mattis.',
-            '                       </DialogContent>',
-            '                       <DialogFooter>',
-            '                           <Button style={{marginRight: 8}} primary raised onClick={() => this.setState({dialog: false})}>Cancel</Button>',
-            '                           <Button accent primary raised>Action</Button>',
-            '                       </DialogFooter>',
-            '                   </Dialog>',
-            '               </div>',
-            '            )',
-            '       }',
-            '  }',
-
-        ].join('\n');
 
         return (
             <Card style={{padding: 8}}>
-                <CardHeader title="Card"/>
+                <CardHeader title="IconButton"/>
                 <CardActions>
                     <IconButton iconName="add" style={{marginRight:8}} />
                     <IconButton iconName="add" style={{marginRight:8}} iconColor={"blue"} />

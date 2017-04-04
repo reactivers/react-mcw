@@ -19,7 +19,6 @@ export default class CardPage extends React.Component {
 <Icon iconName="share" iconSize={54} iconColor="white" 
     style={{backgroundColor:"orange",borderRadius:"50%",padding:"4px"}}/>
     `;
-        console.log(this.state.open)
         return (
             <Card style={{padding: 8}}>
                 <CardHeader title="Icon"/>

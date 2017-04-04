@@ -7,21 +7,26 @@ import "@material/drawer/dist/mdc.drawer.css";
 import "@material/list/dist/mdc.list.css";
 import "@material/drawer/permanent/mdc-permanent-drawer.scss";
 import {MDCTemporaryDrawer} from  "@material/drawer/dist/mdc.drawer";
+import generateId from '../utils/generateId';
 
 
 export default class Drawer extends PureComponent {
 
+    componentWillMount() {
+        this.id = generateId();
+    }
+
     componentDidMount() {
         if (this.props.open !== undefined)
-            this.drawer = new MDCTemporaryDrawer(document.querySelector('.mdc-temporary-drawer'));
+            this.drawer = new MDCTemporaryDrawer(document.querySelector('#' + this.id + "drawer"));
 
         if (this.props.hasButton && this.props.open !== undefined) {
             this.drawer.foundation_.adapter_.deregisterInteractionHandler('click', this.drawer.foundation_.componentClickHandler_);
             this.drawer.foundation_.adapter_.deregisterDrawerInteractionHandler('click', this.drawer.foundation_.drawerClickHandler_);
         }
-        if (this.props.open !== undefined)
-            document.querySelector(this.props.open !== undefined ? '.mdc-temporary-drawer' : 'mdc-permanent-drawer').addEventListener('click', (e) => e.target.tagName === "ASIDE" && this.props.onClose());
-
+        if (this.props.open !== undefined) {
+            document.querySelector('#' + this.id + "drawer").addEventListener('click',e => e.target.id === this.id+"drawer" && this.props.onClose());
+        }
         window.drawer = this.drawer
     }
 
@@ -29,9 +34,9 @@ export default class Drawer extends PureComponent {
     componentWillReceiveProps(nextProps) {
         if (nextProps.open === true || nextProps.open === false) {
             this.drawer.open = nextProps.open;
-            if(nextProps.open === true){
+            if (nextProps.open === true) {
                 document.getElementsByTagName('body')[0].style.overflow = "hidden"
-            }else {
+            } else {
                 document.getElementsByTagName('body')[0].style.overflow = "scroll"
             }
         }
@@ -39,10 +44,9 @@ export default class Drawer extends PureComponent {
     }
 
     render() {
-        console.log(this.props.open)
         if (this.props.open !== undefined)
             return (
-                <aside className="mdc-temporary-drawer mdc-typography" style={{zIndex: 99}}>
+                <aside id={this.id + "drawer"} className="mdc-temporary-drawer mdc-typography" style={{zIndex: 99}}>
                     <nav className="mdc-temporary-drawer__drawer">
                         {this.props.header &&
                         <header className="mdc-temporary-drawer__header" style={this.props.headerStyle}>

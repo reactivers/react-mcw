@@ -52,7 +52,7 @@ export default class CardPage extends React.Component {
 
         return (
             <Card style={{padding:8}}>
-                <CardHeader title="Card"/>
+                <CardHeader title="List"/>
                 <List avatar={<Icon iconName={"person"} />} style={{marginBottom:20}}>
                     <ListItem>
                         List Item 1
