@@ -5,8 +5,10 @@ import {default as Icon} from './Icon';
 import {default as IconButton} from './IconButton';
 import {List, ListItem} from './List';
 import CardPage from './Documentation/CardPage';
+import AutoCompletePage from './Documentation/AutoCompletePage';
 import DialogPage from './Documentation/DialogPage';
 import DrawerPage from './Documentation/DrawerPage';
+import DatePickerPage from './Documentation/DatePickerPage';
 import ElevationPage from './Documentation/ElevationPage';
 import FabMenuPage from './Documentation/FabMenuPage';
 import IconButtonPage from './Documentation/IconButtonPage';
@@ -35,11 +37,19 @@ import {Route, Link} from 'react-router-dom'
 
 const pages = [
     {dsc: 'Acordion', value: 'acordion'},
+    {dsc: 'AutoComplete', value: 'autocomplete'},
+    {dsc: 'Button', value: 'button'},
+    {dsc: 'Badge', value: 'badge'},
     {dsc: 'Card', value: 'card'},
+    {dsc: 'CheckBox', value: 'checkbox'},
+    {dsc: 'Chip', value: 'chip'},
+    {dsc: 'DatePicker', value: 'datepicker'},
     {dsc: 'Dialog', value: 'dialog'},
     {dsc: 'Drawer', value: 'drawer'},
     {dsc: 'Elevation', value: 'elevation'},
+    {dsc: 'Fab', value: 'fab'},
     {dsc: 'FabMenu', value: 'fabmenu'},
+    {dsc: 'Icon', value: 'icon'},
     {dsc: 'IconButton', value: 'iconbutton'},
     {dsc: 'IconToggle', value: 'icontoggle'},
     {dsc: 'List', value: 'list'},
@@ -47,19 +57,14 @@ const pages = [
     {dsc: 'Radio Button', value: 'radio'},
     {dsc: 'SelectField', value: 'selectfield'},
     {dsc: 'Snackar', value: 'snackbar'},
-    {dsc: 'Tab', value: 'tab'},
-    {dsc: 'TextField', value: 'textfield'},
-    {dsc: 'Button', value: 'button'},
-    {dsc: 'CheckBox', value: 'checkbox'},
-    {dsc: 'Fab', value: 'fab'},
     {dsc: 'Switch', value: 'switch'},
-    {dsc: 'Icon', value: 'icon'},
-    {dsc: 'Chip', value: 'chip'},
-    {dsc: 'Badge', value: 'badge'},
+    {dsc: 'Tab', value: 'tab'},
     {dsc: 'Table', value: 'table'},
+    {dsc: 'TextField', value: 'textfield'},
 ];
 const pageComponents = {
     acordion: AcordionPage,
+    autocomplete: AutoCompletePage,
     card: CardPage,
     dialog: DialogPage,
     drawer: DrawerPage,
@@ -82,13 +87,9 @@ const pageComponents = {
     chip: ChipPage,
     badge: BadgePage,
     table: TablePage,
+    datepicker: DatePickerPage,
 
 };
-
-/*TODO
-    TablePage,
-*/
-
 
 class App extends Component {
     state = {
