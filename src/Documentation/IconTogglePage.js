@@ -22,14 +22,17 @@ toggleText={"Menu/Social"} />
             <Card style={{padding: 8}}>
                 <CardHeader title="Icon Toggle"/>
 
+                <div style={{display:"flex",justifyContent:"space-around",alignItems:"center"}}>
                     <IconToggle toggleOffIcon={"add"} toggleOnIcon={"clear"} primary toggleText={"Add/Clear"} />
 
                     <IconToggle toggleOffIcon={"menu"} toggleOnIcon={"share"} toggleText={"Menu/Social"} />
 
+                    <IconToggle toggleOffIcon={"menu"} toggleOnIcon={"share"} toggleText={"Menu/Social"} textColor={"red"} accent />
+                </div>
                 <HighLight source="javascript">
                     {document}
                 </HighLight>
-                <CardHeader title="Icon Toggle properties"/>
+                <CardHeader title="IconToggle properties"/>
                 <Table>
                     <TableHeader>
                         <TableRow>

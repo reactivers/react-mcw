@@ -37,14 +37,14 @@ export default class TabPage extends React.Component {
 
         return (
             <Card style={{padding: 8}}>
-                <CardHeader title="Card"/>
+                <CardHeader title="TextField"/>
                 <Card shadow={3} style={{padding: 29}}>
                     <div style={{display:"flex"}}>
                         <Textfield key="1" placeholder="placeholder" label="Label" error floatingLabel helpText="Some Help" />
                     </div>
                 </Card>
                 <Highlight language="javascript">{document}</Highlight>
-                <CardHeader title="Tabs properties"/>
+                <CardHeader title="TextField properties"/>
                 <Table>
                     <TableHeader>
                         <TableRow>

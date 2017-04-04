@@ -24,7 +24,7 @@ export default class IconToggle extends React.PureComponent{
         this.iconToggleId = generateId();
     }
     componentDidMount(){
-        const iconToggle = document.querySelector('.mdc-icon-toggle');
+        const iconToggle = document.querySelector('#'+this.iconToggleId);
         iconToggle.addEventListener('MDCIconToggle:change', ({detail}) => {
             this.props.onStatusChange(detail.isOn);
         });

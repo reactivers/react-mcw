@@ -66,7 +66,7 @@ class RadioButton extends PureComponent {
                         <div className="mdc-radio__inner-circle"></div>
                     </div>
                 </div>
-                <label id="radio-2-label" htmlFor={this.generateId + "radio"}>{label}</label>
+                <label htmlFor={this.generateId + "radio"}>{label}</label>
             </div>
         )
     }

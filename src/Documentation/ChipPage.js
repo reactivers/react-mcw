@@ -36,16 +36,14 @@ export default class ChipPage extends React.Component {
 
         return (
             <Card style={{padding: 8}}>
-                <CardHeader title="Card"/>
-                <Card shadow={3} style={{padding: 29}}>
+                <CardHeader title="Chip"/>
                     <div style={{display:"flex"}}>
                         <Chip>Default Chip</Chip>
                         <Chip avatar={<Icon iconName={"people"} />}>Avatar Chip</Chip>
                         <Chip avatar={<Icon iconName={"people"} />} onCancel={()=>null}>Avatar Chip</Chip>
                     </div>
-                </Card>
                 <Highlight language="javascript">{document}</Highlight>
-                <CardHeader title="Tabs properties"/>
+                <CardHeader title="Chip properties"/>
                 <Table>
                     <TableHeader>
                         <TableRow>

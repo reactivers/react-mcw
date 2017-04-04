@@ -82,7 +82,6 @@ export default class FabMenuPage extends React.Component {
                              onDelete={()=>null}
                              onEdit={()=>null}
                              onPeopleAdd={()=>null}
-                             onSearch={(p)=>console.log(p)}
                     />
                     }
 

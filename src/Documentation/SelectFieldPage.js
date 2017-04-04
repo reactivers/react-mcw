@@ -54,19 +54,19 @@ render() {
     }`;
         return (
             <Card style={{padding: 8}}>
-                <CardHeader title="Radio Button"/>
+                <CardHeader title="SelectField Button"/>
                     <SelectField style={{width:200}} menuStyle={{width:200}} menuItemStyle={{width:200}}>
                         <Option>Option 1</Option>
                         <Option>Option 2</Option>
                         <Option>Option 3</Option>
                         <Option>Option 4</Option>
                     </SelectField>
+                <HighLight source="javascript">
+                    {document2}
+                </HighLight>
                 <SelectField data={data} />
                 <HighLight source="javascript">
                     {document}
-                </HighLight>
-                <HighLight source="javascript">
-                    {document2}
                 </HighLight>
                 <CardHeader title="SelectField properties"/>
                 <Table>

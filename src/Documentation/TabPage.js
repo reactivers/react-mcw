@@ -42,7 +42,7 @@ export default class TabPage extends React.Component {
 
         return (
             <Card style={{padding: 8}}>
-                <CardHeader title="Card"/>
+                <CardHeader title="Tab"/>
                 <Card shadow={3} style={{padding: 29}}>
                     <Tabs >
                         <Tab label="First">

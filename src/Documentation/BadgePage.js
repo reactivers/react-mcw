@@ -34,7 +34,7 @@ export default class BadgePage extends React.Component {
 
         return (
             <Card style={{padding: 8}}>
-                <CardHeader title="Card"/>
+                <CardHeader title="Badge"/>
                 <Card shadow={3} style={{padding: 29}}>
                     <div style={{display:"flex"}}>
                         <Badge iconName="notifications" label="10"/>
@@ -50,7 +50,7 @@ export default class BadgePage extends React.Component {
                 <HighLight language="javascript">
                     {document}
                 </HighLight>
-                <CardHeader title="Tabs properties"/>
+                <CardHeader title="Badge properties"/>
                 <Table>
                     <TableHeader>
                         <TableRow>

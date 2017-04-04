@@ -18,7 +18,6 @@ export default class CardPage extends React.Component {
     onClose={this.handleOnClose} buttonText="Close"  />
 <Button primary onClick={this.openSnackbar}>Open Snackbar</Button>
     `;
-        console.log(this.state.open)
         return (
             <Card style={{padding: 8}}>
                 <CardHeader title="Snackbar"/>

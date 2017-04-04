@@ -38,7 +38,7 @@ export default class ChipPage extends React.Component {
 
         return (
             <Card style={{padding: 8}}>
-                <CardHeader title="Card"/>
+                <CardHeader title="Menu"/>
                 <Card shadow={3} style={{padding: 29}}>
                     <div style={{display:"flex"}}>
                         <Menu  target={<IconButton iconName={"menu"} />}>
