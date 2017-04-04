@@ -7,13 +7,15 @@ import '@material/elevation/dist/mdc.elevation.css'
 export default class Elevation extends PureComponent {
 
     static propTypes = {
-        zIndex:PropTypes.number
+        zIndex:PropTypes.number,
+        className:PropTypes.number,
+        style:PropTypes.number,
     };
 
     render(){
-        const {zIndex,children,...otherProps} = this.props
+        const {zIndex,children,className,style,...otherProps} = this.props
         return(
-            <div className={"mdc-elevation-transition mdc-elevation--z"+zIndex} {...otherProps}>
+            <div className={"mdc-elevation-transition mdc-elevation--z"+zIndex+" "+className} style={style} {...otherProps}>
                 {children}
             </div>
         )

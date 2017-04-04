@@ -45,6 +45,7 @@ class ListItem extends PureComponent {
         action: PropTypes.object,
         dividerInset: PropTypes.bool,
         dividerOutset: PropTypes.bool,
+        onClick: PropTypes.func,
 
     };
 

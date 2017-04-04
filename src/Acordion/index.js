@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{PropTypes} from 'react'
 import {Card, CardHeader, CardActions, CardBody} from '../Card';
 import {List, ListItem} from '../List';
 import './main.css'
@@ -6,6 +6,14 @@ import './main.css'
 
 export default class Acordion extends React.Component {
     state = {};
+
+    static propTypes = {
+        data: PropTypes.array,
+        label: PropTypes.string,
+        open: PropTypes.bool,
+        child: PropTypes.any,
+        onClick: PropTypes.func,
+    };
 
     selectItem(index,element){
         if(this.state.index !== index)
@@ -15,16 +23,22 @@ export default class Acordion extends React.Component {
     }
 
     render() {
-        let {label,data,open} = this.props;
+        let {label,data,open,dscField,...otherProps} = this.props;
+
         if(!data){
-            data = [{dsc:label}]
+            data = [{dsc:label}];
+            dscField = "dsc"
+        }else {
+            if(!dscField){
+                dscField = "dsc";
+            }
         }
         return (
             <List>
                 {data && data.map((item,index)=>
                     <div key={index}>
                         <ListItem onClick={this.selectItem.bind(this,index)} >
-                            {item.dsc}
+                            {item[dscField]}
                         </ListItem>
                         <div style={{
                             maxHeight:(open || this.state.index === index) ? 5000 : 0,

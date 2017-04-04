@@ -24,6 +24,7 @@ export default class Checkbox extends PureComponent {
     static propTypes = {
         id: PropTypes.string,
         labelId: PropTypes.string,
+        label: PropTypes.string,
         checked: PropTypes.bool,
         disabled: PropTypes.bool,
         indeterminate: PropTypes.bool,
@@ -165,7 +166,7 @@ export default class Checkbox extends PureComponent {
                         <div className="mdc-checkbox__mixedmark"></div>
                     </div>
                 </div>
-                <label htmlFor={this.props.id}>My Checkbox Label</label>
+                <label htmlFor={this.props.id}>{this.props.label}</label>
             </div>
         );
     }

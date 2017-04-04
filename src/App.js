@@ -86,19 +86,7 @@ const pageComponents = {
 };
 
 /*TODO
-    AcordionPage,
-    DrawerPage,
-    ElevationPage,
-    IconTogglePage,
-    ListPage,
-    RadioButtonPage,
-    SelectFieldPage,
-    SnackbarPage,
-    CheckBoxPage,
-    FABPage,
-    SwitchPage,
-    IconPage,
-
+    TablePage,
 */
 
 
@@ -130,15 +118,15 @@ class App extends Component {
             <div>
 
                 <AppBar  leftElements={<AppBarTitle icon={this.state.hide ? <IconButton iconColor="white" iconName="menu" onClick={()=>this.setState({open:!this.state.open})}/> : <span></span>} title={"react-material-design"}/>}/>
-                <GridContainer style={{height : "calc(100vh + 9px)",padding: 0, margin: 0}}>
+                <GridContainer style={{height : "100%",padding: 0, margin: 0}}>
 
-                    <Drawer open={this.state.hide && this.state.open} onClose={()=>this.setState({open:false})}>
+                    <Drawer hasButton open={this.state.hide && this.state.open} onClose={()=>this.setState({open:false})}>
                         <List style={{paddingRight: 0, paddingLeft: 0, textIndent: "10px"}}>
                             {pages.map((page, index) => {
                                 return (
                                     <Link key={"li" + index} to={"/" + page.value}
                                           style={{textDecoration: "none", color: "black"}}>
-                                        <ListItem style={{fontSize: "18px"}} onClick={ () => this.setState({a:Math.random()})}>
+                                        <ListItem style={{fontSize: "18px"}} onClick={ () => this.setState({open:false})}>
                                             {page.dsc}
                                         </ListItem>
                                     </Link>
