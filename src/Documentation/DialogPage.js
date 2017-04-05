@@ -2,7 +2,7 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react';
-import {Card, CardHeader, CardActions, CardBody} from '../Card';
+import {Card, CardHeader, CardActions} from '../Card';
 import Button from '../Button';
 import {Dialog, DialogHeader, DialogTitle, DialogContent, DialogFooter} from '../Dialog';
 import Highlight from 'react-highlight.js'

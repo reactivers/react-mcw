@@ -7,11 +7,6 @@ import FAB from '../FAB';
 import HighLight from 'react-highlight.js'
 import {Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../Table';
 
-const data = [{
-    value: "deneme",
-    dsc: "Deneme",
-}]
-
 export default class CardPage extends React.Component {
 
     render() {

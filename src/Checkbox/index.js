@@ -1,9 +1,9 @@
 /**
  * Created by Utku on 24/03/2017.
  */
+/* eslint-disable */
 import React, {PureComponent, PropTypes} from 'react';
 import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable';
-// Temporarily using relative reference until we publish on npm.
 import {getCorrectEventName} from '@material/animation/dist/mdc.animation';
 import {MDCRipple, MDCRippleFoundation} from '@material/ripple/dist/mdc.ripple';
 import {MDCCheckboxFoundation} from '@material/checkbox/dist/mdc.checkbox';
@@ -16,7 +16,6 @@ function getMatchesProperty(HTMLElementPrototype) {
     ].filter((p) => p in HTMLElementPrototype).pop();
 }
 
-const {ANIM_END_EVENT_NAME} = MDCCheckboxFoundation.strings;
 
 const MATCHES = getMatchesProperty(HTMLElement.prototype);
 
@@ -46,9 +45,6 @@ export default class Checkbox extends PureComponent {
         disabledInternal: this.props.disabled,
         indeterminateInternal: this.props.indeterminate
     }
-
-    // Here we initialize a foundation class, passing it an adapter which tells it how to
-    // work with the React component in an idiomatic way.
     foundation = new MDCCheckboxFoundation({
         addClass: className => this.setState(prevState => ({
             classes: prevState.classes.add(className)
@@ -67,11 +63,6 @@ export default class Checkbox extends PureComponent {
             }
         },
         registerChangeHandler: handler => {
-            // Note that this could also be handled outside of using the native DOM API.
-            // For example, onChange within render could delegate to a function which calls
-            // the handler passed here, as well as performs the other business logic. The point
-            // being our foundations are designed to be adaptable enough to fit the needs of the host
-            // platform.
             if (this.refs.nativeCb) {
                 this.refs.nativeCb.addEventListener('change', handler);
             }
@@ -95,7 +86,6 @@ export default class Checkbox extends PureComponent {
         isAttachedToDOM: () => Boolean(this.refs.nativeCb),
     });
 
-    // For browser compatibility we extend the default adapter which checks for css variable support.
     rippleFoundation = new MDCRippleFoundation(Object.assign(MDCRipple.createAdapter(this), {
         isUnbounded: () => true,
         isSurfaceActive: () => this.refs.nativeCb[MATCHES](':active'),
@@ -135,7 +125,6 @@ export default class Checkbox extends PureComponent {
     }));
 
     render() {
-        // Within render, we generate the html needed to render a proper MDC-Web checkbox.
         return (
             <div className="mdc-form-field">
                 <div ref="root" className={`mdc-checkbox ${this.state.classes.toJS().join(' ')}`}>
@@ -171,19 +160,11 @@ export default class Checkbox extends PureComponent {
         );
     }
 
-    // Within the two component lifecycle methods below, we invoke the foundation's lifecycle hooks
-    // so that proper work can be performed.
     componentDidMount() {
         this.foundation.init();
         this.rippleFoundation.init();
     }
 
-    componentWillUnmount() {
-        this.rippleFoundation.destroy();
-        this.foundation.destroy();
-    }
-
-    // Here we synchronize the internal state of the UI component based on what the user has specified.
     componentWillReceiveProps(props) {
         if (props.checked !== this.props.checked) {
             this.setState({checkedInternal: props.checked, indeterminateInternal: false});
@@ -196,14 +177,10 @@ export default class Checkbox extends PureComponent {
         }
     }
 
-    // Since we cannot set an indeterminate attribute on a native checkbox, we use componentDidUpdate to update
-    // the indeterminate value of the native checkbox whenever a change occurs (as opposed to doing so within
-    // render()).
     componentDidUpdate() {
         if (this.refs.nativeCb) {
             this.refs.nativeCb.indeterminate = this.state.indeterminateInternal;
         }
-        // To make the ripple animation work we update the css properties after React finished building the DOM.
         if (this.refs.root) {
             this.state.rippleCss.forEach((v, k) => {
                 this.refs.root.style.setProperty(k, v);

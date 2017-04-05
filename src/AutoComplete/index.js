@@ -4,8 +4,7 @@
 import React, {PropTypes} from 'react';
 import '@material/menu/dist/mdc.menu.css'
 import {MDCSimpleMenu} from '@material/menu/dist/mdc.menu';
-import classNames from 'classnames';
-import './AutoComplete.css';
+import '../index.scss';
 import TextField from '../TextField/index';
 
 export default class AutoComplete extends React.Component {
@@ -36,7 +35,7 @@ export default class AutoComplete extends React.Component {
     };
 
     render() {
-        const {label,error,floatingLabel,helpText,placeholder,disabled,dscField,valueField,onChange,data,className,style, ...rest} = this.props;
+        const {label,error,floatingLabel,helpText,placeholder,disabled,dscField,valueField,onChange,data,className,style} = this.props;
         let fieldDsc = "dsc";
         let fieldValue = "value";
         if(dscField)
@@ -45,7 +44,7 @@ export default class AutoComplete extends React.Component {
             fieldValue = valueField;
 
 
-        if (this.state.hasVal != "" && !this.menu.foundation_.isOpen()) {
+        if (this.state.hasVal !== "" && !this.menu.foundation_.isOpen()) {
             this.menu.show();
         }
         return (
@@ -63,8 +62,8 @@ export default class AutoComplete extends React.Component {
                     <ul className="mdc-simple-menu__items mdc-list deleleteMargin" role="menu" aria-hidden="true">
                         {data && data.filter(text=> !this.state.hasVal || text[fieldDsc].indexOf(this.state.hasVal) > -1).map((text, index) => {
                             return (
-                                <li key={index} onKeyPress={e=>{e.key==="Enter" && this.setState({hasVal: text[fieldDsc]},()=>this.props.onChange(text[fieldValue]))}} onClick={()=>this.setState({hasVal: text[fieldDsc]},()=>this.props.onChange(text[fieldValue]))}
-                                    className="hoverableMenuItem mdc-list-item" role="menuitem" tabIndex="0">
+                                <li key={index} onKeyPress={e=>{e.key==="Enter" && this.setState({hasVal: text[fieldDsc]},()=>onChange(text[fieldValue]))}} onClick={()=>this.setState({hasVal: text[fieldDsc]},()=>onChange(text[fieldValue]))}
+                                    className="rmd-menu-item mdc-list-item" role="menuitem" tabIndex="0">
                                     {text[fieldDsc]}
                                 </li>
                             )

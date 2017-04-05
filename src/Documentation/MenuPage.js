@@ -2,7 +2,7 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react';
-import {Card, CardHeader, CardActions, CardBody} from '../Card';
+import {Card, CardHeader} from '../Card';
 import {Menu,MenuItem} from '../Menu';
 import IconButton from '../IconButton';
 import Highlight from 'react-highlight.js'
@@ -26,7 +26,7 @@ export default class ChipPage extends React.Component {
             '               <div>',
             '                   <Menu target={<IconButton iconName={"menu"} />}>',
             '                       <MenuItem>Menu 1</MenuItem>',
-            '                       <MenuItem hoverableMenuItem>Menu 2</MenuItem>',
+            '                       <MenuItem hoverAtMenuItem>Menu 2</MenuItem>',
             '                       <MenuItem>Menu 3</MenuItem>',
             '                   </Menu>',
             '               </div>',
@@ -43,7 +43,7 @@ export default class ChipPage extends React.Component {
                     <div style={{display:"flex"}}>
                         <Menu  target={<IconButton iconName={"menu"} />}>
                             <MenuItem>Menu 1</MenuItem>
-                            <MenuItem hoverableMenuItem>Menu 2</MenuItem>
+                            <MenuItem hoverAtMenuItem>Menu 2</MenuItem>
                             <MenuItem>Menu 3</MenuItem>
                         </Menu>
                     </div>
@@ -87,7 +87,7 @@ export default class ChipPage extends React.Component {
                     </TableHeader>
                     <TableBody>
                         <TableRow>
-                            <TableRowColumn>hoverableMenuItem</TableRowColumn>
+                            <TableRowColumn>hoverAtMenuItem</TableRowColumn>
                             <TableRowColumn>Boolean</TableRowColumn>
                             <TableRowColumn>If true, on mouse enter the menu item backgrodund color changes.</TableRowColumn>
                         </TableRow>

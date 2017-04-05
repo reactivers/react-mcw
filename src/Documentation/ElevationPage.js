@@ -2,7 +2,7 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react';
-import {Card, CardHeader, CardActions, CardBody} from '../Card';
+import {Card, CardHeader} from '../Card';
 import Elevation from '../Elevation';
 import {GridContainer, Grid} from '../Grid';
 import HighLight from 'react-highlight.js'

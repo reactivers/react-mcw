@@ -5,8 +5,9 @@ import React, {PropTypes} from 'react';
 import '@material/textfield/dist/mdc.textfield.css'
 import {MDCTextfield} from '@material/textfield/dist/mdc.textfield';
 import generateId from '../utils/generateId';
-import './TextField.css'
+import '../index.scss'
 import classNames from 'classnames';
+
 export default class TextField extends React.PureComponent {
     static propTypes = {
         label: PropTypes.string,
