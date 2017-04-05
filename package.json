@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material": "^0.7.0",
     "classnames": "^2.2.5",
     "commonmark-react-renderer": "^4.3.2",
     "immutable": "^3.8.1",
