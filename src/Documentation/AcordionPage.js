@@ -2,9 +2,8 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react'
-import {Card, CardHeader, CardActions, CardBody} from '../Card';
+import {Card, CardHeader, CardBody} from '../Card';
 import Acordion from '../Acordion';
-import Switch from '../Switch';
 import HighLight from 'react-highlight.js'
 import {Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../Table';
 

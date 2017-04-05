@@ -1,7 +1,7 @@
+/* eslint-disable */
 import React, {Component} from 'react';
 import './App.css';
 import {AppBar, AppBarTitle} from './AppBar';
-import {default as Icon} from './Icon';
 import {default as IconButton} from './IconButton';
 import {List, ListItem} from './List';
 import CardPage from './Documentation/CardPage';
@@ -32,8 +32,8 @@ import IconPage from './Documentation/IconPage';
 import TablePage from './Documentation/TablePage';
 import WaveEffect from './WaveEffect'
 import Drawer from './Drawer'
-import {browserHistory} from 'react-router';
 import {Route, Link} from 'react-router-dom'
+import './index.scss';
 
 const pages = [
     {dsc: 'Acordion', value: 'acordion'},
@@ -127,7 +127,7 @@ class App extends Component {
         return (
             <div>
 
-                <AppBar  leftElements={<AppBarTitle icon={this.state.hide ? <IconButton iconColor="white" iconName="menu" onClick={()=>this.setState({open:!this.state.open})}/> : <span></span>} title={"react-material-design"}/>}/>
+                <AppBar  leftElements={<AppBarTitle icon={this.state.hide ? <IconButton iconColor="white" iconName="menu" onClick={()=>this.setState({open:!this.state.open})}/> : <span></span>} style={{color:"white"}} title={"react-material-design"}/>}/>
                 <GridContainer style={{height : "100%",padding: 0, margin: 0}}>
 
                     <Drawer hasButton open={this.state.hide && this.state.open} onClose={()=>this.setState({open:false})}>

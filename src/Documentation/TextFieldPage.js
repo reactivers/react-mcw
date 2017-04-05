@@ -2,7 +2,7 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react';
-import {Card, CardHeader, CardActions, CardBody} from '../Card';
+import {Card, CardHeader} from '../Card';
 import Textfield from '../TextField';
 import Highlight from 'react-highlight.js'
 import {Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../Table';
@@ -40,7 +40,7 @@ export default class TabPage extends React.Component {
                 <CardHeader title="TextField"/>
                 <Card shadow={3} style={{padding: 29}}>
                     <div style={{display:"flex"}}>
-                        <Textfield key="1" placeholder="placeholder" label="Label" error floatingLabel helpText="Some Help" />
+                        <Textfield key="1" placeholder="placeholder" label="Label" floatingLabel helpText="Some Help" />
                     </div>
                 </Card>
                 <Highlight language="javascript">{document}</Highlight>

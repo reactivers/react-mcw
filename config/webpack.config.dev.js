@@ -112,6 +112,8 @@ module.exports = {
           // https://github.com/facebookincubator/create-react-app/issues/1713
           /\.(js|jsx)(\?.*)?$/,
           /\.css$/,
+            /\.scss$/,
+
           /\.json$/,
           /\.svg$/
         ],
@@ -142,7 +144,10 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'style!css?importLoaders=1!postcss'
-      },
+      },{
+            test: /\.scss$/,
+            loader: 'style!css!sass'
+        },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
       {

@@ -1,5 +1,5 @@
 import React from 'react'
-import './main.css'
+import '../index.scss'
 
 export default class WaveEffect extends React.Component {
     state = {};
@@ -18,8 +18,7 @@ export default class WaveEffect extends React.Component {
                 wave.style.left = e.offsetX + 'px';
                 wave.style.top = e.offsetY + 'px';
                 wave.id = "temp-wave";
-                wave.className = "iota-wave-effect";
-                let self = this;
+                wave.className = "rmd-wave-effect";
 
                 e.target.appendChild(wave);
             }
@@ -30,8 +29,8 @@ export default class WaveEffect extends React.Component {
 
             if (this.state.active) {
                 this.setState({active: false});
-                let wave = document.querySelector('.iota-wave-effect');
-                wave.className = "iota-wave-effect-fade-out";
+                let wave = document.querySelector('.rmd-wave-effect');
+                wave.className = "rmd-wave-effect-fade-out";
                 setTimeout(() => wave.parentElement.removeChild(wave), 1000)
             }
             this.oldMouseUp && this.oldMouseUp(e)

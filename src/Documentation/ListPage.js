@@ -2,7 +2,7 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react';
-import {Card, CardHeader, CardActions, CardBody} from '../Card';
+import {Card, CardHeader} from '../Card';
 import {List,ListItem} from '../List';
 import Icon from '../Icon';
 import HighLight from 'react-highlight.js'
@@ -53,7 +53,7 @@ export default class CardPage extends React.Component {
         return (
             <Card style={{padding:8}}>
                 <CardHeader title="List"/>
-                <List avatar={<Icon iconName={"person"} />} style={{marginBottom:20}}>
+                <List avatar={true} style={{marginBottom:20}}>
                     <ListItem>
                         List Item 1
                     </ListItem>

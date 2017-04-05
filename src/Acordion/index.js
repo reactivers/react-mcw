@@ -1,7 +1,5 @@
 import React,{PropTypes} from 'react'
-import {Card, CardHeader, CardActions, CardBody} from '../Card';
 import {List, ListItem} from '../List';
-import './main.css'
 
 
 export default class Acordion extends React.Component {
@@ -23,7 +21,7 @@ export default class Acordion extends React.Component {
     }
 
     render() {
-        let {label,data,open,dscField,...otherProps} = this.props;
+        let {label,data,open,dscField} = this.props;
 
         if(!data){
             data = [{dsc:label}];

@@ -5,17 +5,17 @@ import React, {PropTypes} from 'react';
 import '@material/menu/dist/mdc.menu.css'
 import {MDCSimpleMenu} from '@material/menu/dist/mdc.menu';
 import classNames from 'classnames';
-import './Menu.css';
+import '../index.scss';
 
 export class MenuItem extends React.PureComponent {
     static propTypes = {
-        hoverableMenuItem: PropTypes.string,
+        hoverAtMenuItem: PropTypes.bool,
     }
 
     render() {
-        const {className, hoverableMenuItem, ...rest} = this.props;
+        const {className, hoverAtMenuItem, ...rest} = this.props;
         const menuItemClasses = classNames("mdc-list-item", {
-            "hoverableMenuItem": hoverableMenuItem
+            "rmd-menu-item": hoverAtMenuItem
         }, className);
         return (
             <li className={menuItemClasses} {...rest} role="menuitem" tabIndex="0">

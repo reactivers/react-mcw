@@ -5,7 +5,6 @@
 import React, {PureComponent, PropTypes} from 'react';
 import "@material/drawer/dist/mdc.drawer.css";
 import "@material/list/dist/mdc.list.css";
-import "@material/drawer/permanent/mdc-permanent-drawer.scss";
 import {MDCTemporaryDrawer} from  "@material/drawer/dist/mdc.drawer";
 import generateId from '../utils/generateId';
 

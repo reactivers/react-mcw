@@ -3,8 +3,7 @@
  */
 import React,{PropTypes} from 'react';
 import '@material/snackbar/dist/mdc.snackbar.css'
-import '@material/button/dist/mdc.button.css'
-import {MDCSnackbar,MDCSnackbarFoundation} from '@material/snackbar/dist/mdc.snackbar';
+import {MDCSnackbar} from '@material/snackbar/dist/mdc.snackbar';
 export default class Snackbar extends React.PureComponent{
     static propTypes={
         open : PropTypes.bool.isRequired,
@@ -37,7 +36,7 @@ export default class Snackbar extends React.PureComponent{
         }
     }
     render(){
-        const{open,message,timeout,multiline,buttonOnBottom,buttonText,buttonColor,barColor,barTextColor,onClose} = this.props;
+        const{buttonColor,barColor,barTextColor} = this.props;
 
         return(
             <div className="mdc-snackbar"

@@ -20,7 +20,7 @@ var formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 var getProcessForPort = require('react-dev-utils/getProcessForPort');
 var prompt = require('react-dev-utils/prompt');
 var fs = require('fs');
-var config = require('../config/webpack.config.dev');
+var config = require('../config/webpack.config.dev.js');
 var paths = require('../config/paths');
 
 var useYarn = fs.existsSync(paths.yarnLockFile);

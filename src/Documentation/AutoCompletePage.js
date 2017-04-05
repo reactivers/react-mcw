@@ -2,7 +2,7 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react';
-import {Card, CardHeader, CardActions, CardBody} from '../Card';
+import {Card, CardHeader} from '../Card';
 import AutoComplete from '../AutoComplete';
 import Highlight from 'react-highlight.js'
 import {Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../Table';
@@ -18,7 +18,7 @@ const data = [
 ];
 
 
-export default class ChipPage extends React.Component {
+export default class AutoCompletePage extends React.Component {
 
     state = {dialog: false, open: false};
 

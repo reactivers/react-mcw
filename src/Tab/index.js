@@ -1,11 +1,11 @@
 /**
  * Created by muratguney on 28/03/2017.
  */
-import React, {PureComponent, PropTypes} from 'react';
+import React, { PropTypes} from 'react';
 import Button from '../Button'
 import WaveEffect from '../WaveEffect'
 import generateId from '../utils/generateId';
-import './Tab.css';
+import '../index.scss';
 
 class Tabs extends React.Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class Tabs extends React.Component {
     }
 
     render() {
-        const {defaultSelectedIndex, tabContentStyle, fullWidth, style, indicatorColor,selectedBackgroundColor, selectedLabelColor, content, changeTab, index, selectedTab, unSelectedBackgroundColor, unSelectedLabelColor, label, children, ...otherProps} = this.props;
+        const {defaultSelectedIndex, tabContentStyle, style, indicatorColor,selectedBackgroundColor, selectedLabelColor, content, changeTab, index, selectedTab, unSelectedBackgroundColor, unSelectedLabelColor, label, children, ...otherProps} = this.props;
         return (
             <div {...otherProps} style={{width:"100%",...style}}>
                 <WaveEffect/>
@@ -38,7 +38,6 @@ class Tabs extends React.Component {
                             selectedLabelColor,
                             unSelectedBackgroundColor,
                             unSelectedLabelColor,
-                            fullWidth
                         })
                     })}
 
@@ -84,13 +83,13 @@ class Tab extends React.Component {
 
     render() {
         this.props.selectedTab === this.props.index && this.props.getId(this.id);
-        const {style, selectedBackgroundColor, fullWidth, selectedLabelColor, content, changeTab, index, selectedTab, unSelectedBackgroundColor, unSelectedLabelColor, label, children, ...otherProps} = this.props;
+        const {style, selectedBackgroundColor, selectedLabelColor, changeTab, index, unSelectedBackgroundColor, unSelectedLabelColor, label, children} = this.props;
         return (
             <Button
                 id={this.id}
                 className="wave-effect"
                 style={{width: "100%",minHeight:48,...style}}
-                textColor={this.isSelected() ? (selectedLabelColor || "black") : (unSelectedLabelColor || "white")}
+                textColor={this.isSelected() ? (selectedLabelColor || "white") : (unSelectedLabelColor || "white")}
                 buttonColor={this.isSelected() ? (selectedBackgroundColor || "") : (unSelectedBackgroundColor || "") }
                 onClick={(e) => changeTab(index, children, this.id)}
                 accent={this.isSelected()}
@@ -115,7 +114,7 @@ class Indicator extends React.Component{
                 transition: "0.4s",
                 height: 3,
                 top:-2,
-                zIndex: 99,
+                zIndex: 10,
                 left: this.props.selected*(100 / this.props.children.length)+"%",
                 width: 100/this.props.children.length+"%"
             }}/>

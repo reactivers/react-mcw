@@ -1,8 +1,8 @@
 /**
  * Created by Utku on 27/03/2017.
  */
+/* eslint-disable */
 import React,{PropTypes} from 'react';
-import './DatePicker.css';
 import moment from 'moment';
 moment.locale("tr");
 import {Card} from '../Card';
@@ -54,7 +54,7 @@ class DatePick extends React.PureComponent {
     }
 
     render() {
-        let {day_Today, month_Today, monthFull, year_Today, dayName_Today, fullDate} = this.getNextMonth(this.state.monthCounter);
+        let {month_Today, monthFull, year_Today, fullDate} = this.getNextMonth(this.state.monthCounter);
         let firstAndLast = this.getFirstAndLastDay(fullDate)
         let dayArr = Array.apply(null, Array(42));
         let i, j = 1;
@@ -69,7 +69,7 @@ class DatePick extends React.PureComponent {
         window.mom = moment;
         return (
             <Card style={{maxWidth: "310px", maxHeight: "512px"}} shadow={20}>
-                <div style={{width: "310px", height: "104px", backgroundColor: "#3F51B5", color: "white"}}>
+                <div className="rmd-date-picker" style={{width: "310px", height: "104px"}}>
                     <div style={{padding: "20px"}}>
                         <div style={{
                             fontSize: "16px",
@@ -141,7 +141,7 @@ class DatePick extends React.PureComponent {
                                             }}></td>;
                                         }
                                         return <td key={index}
-                                                   className="days"
+                                                   className="rmd-days"
                                                    onClick={() => this.setState({selectedDate: i2}, () => this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d))}
                                                    style={{
                                                        textAlign: 'center',
@@ -170,7 +170,7 @@ class DatePick extends React.PureComponent {
                                         }
                                         return <td key={index}
                                                    onClick={() => this.setState({selectedDate: i2}, () => this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d))}
-                                                   className="days"
+                                                   className="rmd-days"
                                                    style={{
                                                        textAlign: 'center',
                                                        verticalAlign: 'middle',
@@ -198,7 +198,7 @@ class DatePick extends React.PureComponent {
                                         }
                                         return <td key={index}
                                                    onClick={() => this.setState({selectedDate: i2}, () => this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d))}
-                                                   className="days"
+                                                   className="rmd-days"
                                                    style={{
                                                        textAlign: 'center',
                                                        verticalAlign: 'middle',
@@ -226,7 +226,7 @@ class DatePick extends React.PureComponent {
                                         }
                                         return <td key={index}
                                                    onClick={() => this.setState({selectedDate: i2}, () => this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d))}
-                                                   className="days"
+                                                   className="rmd-days"
                                                    style={{
                                                        textAlign: 'center',
                                                        verticalAlign: 'middle',
@@ -254,7 +254,7 @@ class DatePick extends React.PureComponent {
                                         }
                                         return <td key={index}
                                                    onClick={() => this.setState({selectedDate: i2}, () => this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d))}
-                                                   className="days"
+                                                   className="rmd-days"
                                                    style={{
                                                        textAlign: 'center',
                                                        verticalAlign: 'middle',
@@ -282,7 +282,7 @@ class DatePick extends React.PureComponent {
                                         }
                                         return <td key={index}
                                                    onClick={() => this.setState({selectedDate: i2}, () => this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d))}
-                                                   className="days"
+                                                   className="rmd-days"
                                                    style={{
                                                        textAlign: 'center',
                                                        verticalAlign: 'middle',
@@ -313,7 +313,7 @@ export default class DatePicker extends React.Component {
 
     static propTypes = {
         open:PropTypes.bool,
-        value:PropTypes.date,
+        value:PropTypes.string,
         onClose:PropTypes.func,
         onChange:PropTypes.func,
     };

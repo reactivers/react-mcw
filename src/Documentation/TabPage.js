@@ -2,10 +2,8 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react';
-import {Card, CardHeader, CardActions, CardBody} from '../Card';
-import Button from '../Button';
+import {Card, CardHeader} from '../Card';
 import {Tabs, Tab} from '../Tab';
-import {Dialog, DialogHeader, DialogTitle, DialogContent, DialogFooter} from '../Dialog';
 import Highlight from 'react-highlight.js'
 import {Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../Table';
 

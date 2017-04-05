@@ -15,7 +15,7 @@ export default class DragAndDrop extends React.Component{
         }.bind(this);
 
         document.onmousedown = function (e) {
-            if (e.target.classList.value.indexOf("iota-draggable") > -1) {
+            if (e.target.classList.value.indexOf("rmd-draggable") > -1) {
                 let dad = e.target;
                 let position = dad.getBoundingClientRect();
                 let dadOffsetX = parseInt(dad.style.left);
@@ -46,7 +46,7 @@ export default class DragAndDrop extends React.Component{
                 dadOffsetY = 0;
 
 
-            if (this.state.dad && e.target.classList.value.indexOf("iota-draggable") > -1) {
+            if (this.state.dad && e.target.classList.value.indexOf("rmd-draggable") > -1) {
 
                 const isRightEdgeOut = (dadOffsetX + position.width) <= this.state.initial.parentWidth;
                 const isMouseDragToLeft =  e.clientX < (position.left + this.state.offset.x);

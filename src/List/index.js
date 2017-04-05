@@ -3,9 +3,8 @@
  */
 import React, {PureComponent, PropTypes} from 'react'
 import "@material/list/dist/mdc.list.css";
-import "@material/list/mdc-list.scss";
 import classnames from 'classnames';
-import './List.css';
+import '../index.scss';
 
 class List extends PureComponent {
 
@@ -39,7 +38,7 @@ class ListItem extends PureComponent {
     static propTypes = {
         className: PropTypes.string,
         style: PropTypes.object,
-        subText: PropTypes.object,
+        subText: PropTypes.any,
         iconName: PropTypes.string,
         avatar: PropTypes.object,
         action: PropTypes.object,

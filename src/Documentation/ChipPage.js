@@ -2,7 +2,7 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react';
-import {Card, CardHeader, CardActions, CardBody} from '../Card';
+import {Card, CardHeader} from '../Card';
 import Chip from '../Chip';
 import Icon from '../Icon';
 import Highlight from 'react-highlight.js'

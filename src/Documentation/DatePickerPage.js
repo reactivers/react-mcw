@@ -2,7 +2,7 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react';
-import {Card, CardHeader, CardActions, CardBody} from '../Card';
+import {Card, CardHeader} from '../Card';
 import DatePicker from '../DatePicker';
 import IconButton from '../IconButton';
 import Highlight from 'react-highlight.js'
@@ -27,13 +27,12 @@ export default class ChipPage extends React.Component {
             <Card style={{padding: 8}}>
                 <CardHeader title="DatePicker"/>
                 <div style={{margin: "0 auto"}}>
-                    <DatePicker onChange={e => console.log(e)}/>
+                    <DatePicker/>
                     <div style={{padding: 16}}></div>
-                    <DatePicker value="Fri Apr 30 2027 23:47:26 GMT+0300 (+03)" onChange={e => console.log(e)}/>
+                    <DatePicker value="Fri Apr 30 2027 23:47:26 GMT+0300 (+03)"/>
                     <div style={{padding: 16}}></div>
                     <DatePicker value="Fri Apr 30 2017 23:47:26 GMT+0300 (+03)" open={this.state.open}
-                                onClose={() => this.setState({open: false})}
-                                onChange={e => console.log(e)}/>
+                                onClose={() => this.setState({open: false})}/>
                     <IconButton onClick={() => this.setState({open: true})} iconName={"date_range"}/>
                 </div>
                 <Highlight language="javascript">{document}</Highlight>

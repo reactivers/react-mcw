@@ -12,7 +12,7 @@ export default class CardPage extends React.Component {
     render() {
         let document = `
  <Switch label="Switch"/>
- <Switch label="Checked Switch" checked={true}/>
+ <Switch label="Checked Switch" defaultChecked={true}/>
  <Switch label="Unchecked Switch" checked={false}/>
     `;
         return (
@@ -20,7 +20,7 @@ export default class CardPage extends React.Component {
                 <CardHeader title="Switch"/>
                 <div style={{display: "flex",justifyContent:"space-around"}}>
                     <Switch label="Switch"/>
-                    <Switch label="Checked Switch" checked={true}/>
+                    <Switch label="Checked Switch" defaultChecked={true}/>
                     <Switch label="Unchecked Switch" checked={false}/>
                 </div>
                 <HighLight source="javascript">
