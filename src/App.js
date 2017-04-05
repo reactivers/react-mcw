@@ -167,7 +167,6 @@ class App extends Component {
                                     <Route key={index} path={"/react-material-design/" + page.value} component={pageComponents[page.value]}/>
                                 )
                             })}
-                            <Route component={()=><span>Sayfa Bulamadık</span>} />
                         </div>
                     </Grid>
                 </GridContainer>
