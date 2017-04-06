@@ -4,7 +4,7 @@
 import React, {PropTypes} from 'react';
 import Fab from '../FAB/index';
 import IconButton from '../IconButton';
-import '../../docs/index.scss'
+import '../index.scss'
 import TextField from '../TextField/index';
 
 const defaultStyle = {
