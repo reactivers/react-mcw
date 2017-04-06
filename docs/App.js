@@ -28,7 +28,7 @@ import SwitchPage from './Documentation/SwitchPage';
 import IconPage from './Documentation/IconPage';
 import TablePage from './Documentation/TablePage';
 import {Route, Link} from 'react-router-dom'
-import './index.scss';
+import '../src/index.scss';
 
 const pages = [
     {dsc: 'Acordion', value: 'acordion'},

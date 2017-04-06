@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../docs/index.scss'
+import '../index.scss'
 
 export default class WaveEffect extends React.Component {
     state = {};
