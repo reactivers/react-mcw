@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import classnames from 'classnames'
-import '../index.scss'
+import '../../docs/index.scss'
 
 
 class Table extends React.Component{

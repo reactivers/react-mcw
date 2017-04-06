@@ -5,7 +5,7 @@ import React, {PropTypes} from 'react';
 import '@material/menu/dist/mdc.menu.css'
 import {MDCSimpleMenu} from '@material/menu/dist/mdc.menu';
 import classNames from 'classnames';
-import '../index.scss';
+import '../../docs/index.scss';
 
 export class MenuItem extends React.PureComponent {
     static propTypes = {

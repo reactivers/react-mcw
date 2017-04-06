@@ -4,7 +4,7 @@
 import React, {PureComponent, PropTypes} from 'react'
 import "@material/list/dist/mdc.list.css";
 import classnames from 'classnames';
-import '../index.scss';
+import '../../docs/index.scss';
 
 class List extends PureComponent {
 
