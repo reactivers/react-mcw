@@ -4,7 +4,7 @@
 import React, {PropTypes} from 'react';
 import '@material/menu/dist/mdc.menu.css'
 import {MDCSimpleMenu} from '@material/menu/dist/mdc.menu';
-import '../index.scss';
+import '../../docs/index.scss';
 import TextField from '../TextField/index';
 
 export default class AutoComplete extends React.Component {

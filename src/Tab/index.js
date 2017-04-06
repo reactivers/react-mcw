@@ -5,7 +5,7 @@ import React, { PropTypes} from 'react';
 import Button from '../Button'
 import WaveEffect from '../WaveEffect'
 import generateId from '../utils/generateId';
-import '../index.scss';
+import '../../docs/index.scss';
 
 class Tabs extends React.Component {
     constructor(props) {

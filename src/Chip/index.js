@@ -3,7 +3,7 @@
  */
 import React,{PropTypes} from 'react';
 import IconButton from '../IconButton';
-import '../index.scss'
+import '../../docs/index.scss'
 
 
 export default class Chip extends React.Component {
