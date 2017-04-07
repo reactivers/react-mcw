@@ -2,9 +2,18 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react'
-import {Card, CardHeader,Button,Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../../lib';
+import {
+    Card,
+    CardHeader,
+    Button,
+    Table,
+    TableRow,
+    TableHeaderColumn,
+    TableHeader,
+    TableRowColumn,
+    TableBody
+} from '../../lib';
 import Highlight from 'react-highlight.js'
-
 
 export default class CheckBoxPage extends React.Component {
 
@@ -48,7 +57,6 @@ export default class CheckBoxPage extends React.Component {
                     <Button primary style={{marginRight: 8}}>Action 8</Button>
                 </div>
                 <Highlight language="javascript">{document}</Highlight>
-
                 <CardHeader title="Button properties"/>
                 <Table>
                     <TableHeader>
@@ -97,7 +105,8 @@ export default class CheckBoxPage extends React.Component {
                         <TableRow>
                             <TableRowColumn>disabled</TableRowColumn>
                             <TableRowColumn>Boolean</TableRowColumn>
-                            <TableRowColumn longText>If true, button's onClick function doesn't fire and colors changes.</TableRowColumn>
+                            <TableRowColumn longText>If true, button's onClick function doesn't fire and colors
+                                changes.</TableRowColumn>
                         </TableRow>
                         <TableRow>
                             <TableRowColumn>textColor</TableRowColumn>

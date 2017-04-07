@@ -20,6 +20,7 @@ import TabPage from './Documentation/TabPage';
 import TextFieldPage from './Documentation/TextFieldPage';
 import ButtonPage from './Documentation/ButtonPage';
 import CheckBoxPage from './Documentation/CheckBoxPage';
+import WaveEffectPage from './Documentation/WaveEffectPage';
 import AcordionPage from './Documentation/AcordionPage';
 import FabPage from './Documentation/FabPage';
 import ChipPage from './Documentation/ChipPage';
@@ -56,6 +57,7 @@ const pages = [
     {dsc: 'Tab', value: 'tab'},
     {dsc: 'Table', value: 'table'},
     {dsc: 'TextField', value: 'textfield'},
+    {dsc: 'Wave Effect', value: 'waveeffect'},
 ];
 const pageComponents = {
     acordion: AcordionPage,
@@ -83,6 +85,7 @@ const pageComponents = {
     badge: BadgePage,
     table: TablePage,
     datepicker: DatePickerPage,
+    waveeffect: WaveEffectPage,
 
 };
 
@@ -124,7 +127,7 @@ class App extends Component {
 
                 <AppBar leftElements={<AppBarTitle icon={this.state.hide ? <IconButton iconColor="white" iconName="menu"
                                                                                        onClick={() => this.setState({open: !this.state.open})}/> :
-                    <span></span>} style={{color: "white"}} title={"react-material-design"}/>}/>
+                    <span></span>} style={{color: "white"}} className="rmd-centered-item" title={"react-material-designs"}/>}/>
                 <GridContainer style={{height: "100%", padding: 0, margin: 0}}>
 
                     <Drawer hasButton open={this.state.hide && this.state.open}
@@ -134,10 +137,12 @@ class App extends Component {
                                 return (
                                     <Link key={"li" + index} to={"/react-material-design/" + page.value}
                                           style={{textDecoration: "none", color: "black"}}>
-                                        <ListItem style={{fontSize: "18px"}}
-                                                  onClick={ () => this.setState({open: false})}>
-                                            {page.dsc}
-                                        </ListItem>
+                                        <WaveEffect>
+                                            <ListItem style={{fontSize: "18px"}}
+                                                      onClick={ () => this.setState({open: false})}>
+                                                {page.dsc}
+                                            </ListItem>
+                                        </WaveEffect>
                                     </Link>
                                 )
                             })}
@@ -159,10 +164,12 @@ class App extends Component {
                                 return (
                                     <Link key={"li" + index} to={"/react-material-design/" + page.value}
                                           style={{textDecoration: "none", color: "black"}}>
-                                        <ListItem style={{fontSize: "18px"}}
-                                                  onClick={ () => this.setState({a: Math.random()})}>
-                                            {page.dsc}
-                                        </ListItem>
+                                        <WaveEffect>
+                                            <ListItem style={{fontSize: "18px"}}
+                                                      onClick={ () => this.setState({a: Math.random()})}>
+                                                {page.dsc}
+                                            </ListItem>
+                                        </WaveEffect>
                                     </Link>
                                 )
                             })}
@@ -180,7 +187,6 @@ class App extends Component {
                         </div>
                     </Grid>
                 </GridContainer>
-                <WaveEffect/>
             </div>
         )
     }

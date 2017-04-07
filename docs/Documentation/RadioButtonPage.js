@@ -5,7 +5,7 @@ import React from 'react';
 import {Card, CardHeader,RadioButton,Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../../lib';
 import HighLight from 'react-highlight.js'
 
-export default class CardPage extends React.Component {
+export default class RadioButtonPage extends React.Component {
 
 
     render() {

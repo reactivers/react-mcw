@@ -2,7 +2,7 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react'
-import {Card, Acordion,CardHeader, CardBody,Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../../lib';
+import {Card, Acordion,CardHeader, CardBody,Table,TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody} from '../../lib';
 import HighLight from 'react-highlight.js'
 
 
@@ -51,7 +51,7 @@ const data1 = [
     {dsc: "List 6",id:6},
 ];
 
-export default class CardPage extends React.Component {
+export default class AcordionPage extends React.Component {
 
     render() {
         let document = `
@@ -139,22 +139,21 @@ const data1 = [
         return (
             <Card style={{padding: 8}}>
                 <CardHeader title="Acordion"/>
-                    <Acordion label="İlk">
-                        <Acordion label="İki" />
-                        <Acordion label="Üç" />
-                        <Acordion label="Dört" />
+                    <Acordion waveEffect label="İlk">
+                        <Acordion waveEffect label="İki" />
+                        <Acordion waveEffect label="Üç" />
+                        <Acordion waveEffect label="Dört" />
                     </Acordion>
-                    <Acordion label="Ana">
-                        <Acordion label="İki" />
-                        <Acordion label="Üç" />
-                        <Acordion label="Dört" />
+                    <Acordion waveEffect label="Ana">
+                        <Acordion waveEffect label="İki" />
+                        <Acordion waveEffect label="Üç" />
+                        <Acordion waveEffect label="Dört" />
                     </Acordion>
 
-
-                    <Acordion itemHeight={48} data={data1} child={(child,index)=> {
+                    <Acordion waveEffect data={data1} child={(child,index)=> {
                         if(child.item.children)
                             return(
-                                <Acordion data={child.item.children} child={(child2,index2)=>{
+                                <Acordion waveEffect data={child.item.children} child={(child2,index2)=>{
                                     return(
                                         <Card style={{justifyContent: "flex-start",height:"100%"}}>
                                             <CardHeader title="Title"/>
@@ -209,9 +208,20 @@ const data1 = [
                             <TableRowColumn>Function</TableRowColumn>
                             <TableRowColumn>You can set what does do after click the acordion item.</TableRowColumn>
                         </TableRow>
+                        <TableRow>
+                            <TableRowColumn>waveEffect</TableRowColumn>
+                            <TableRowColumn>Boolean</TableRowColumn>
+                            <TableRowColumn>If true, shows wave effect when clicked the list item.</TableRowColumn>
+                        </TableRow>
+                        <TableRow>
+                            <TableRowColumn>light</TableRowColumn>
+                            <TableRowColumn>Boolean</TableRowColumn>
+                            <TableRowColumn>If waveEffect props is true, shows wave effect lighter when clicked the list item.</TableRowColumn>
+                        </TableRow>
                     </TableBody>
                 </Table>
             </Card>
         )
     }
 }
+

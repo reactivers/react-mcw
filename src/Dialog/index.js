@@ -18,7 +18,7 @@ class Dialog extends PureComponent {
 
     componentWillReceiveProps(nextProps){
         if(nextProps.open){
-            document.getElementsByTagName('body')[0].style.overflowY = "hidden"
+            document.getElementsByTagName('body')[0].style.overflow = "hidden"
         }else {
             document.getElementsByTagName('body')[0].style.overflow = "scroll"
         }

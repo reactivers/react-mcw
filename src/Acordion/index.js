@@ -1,6 +1,6 @@
 import React,{PropTypes} from 'react'
 import {List, ListItem} from '../List';
-
+import WaveEffect from '../WaveEffect'
 
 export default class Acordion extends React.Component {
     state = {};
@@ -10,6 +10,8 @@ export default class Acordion extends React.Component {
         label: PropTypes.string,
         open: PropTypes.bool,
         child: PropTypes.any,
+        waveEffect: PropTypes.any,
+        light: PropTypes.any,
         onClick: PropTypes.func,
     };
 
@@ -21,7 +23,7 @@ export default class Acordion extends React.Component {
     }
 
     render() {
-        let {label,data,open,dscField} = this.props;
+        let {label,data,open,dscField,child,waveEffect,light,...otherProps} = this.props;
 
         if(!data){
             data = [{dsc:label}];
@@ -32,12 +34,20 @@ export default class Acordion extends React.Component {
             }
         }
         return (
-            <List>
+            <List {...otherProps}>
                 {data && data.map((item,index)=>
                     <div key={index}>
+                        {waveEffect ?
+                            <WaveEffect light={light}>
+                                <ListItem onClick={this.selectItem.bind(this,index)} >
+                                    {item[dscField]}
+                                </ListItem>
+                            </WaveEffect>
+                            :
                         <ListItem onClick={this.selectItem.bind(this,index)} >
                             {item[dscField]}
                         </ListItem>
+                        }
                         <div style={{
                             maxHeight:(open || this.state.index === index) ? 5000 : 0,
                             marginLeft:(open || this.state.index === index) ? 0 : -40,
