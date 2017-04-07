@@ -1,6 +1,8 @@
 /* eslint-disable */
 import React, {Component} from 'react';
 import './App.css';
+import {Link} from 'react-router';
+import {Grid, GridContainer, Drawer, WaveEffect, List, ListItem, AppBar, AppBarTitle, IconButton} from '../lib';
 import CardPage from './Documentation/CardPage';
 import AutoCompletePage from './Documentation/AutoCompletePage';
 import DialogPage from './Documentation/DialogPage';
@@ -11,7 +13,6 @@ import FabMenuPage from './Documentation/FabMenuPage';
 import IconButtonPage from './Documentation/IconButtonPage';
 import IconTogglePage from './Documentation/IconTogglePage';
 import ListPage from './Documentation/ListPage';
-import {Grid, GridContainer, Drawer, WaveEffect, List, ListItem, AppBar, AppBarTitle, IconButton} from '../lib';
 import MenuPage from './Documentation/MenuPage';
 import RadioButtonPage from './Documentation/RadioButtonPage';
 import SelectFieldPage from './Documentation/SelectFieldPage';
@@ -28,7 +29,6 @@ import BadgePage from './Documentation/BadgePage';
 import SwitchPage from './Documentation/SwitchPage';
 import IconPage from './Documentation/IconPage';
 import TablePage from './Documentation/TablePage';
-import {Route, Link} from 'react-router-dom'
 import '../src/index.scss';
 
 const pages = [
@@ -135,7 +135,7 @@ class App extends Component {
                         <List style={{paddingRight: 0, paddingLeft: 0, textIndent: "10px"}}>
                             {pages.map((page, index) => {
                                 return (
-                                    <Link key={"li" + index} to={"/react-material-design/" + page.value}
+                                    <Link key={"li" + index} to={page.value}
                                           style={{textDecoration: "none", color: "black"}}>
                                         <WaveEffect>
                                             <ListItem style={{fontSize: "18px"}}
@@ -162,7 +162,7 @@ class App extends Component {
                         <List style={{paddingRight: 0, paddingLeft: 0, textIndent: "10px"}}>
                             {pages.map((page, index) => {
                                 return (
-                                    <Link key={"li" + index} to={"/react-material-design/" + page.value}
+                                    <Link key={"li" + index} to={page.value}
                                           style={{textDecoration: "none", color: "black"}}>
                                         <WaveEffect>
                                             <ListItem style={{fontSize: "18px"}}
@@ -178,12 +178,7 @@ class App extends Component {
                     <Grid style={{transition: "0.4s"}} col={!this.state.hide ? 10 : 12}
                           phone={!this.state.hide ? 6 : 12} tablet={!this.state.hide ? 6 : 12}>
                         <div style={{padding: 8, margin: 8}}>
-                            {pages.map((page, index) => {
-                                return (
-                                    <Route key={index} path={"/react-material-design/" + page.value}
-                                           component={pageComponents[page.value]}/>
-                                )
-                            })}
+                            {this.props.children}
                         </div>
                     </Grid>
                 </GridContainer>
@@ -191,5 +186,4 @@ class App extends Component {
         )
     }
 }
-
 export default App;
