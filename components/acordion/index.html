@@ -1,0 +1,1846 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/monokai-sublime.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad()</script>
+    <style>html {
+        font-family: Roboto, sans-serif
+    }</style>
+    <title>React App</title>
+
+    <link href="./static/css/mainss.css" rel="stylesheet">
+    <style type="text/css">.mdc-button.mdc-button--primary.mdc-button--raised {
+        color: #fff
+    }
+
+    :root {
+        --mdc-theme-primary: #00bcd4;
+        --mdc-theme-accent: #ff4081;
+        --mdc-theme-background: #fff;
+        --mdc-theme-text-primary-on-primary: rgba(0, 0, 0, .87);
+        --mdc-theme-text-secondary-on-primary: rgba(0, 0, 0, .54);
+        --mdc-theme-text-hint-on-primary: rgba(0, 0, 0, .38);
+        --mdc-theme-text-disabled-on-primary: rgba(0, 0, 0, .38);
+        --mdc-theme-text-icon-on-primary: rgba(0, 0, 0, .38);
+        --mdc-theme-text-primary-on-accent: #fff;
+        --mdc-theme-text-secondary-on-accent: hsla(0, 0%, 100%, .7);
+        --mdc-theme-text-hint-on-accent: hsla(0, 0%, 100%, .5);
+        --mdc-theme-text-disabled-on-accent: hsla(0, 0%, 100%, .5);
+        --mdc-theme-text-icon-on-accent: hsla(0, 0%, 100%, .5);
+        --mdc-theme-text-primary-on-background: rgba(0, 0, 0, .87);
+        --mdc-theme-text-secondary-on-background: rgba(0, 0, 0, .54);
+        --mdc-theme-text-hint-on-background: rgba(0, 0, 0, .38);
+        --mdc-theme-text-disabled-on-background: rgba(0, 0, 0, .38);
+        --mdc-theme-text-icon-on-background: rgba(0, 0, 0, .38);
+        --mdc-theme-text-primary-on-light: rgba(0, 0, 0, .87);
+        --mdc-theme-text-secondary-on-light: rgba(0, 0, 0, .54);
+        --mdc-theme-text-hint-on-light: rgba(0, 0, 0, .38);
+        --mdc-theme-text-disabled-on-light: rgba(0, 0, 0, .38);
+        --mdc-theme-text-icon-on-light: rgba(0, 0, 0, .38);
+        --mdc-theme-text-primary-on-dark: #fff;
+        --mdc-theme-text-secondary-on-dark: hsla(0, 0%, 100%, .7);
+        --mdc-theme-text-hint-on-dark: hsla(0, 0%, 100%, .5);
+        --mdc-theme-text-disabled-on-dark: hsla(0, 0%, 100%, .5);
+        --mdc-theme-text-icon-on-dark: hsla(0, 0%, 100%, .5)
+    }
+
+    .mdc-theme--background {
+        background-color: #fff;
+        background-color: var(--mdc-theme-background, #fff)
+    }
+
+    .mdc-theme--primary {
+        color: #00bcd4 !important;
+        color: var(--mdc-theme-primary, #00bcd4) !important
+    }
+
+    .mdc-theme--accent {
+        color: #ff4081 !important;
+        color: var(--mdc-theme-accent, #ff4081) !important
+    }
+
+    .mdc-theme--text-primary-on-primary {
+        color: rgba(0, 0, 0, .87) !important;
+        color: var(--mdc-theme-text-primary-on-primary, rgba(0, 0, 0, .87)) !important
+    }
+
+    .mdc-theme--text-secondary-on-primary {
+        color: rgba(0, 0, 0, .54) !important;
+        color: var(--mdc-theme-text-secondary-on-primary, rgba(0, 0, 0, .54)) !important
+    }
+
+    .mdc-theme--text-hint-on-primary {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-hint-on-primary, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-disabled-on-primary {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-disabled-on-primary, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-icon-on-primary {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-icon-on-primary, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-primary-on-accent {
+        color: #fff !important;
+        color: var(--mdc-theme-text-primary-on-accent, #fff) !important
+    }
+
+    .mdc-theme--text-secondary-on-accent {
+        color: hsla(0, 0%, 100%, .7) !important;
+        color: var(--mdc-theme-text-secondary-on-accent, hsla(0, 0%, 100%, .7)) !important
+    }
+
+    .mdc-theme--text-hint-on-accent {
+        color: hsla(0, 0%, 100%, .5) !important;
+        color: var(--mdc-theme-text-hint-on-accent, hsla(0, 0%, 100%, .5)) !important
+    }
+
+    .mdc-theme--text-disabled-on-accent {
+        color: hsla(0, 0%, 100%, .5) !important;
+        color: var(--mdc-theme-text-disabled-on-accent, hsla(0, 0%, 100%, .5)) !important
+    }
+
+    .mdc-theme--text-icon-on-accent {
+        color: hsla(0, 0%, 100%, .5) !important;
+        color: var(--mdc-theme-text-icon-on-accent, hsla(0, 0%, 100%, .5)) !important
+    }
+
+    .mdc-theme--text-primary-on-background {
+        color: rgba(0, 0, 0, .87) !important;
+        color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, .87)) !important
+    }
+
+    .mdc-theme--text-secondary-on-background {
+        color: rgba(0, 0, 0, .54) !important;
+        color: var(--mdc-theme-text-secondary-on-background, rgba(0, 0, 0, .54)) !important
+    }
+
+    .mdc-theme--text-hint-on-background {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-disabled-on-background {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-disabled-on-background, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-icon-on-background {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-icon-on-background, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-primary-on-light {
+        color: rgba(0, 0, 0, .87) !important;
+        color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, .87)) !important
+    }
+
+    .mdc-theme--text-secondary-on-light {
+        color: rgba(0, 0, 0, .54) !important;
+        color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, .54)) !important
+    }
+
+    .mdc-theme--text-hint-on-light {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-hint-on-light, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-disabled-on-light {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-icon-on-light {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-icon-on-light, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-primary-on-dark {
+        color: #fff !important;
+        color: var(--mdc-theme-text-primary-on-dark, #fff) !important
+    }
+
+    .mdc-theme--text-secondary-on-dark {
+        color: hsla(0, 0%, 100%, .7) !important;
+        color: var(--mdc-theme-text-secondary-on-dark, hsla(0, 0%, 100%, .7)) !important
+    }
+
+    .mdc-theme--text-hint-on-dark {
+        color: hsla(0, 0%, 100%, .5) !important;
+        color: var(--mdc-theme-text-hint-on-dark, hsla(0, 0%, 100%, .5)) !important
+    }
+
+    .mdc-theme--text-disabled-on-dark {
+        color: hsla(0, 0%, 100%, .5) !important;
+        color: var(--mdc-theme-text-disabled-on-dark, hsla(0, 0%, 100%, .5)) !important
+    }
+
+    .mdc-theme--text-icon-on-dark {
+        color: hsla(0, 0%, 100%, .5) !important;
+        color: var(--mdc-theme-text-icon-on-dark, hsla(0, 0%, 100%, .5)) !important
+    }
+
+    .mdc-theme--primary-bg {
+        background-color: #00bcd4 !important;
+        background-color: var(--mdc-theme-primary, #00bcd4) !important
+    }
+
+    .mdc-theme--accent-bg {
+        background-color: #ff4081 !important;
+        background-color: var(--mdc-theme-accent, #ff4081) !important
+    }
+
+    .deleleteMargin {
+        -webkit-margin-after: 0;
+        -webkit-margin-before: 0
+    }
+
+    .rmd-menu-item:hover {
+        background-color: #eee
+    }
+
+    .rmd-chip-text {
+        color: rgba(0, 0, 0, .870588);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 32px;
+        min-height: 32px;
+        min-width: 50px;
+        padding-left: 12px;
+        padding-right: 12px;
+        user-select: none;
+        white-space: nowrap
+    }
+
+    .rmd-chip {
+        border: 10px;
+        box-sizing: border-box;
+        display: flex;
+        font-family: Roboto, sans-serif;
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+        text-decoration: none;
+        margin: 4px;
+        padding: 0;
+        outline: none;
+        font-size: inherit;
+        font-weight: inherit;
+        position: relative;
+        z-index: 1;
+        background-color: #e0e0e0;
+        border-radius: 16px;
+        white-space: nowrap;
+        width: fit-content
+    }
+
+    .rmd-chip-contact {
+        color: #444;
+        background-color: #bcbcbc;
+        user-select: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        border-radius: 50%;
+        height: 32px;
+        width: 32px;
+        margin-right: -4px
+    }
+
+    .rmd-days:hover {
+        background-color: rgba(0, 0, 0, .1);
+        border-radius: 50%;
+        cursor: pointer
+    }
+
+    .rmd-date-picker {
+        background-color: #00bcd4;
+        color: #fff
+    }
+
+    .rmd-edit-button {
+        background-color: #81c784 !important;
+        color: #fff !important
+    }
+
+    .rmd-delete-button {
+        background-color: #e57373 !important;
+        color: #fff !important
+    }
+
+    .rmd-add-button {
+        background-color: #2196f3 !important;
+        color: #fff !important
+    }
+
+    .rmd-person-add {
+        background-color: #3f51b5 !important;
+        color: #fff !important
+    }
+
+    .rmd-copy-button {
+        background-color: #f57f17 !important;
+        color: #fff !important
+    }
+
+    .rmd-search-button {
+        background-color: #9c27b0 !important;
+        color: #fff !important
+    }
+
+    .rmd-menu-button {
+        background-color: #00bcd4 !important;
+        color: #fff !important
+    }
+
+    .rmd-centered-item {
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    .rmd-hover-list-item {
+        border-bottom: 1px solid #eee;
+        cursor: pointer
+    }
+
+    .rmd-hover-list-item, .rmd-hover-list-item:hover {
+        -webkit-transition: time .4s;
+        -moz-transition: .4s time;
+        -ms-transition: .4s time;
+        -o-transition: .4s time;
+        transition: time .4s
+    }
+
+    .rmd-hover-list-item:hover {
+        background-color: #eee !important;
+        color: #000 !important
+    }
+
+    .rmd-table {
+        background-color: #fff;
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        table-layout: fixed;
+        font-family: Roboto, sans-serif
+    }
+
+    .rmd-table-header-column {
+        font-weight: 400;
+        font-size: 12px;
+        padding-left: 24px;
+        padding-right: 24px;
+        height: 56px;
+        text-align: left;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #9e9e9e;
+        position: relative;
+        background-color: inherit
+    }
+
+    .rmd-table-row {
+        border-bottom: 1px solid #e0e0e0;
+        color: rgba(0, 0, 0, .870588);
+        height: 48px
+    }
+
+    .rmd-table-row-column-nowrap {
+        padding-left: 24px;
+        padding-right: 24px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis
+    }
+
+    .rmd-table-row-column-long-dsc, .rmd-table-row-column-nowrap {
+        height: 48px;
+        text-align: left;
+        font-size: 13px;
+        background-color: inherit
+    }
+
+    .rmd-table-row-column-long-dsc {
+        padding: 8px 24px
+    }
+
+    .placeholderClass::-webkit-input-placeholder {
+        visibility: hidden
+    }
+
+    .placeholderClass::-moz-placeholder {
+        visibility: hidden
+    }
+
+    .placeholderClass:-ms-input-placeholder {
+        visibility: hidden
+    }
+
+    .placeholderClass:-moz-placeholder {
+        visibility: hidden
+    }
+
+    .placeholderClass:focus::-webkit-input-placeholder {
+        visibility: visible
+    }
+
+    .placeholderClass:focus::-moz-placeholder {
+        visibility: visible
+    }
+
+    .placeholderClass:focus:-ms-input-placeholder {
+        visibility: visible
+    }
+
+    .placeholderClass:focus:-moz-placeholder {
+        visibility: visible
+    }
+
+    .tap-wave-effect {
+        overflow: hidden
+    }
+
+    .rmd-tap-wave-effect {
+        animation: .8s tap-wave linear forwards;
+        transition: .4s;
+        pointer-events: none
+    }
+
+    @keyframes tap-wave {
+        0% {
+            width: 0;
+            height: 0%;
+            opacity: .5;
+            border-radius: 50%;
+            background-color: #bbb
+        }
+        70% {
+            width: 150%;
+            margin-left: -75%;
+            margin-top: -75%;
+            height: 150%;
+            opacity: .4;
+            background-color: #eee;
+            border-radius: 50%
+        }
+        to {
+            width: 200%;
+            margin-left: -100%;
+            margin-top: -100%;
+            height: 200%;
+            opacity: .3;
+            background-color: #eee;
+            border-radius: 50%
+        }
+    }
+
+    .rmd-tap-wave-effect-fade-out {
+        animation: tap-wave-out 1s linear forwards;
+        animation-fill-mode: forwards;
+        pointer-events: none;
+        transition: .4s;
+        width: 200px;
+        margin-left: -100px;
+        margin-top: -100px;
+        height: 200px;
+        opacity: .5;
+        background-color: #eee;
+        border-radius: 100px
+    }
+
+    @keyframes tap-wave-out {
+        to {
+            width: 1000px;
+            margin-left: -500px;
+            margin-top: -500px;
+            height: 1000px;
+            opacity: 0;
+            background-color: #fff;
+            border-radius: 500px
+        }
+    }
+
+    .wave-effect {
+        overflow: hidden
+    }
+
+    .rmd-wave-effect {
+        animation: 1s wave linear forwards;
+        transition: .4s;
+        pointer-events: none
+    }
+
+    @keyframes wave {
+        0% {
+            width: 0;
+            height: 0;
+            opacity: .5;
+            border-radius: 0;
+            background-color: #bbb
+        }
+        to {
+            width: 200px;
+            margin-left: -100px;
+            margin-top: -100px;
+            height: 200px;
+            opacity: .3;
+            background-color: #eee;
+            border-radius: 100px
+        }
+    }
+
+    .rmd-wave-effect-fade-out {
+        animation: wave-out 1s linear forwards;
+        animation-fill-mode: forwards;
+        pointer-events: none;
+        transition: .4s;
+        width: 200px;
+        margin-left: -100px;
+        margin-top: -100px;
+        height: 200px;
+        opacity: .5;
+        background-color: #eee;
+        border-radius: 100px
+    }
+
+    @keyframes wave-out {
+        to {
+            width: 1000px;
+            margin-left: -500px;
+            margin-top: -500px;
+            height: 1000px;
+            opacity: 0;
+            background-color: #fff;
+            border-radius: 500px
+        }
+    }
+
+    .rmd-wave-effect-standby {
+        animation: .5s bounceInDown linear infinite alternate
+    }
+
+    @keyframes bounceInDown {
+        0% {
+            width: 200px;
+            margin-left: -100px;
+            margin-top: -100px;
+            height: 200px;
+            opacity: .5;
+            background-color: #eee;
+            border-radius: 100px
+        }
+        to {
+            width: 250px;
+            margin-left: -125px;
+            margin-top: -125px;
+            height: 250px;
+            opacity: .5;
+            background-color: #eee;
+            border-radius: 125px
+        }
+    }</style>
+    <style type="text/css">.mdc-button.mdc-button--primary.mdc-button--raised {
+        color: #fff
+    }
+
+    :root {
+        --mdc-theme-primary: #00bcd4;
+        --mdc-theme-accent: #ff4081;
+        --mdc-theme-background: #fff;
+        --mdc-theme-text-primary-on-primary: rgba(0, 0, 0, .87);
+        --mdc-theme-text-secondary-on-primary: rgba(0, 0, 0, .54);
+        --mdc-theme-text-hint-on-primary: rgba(0, 0, 0, .38);
+        --mdc-theme-text-disabled-on-primary: rgba(0, 0, 0, .38);
+        --mdc-theme-text-icon-on-primary: rgba(0, 0, 0, .38);
+        --mdc-theme-text-primary-on-accent: #fff;
+        --mdc-theme-text-secondary-on-accent: hsla(0, 0%, 100%, .7);
+        --mdc-theme-text-hint-on-accent: hsla(0, 0%, 100%, .5);
+        --mdc-theme-text-disabled-on-accent: hsla(0, 0%, 100%, .5);
+        --mdc-theme-text-icon-on-accent: hsla(0, 0%, 100%, .5);
+        --mdc-theme-text-primary-on-background: rgba(0, 0, 0, .87);
+        --mdc-theme-text-secondary-on-background: rgba(0, 0, 0, .54);
+        --mdc-theme-text-hint-on-background: rgba(0, 0, 0, .38);
+        --mdc-theme-text-disabled-on-background: rgba(0, 0, 0, .38);
+        --mdc-theme-text-icon-on-background: rgba(0, 0, 0, .38);
+        --mdc-theme-text-primary-on-light: rgba(0, 0, 0, .87);
+        --mdc-theme-text-secondary-on-light: rgba(0, 0, 0, .54);
+        --mdc-theme-text-hint-on-light: rgba(0, 0, 0, .38);
+        --mdc-theme-text-disabled-on-light: rgba(0, 0, 0, .38);
+        --mdc-theme-text-icon-on-light: rgba(0, 0, 0, .38);
+        --mdc-theme-text-primary-on-dark: #fff;
+        --mdc-theme-text-secondary-on-dark: hsla(0, 0%, 100%, .7);
+        --mdc-theme-text-hint-on-dark: hsla(0, 0%, 100%, .5);
+        --mdc-theme-text-disabled-on-dark: hsla(0, 0%, 100%, .5);
+        --mdc-theme-text-icon-on-dark: hsla(0, 0%, 100%, .5)
+    }
+
+    .mdc-theme--background {
+        background-color: #fff;
+        background-color: var(--mdc-theme-background, #fff)
+    }
+
+    .mdc-theme--primary {
+        color: #00bcd4 !important;
+        color: var(--mdc-theme-primary, #00bcd4) !important
+    }
+
+    .mdc-theme--accent {
+        color: #ff4081 !important;
+        color: var(--mdc-theme-accent, #ff4081) !important
+    }
+
+    .mdc-theme--text-primary-on-primary {
+        color: rgba(0, 0, 0, .87) !important;
+        color: var(--mdc-theme-text-primary-on-primary, rgba(0, 0, 0, .87)) !important
+    }
+
+    .mdc-theme--text-secondary-on-primary {
+        color: rgba(0, 0, 0, .54) !important;
+        color: var(--mdc-theme-text-secondary-on-primary, rgba(0, 0, 0, .54)) !important
+    }
+
+    .mdc-theme--text-hint-on-primary {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-hint-on-primary, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-disabled-on-primary {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-disabled-on-primary, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-icon-on-primary {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-icon-on-primary, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-primary-on-accent {
+        color: #fff !important;
+        color: var(--mdc-theme-text-primary-on-accent, #fff) !important
+    }
+
+    .mdc-theme--text-secondary-on-accent {
+        color: hsla(0, 0%, 100%, .7) !important;
+        color: var(--mdc-theme-text-secondary-on-accent, hsla(0, 0%, 100%, .7)) !important
+    }
+
+    .mdc-theme--text-hint-on-accent {
+        color: hsla(0, 0%, 100%, .5) !important;
+        color: var(--mdc-theme-text-hint-on-accent, hsla(0, 0%, 100%, .5)) !important
+    }
+
+    .mdc-theme--text-disabled-on-accent {
+        color: hsla(0, 0%, 100%, .5) !important;
+        color: var(--mdc-theme-text-disabled-on-accent, hsla(0, 0%, 100%, .5)) !important
+    }
+
+    .mdc-theme--text-icon-on-accent {
+        color: hsla(0, 0%, 100%, .5) !important;
+        color: var(--mdc-theme-text-icon-on-accent, hsla(0, 0%, 100%, .5)) !important
+    }
+
+    .mdc-theme--text-primary-on-background {
+        color: rgba(0, 0, 0, .87) !important;
+        color: var(--mdc-theme-text-primary-on-background, rgba(0, 0, 0, .87)) !important
+    }
+
+    .mdc-theme--text-secondary-on-background {
+        color: rgba(0, 0, 0, .54) !important;
+        color: var(--mdc-theme-text-secondary-on-background, rgba(0, 0, 0, .54)) !important
+    }
+
+    .mdc-theme--text-hint-on-background {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-disabled-on-background {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-disabled-on-background, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-icon-on-background {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-icon-on-background, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-primary-on-light {
+        color: rgba(0, 0, 0, .87) !important;
+        color: var(--mdc-theme-text-primary-on-light, rgba(0, 0, 0, .87)) !important
+    }
+
+    .mdc-theme--text-secondary-on-light {
+        color: rgba(0, 0, 0, .54) !important;
+        color: var(--mdc-theme-text-secondary-on-light, rgba(0, 0, 0, .54)) !important
+    }
+
+    .mdc-theme--text-hint-on-light {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-hint-on-light, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-disabled-on-light {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-disabled-on-light, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-icon-on-light {
+        color: rgba(0, 0, 0, .38) !important;
+        color: var(--mdc-theme-text-icon-on-light, rgba(0, 0, 0, .38)) !important
+    }
+
+    .mdc-theme--text-primary-on-dark {
+        color: #fff !important;
+        color: var(--mdc-theme-text-primary-on-dark, #fff) !important
+    }
+
+    .mdc-theme--text-secondary-on-dark {
+        color: hsla(0, 0%, 100%, .7) !important;
+        color: var(--mdc-theme-text-secondary-on-dark, hsla(0, 0%, 100%, .7)) !important
+    }
+
+    .mdc-theme--text-hint-on-dark {
+        color: hsla(0, 0%, 100%, .5) !important;
+        color: var(--mdc-theme-text-hint-on-dark, hsla(0, 0%, 100%, .5)) !important
+    }
+
+    .mdc-theme--text-disabled-on-dark {
+        color: hsla(0, 0%, 100%, .5) !important;
+        color: var(--mdc-theme-text-disabled-on-dark, hsla(0, 0%, 100%, .5)) !important
+    }
+
+    .mdc-theme--text-icon-on-dark {
+        color: hsla(0, 0%, 100%, .5) !important;
+        color: var(--mdc-theme-text-icon-on-dark, hsla(0, 0%, 100%, .5)) !important
+    }
+
+    .mdc-theme--primary-bg {
+        background-color: #00bcd4 !important;
+        background-color: var(--mdc-theme-primary, #00bcd4) !important
+    }
+
+    .mdc-theme--accent-bg {
+        background-color: #ff4081 !important;
+        background-color: var(--mdc-theme-accent, #ff4081) !important
+    }
+
+    .deleleteMargin {
+        -webkit-margin-after: 0;
+        -webkit-margin-before: 0
+    }
+
+    .rmd-menu-item:hover {
+        background-color: #eee
+    }
+
+    .rmd-chip-text {
+        color: rgba(0, 0, 0, .870588);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 32px;
+        min-height: 32px;
+        min-width: 50px;
+        padding-left: 12px;
+        padding-right: 12px;
+        user-select: none;
+        white-space: nowrap
+    }
+
+    .rmd-chip {
+        border: 10px;
+        box-sizing: border-box;
+        display: flex;
+        font-family: Roboto, sans-serif;
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+        text-decoration: none;
+        margin: 4px;
+        padding: 0;
+        outline: none;
+        font-size: inherit;
+        font-weight: inherit;
+        position: relative;
+        z-index: 1;
+        background-color: #e0e0e0;
+        border-radius: 16px;
+        white-space: nowrap;
+        width: fit-content
+    }
+
+    .rmd-chip-contact {
+        color: #444;
+        background-color: #bcbcbc;
+        user-select: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        border-radius: 50%;
+        height: 32px;
+        width: 32px;
+        margin-right: -4px
+    }
+
+    .rmd-days:hover {
+        background-color: rgba(0, 0, 0, .1);
+        border-radius: 50%;
+        cursor: pointer
+    }
+
+    .rmd-date-picker {
+        background-color: #00bcd4;
+        color: #fff
+    }
+
+    .rmd-edit-button {
+        background-color: #81c784 !important;
+        color: #fff !important
+    }
+
+    .rmd-delete-button {
+        background-color: #e57373 !important;
+        color: #fff !important
+    }
+
+    .rmd-add-button {
+        background-color: #2196f3 !important;
+        color: #fff !important
+    }
+
+    .rmd-person-add {
+        background-color: #3f51b5 !important;
+        color: #fff !important
+    }
+
+    .rmd-copy-button {
+        background-color: #f57f17 !important;
+        color: #fff !important
+    }
+
+    .rmd-search-button {
+        background-color: #9c27b0 !important;
+        color: #fff !important
+    }
+
+    .rmd-menu-button {
+        background-color: #00bcd4 !important;
+        color: #fff !important
+    }
+
+    .rmd-centered-item {
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    .rmd-hover-list-item {
+        border-bottom: 1px solid #eee;
+        cursor: pointer
+    }
+
+    .rmd-hover-list-item, .rmd-hover-list-item:hover {
+        -webkit-transition: time .4s;
+        -moz-transition: .4s time;
+        -ms-transition: .4s time;
+        -o-transition: .4s time;
+        transition: time .4s
+    }
+
+    .rmd-hover-list-item:hover {
+        background-color: #eee !important;
+        color: #000 !important
+    }
+
+    .rmd-table {
+        background-color: #fff;
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        table-layout: fixed;
+        font-family: Roboto, sans-serif
+    }
+
+    .rmd-table-header-column {
+        font-weight: 400;
+        font-size: 12px;
+        padding-left: 24px;
+        padding-right: 24px;
+        height: 56px;
+        text-align: left;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: #9e9e9e;
+        position: relative;
+        background-color: inherit
+    }
+
+    .rmd-table-row {
+        border-bottom: 1px solid #e0e0e0;
+        color: rgba(0, 0, 0, .870588);
+        height: 48px
+    }
+
+    .rmd-table-row-column-nowrap {
+        padding-left: 24px;
+        padding-right: 24px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis
+    }
+
+    .rmd-table-row-column-long-dsc, .rmd-table-row-column-nowrap {
+        height: 48px;
+        text-align: left;
+        font-size: 13px;
+        background-color: inherit
+    }
+
+    .rmd-table-row-column-long-dsc {
+        padding: 8px 24px
+    }
+
+    .placeholderClass::-webkit-input-placeholder {
+        visibility: hidden
+    }
+
+    .placeholderClass::-moz-placeholder {
+        visibility: hidden
+    }
+
+    .placeholderClass:-ms-input-placeholder {
+        visibility: hidden
+    }
+
+    .placeholderClass:-moz-placeholder {
+        visibility: hidden
+    }
+
+    .placeholderClass:focus::-webkit-input-placeholder {
+        visibility: visible
+    }
+
+    .placeholderClass:focus::-moz-placeholder {
+        visibility: visible
+    }
+
+    .placeholderClass:focus:-ms-input-placeholder {
+        visibility: visible
+    }
+
+    .placeholderClass:focus:-moz-placeholder {
+        visibility: visible
+    }
+
+    .tap-wave-effect {
+        overflow: hidden
+    }
+
+    .rmd-tap-wave-effect {
+        animation: .8s tap-wave linear forwards;
+        transition: .4s;
+        pointer-events: none
+    }
+
+    @keyframes tap-wave {
+        0% {
+            width: 0;
+            height: 0%;
+            opacity: .5;
+            border-radius: 50%;
+            background-color: #bbb
+        }
+        70% {
+            width: 150%;
+            margin-left: -75%;
+            margin-top: -75%;
+            height: 150%;
+            opacity: .4;
+            background-color: #eee;
+            border-radius: 50%
+        }
+        to {
+            width: 200%;
+            margin-left: -100%;
+            margin-top: -100%;
+            height: 200%;
+            opacity: .3;
+            background-color: #eee;
+            border-radius: 50%
+        }
+    }
+
+    .rmd-tap-wave-effect-fade-out {
+        animation: tap-wave-out 1s linear forwards;
+        animation-fill-mode: forwards;
+        pointer-events: none;
+        transition: .4s;
+        width: 200px;
+        margin-left: -100px;
+        margin-top: -100px;
+        height: 200px;
+        opacity: .5;
+        background-color: #eee;
+        border-radius: 100px
+    }
+
+    @keyframes tap-wave-out {
+        to {
+            width: 1000px;
+            margin-left: -500px;
+            margin-top: -500px;
+            height: 1000px;
+            opacity: 0;
+            background-color: #fff;
+            border-radius: 500px
+        }
+    }
+
+    .wave-effect {
+        overflow: hidden
+    }
+
+    .rmd-wave-effect {
+        animation: 1s wave linear forwards;
+        transition: .4s;
+        pointer-events: none
+    }
+
+    @keyframes wave {
+        0% {
+            width: 0;
+            height: 0;
+            opacity: .5;
+            border-radius: 0;
+            background-color: #bbb
+        }
+        to {
+            width: 200px;
+            margin-left: -100px;
+            margin-top: -100px;
+            height: 200px;
+            opacity: .3;
+            background-color: #eee;
+            border-radius: 100px
+        }
+    }
+
+    .rmd-wave-effect-fade-out {
+        animation: wave-out 1s linear forwards;
+        animation-fill-mode: forwards;
+        pointer-events: none;
+        transition: .4s;
+        width: 200px;
+        margin-left: -100px;
+        margin-top: -100px;
+        height: 200px;
+        opacity: .5;
+        background-color: #eee;
+        border-radius: 100px
+    }
+
+    @keyframes wave-out {
+        to {
+            width: 1000px;
+            margin-left: -500px;
+            margin-top: -500px;
+            height: 1000px;
+            opacity: 0;
+            background-color: #fff;
+            border-radius: 500px
+        }
+    }
+
+    .rmd-wave-effect-standby {
+        animation: .5s bounceInDown linear infinite alternate
+    }
+
+    @keyframes bounceInDown {
+        0% {
+            width: 200px;
+            margin-left: -100px;
+            margin-top: -100px;
+            height: 200px;
+            opacity: .5;
+            background-color: #eee;
+            border-radius: 100px
+        }
+        to {
+            width: 250px;
+            margin-left: -125px;
+            margin-top: -125px;
+            height: 250px;
+            opacity: .5;
+            background-color: #eee;
+            border-radius: 125px
+        }
+    }</style>
+</head>
+<body style="height: 100vh; overflow: scroll;">
+<div id="root" style="height:100%">
+    <div data-reactroot="">
+        <header class="mdc-toolbar">
+            <section class="mdc-toolbar__section mdc-toolbar__section--align-start"><span class="rmd-centered-item"
+                                                                                          style="color: white;"><span></span><span
+                    class="mdc-toolbar__title">react-material-designs</span></span></section>
+        </header>
+        <div class="mdc-layout-grid" style="height: 100%; padding: 0px; margin: 0px;">
+            <aside id="id1drawer" class="mdc-temporary-drawer mdc-typography mdc-temporary-drawer--animating"
+                   style="z-index: 99;">
+                <nav class="mdc-temporary-drawer__drawer">
+                    <nav id="icon-with-text-demo" class="mdc-temporary-drawer__content mdc-list">
+                        <ul class="mdc-list" style="padding-right: 0px; padding-left: 0px; text-indent: 10px;"><a
+                                href="acordion" data-mdc-tabindex-handled="true" tabindex="-1"
+                                style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id2" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Acordion</span></li></span></a><a href="autocomplete"
+                                                                                              data-mdc-tabindex-handled="true"
+                                                                                              tabindex="-1"
+                                                                                              style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id3" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">AutoComplete</span></li></span></a><a href="button"
+                                                                                                  data-mdc-tabindex-handled="true"
+                                                                                                  tabindex="-1"
+                                                                                                  style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id4" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Button</span></li></span></a><a href="badge"
+                                                                                            data-mdc-tabindex-handled="true"
+                                                                                            tabindex="-1"
+                                                                                            style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id5" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Badge</span></li></span></a><a href="card"
+                                                                                           data-mdc-tabindex-handled="true"
+                                                                                           tabindex="-1"
+                                                                                           style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id6" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Card</span></li></span></a><a href="checkbox"
+                                                                                          data-mdc-tabindex-handled="true"
+                                                                                          tabindex="-1"
+                                                                                          style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id7" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">CheckBox</span></li></span></a><a href="chip"
+                                                                                              data-mdc-tabindex-handled="true"
+                                                                                              tabindex="-1"
+                                                                                              style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id8" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Chip</span></li></span></a><a href="datepicker"
+                                                                                          data-mdc-tabindex-handled="true"
+                                                                                          tabindex="-1"
+                                                                                          style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id9" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">DatePicker</span></li></span></a><a href="dialog"
+                                                                                                data-mdc-tabindex-handled="true"
+                                                                                                tabindex="-1"
+                                                                                                style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id10" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Dialog</span></li></span></a><a href="drawer"
+                                                                                            data-mdc-tabindex-handled="true"
+                                                                                            tabindex="-1"
+                                                                                            style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id11" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Drawer</span></li></span></a><a href="elevation"
+                                                                                            data-mdc-tabindex-handled="true"
+                                                                                            tabindex="-1"
+                                                                                            style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id12" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Elevation</span></li></span></a><a href="fab"
+                                                                                               data-mdc-tabindex-handled="true"
+                                                                                               tabindex="-1"
+                                                                                               style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id13" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Fab</span></li></span></a><a href="fabmenu"
+                                                                                         data-mdc-tabindex-handled="true"
+                                                                                         tabindex="-1"
+                                                                                         style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id14" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">FabMenu</span></li></span></a><a href="icon"
+                                                                                             data-mdc-tabindex-handled="true"
+                                                                                             tabindex="-1"
+                                                                                             style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id15" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Icon</span></li></span></a><a href="iconbutton"
+                                                                                          data-mdc-tabindex-handled="true"
+                                                                                          tabindex="-1"
+                                                                                          style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id16" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">IconButton</span></li></span></a><a href="icontoggle"
+                                                                                                data-mdc-tabindex-handled="true"
+                                                                                                tabindex="-1"
+                                                                                                style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id17" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">IconToggle</span></li></span></a><a href="list"
+                                                                                                data-mdc-tabindex-handled="true"
+                                                                                                tabindex="-1"
+                                                                                                style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id18" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">List</span></li></span></a><a href="menu"
+                                                                                          data-mdc-tabindex-handled="true"
+                                                                                          tabindex="-1"
+                                                                                          style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id19" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Menu</span></li></span></a><a href="radio"
+                                                                                          data-mdc-tabindex-handled="true"
+                                                                                          tabindex="-1"
+                                                                                          style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id20" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Radio Button</span></li></span></a><a href="selectfield"
+                                                                                                  data-mdc-tabindex-handled="true"
+                                                                                                  tabindex="-1"
+                                                                                                  style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id21" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">SelectField</span></li></span></a><a href="snackbar"
+                                                                                                 data-mdc-tabindex-handled="true"
+                                                                                                 tabindex="-1"
+                                                                                                 style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id22" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Snackar</span></li></span></a><a href="switch"
+                                                                                             data-mdc-tabindex-handled="true"
+                                                                                             tabindex="-1"
+                                                                                             style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id23" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Switch</span></li></span></a><a href="tab"
+                                                                                            data-mdc-tabindex-handled="true"
+                                                                                            tabindex="-1"
+                                                                                            style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id24" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Tab</span></li></span></a><a href="table"
+                                                                                         data-mdc-tabindex-handled="true"
+                                                                                         tabindex="-1"
+                                                                                         style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id25" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Table</span></li></span></a><a href="textfield"
+                                                                                           data-mdc-tabindex-handled="true"
+                                                                                           tabindex="-1"
+                                                                                           style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id26" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">TextField</span></li></span></a><a href="waveeffect"
+                                                                                               data-mdc-tabindex-handled="true"
+                                                                                               tabindex="-1"
+                                                                                               style="text-decoration: none; color: black;"><span><li
+                                class="mdc-list-item asd rmd-hover-list-item" id="id27" style="font-size: 18px;"><span
+                                class="mdc-list-item__text">Wave Effect</span></li></span></a></ul>
+                    </nav>
+                </nav>
+            </aside>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2 mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-phone"
+                 style="margin: 0px; left: 0%; position: relative; transition: 0.4s; padding: 0px; box-shadow: rgba(0, 0, 0, 0.388235) 5px 5px 17px 0px;">
+                <ul class="mdc-list" style="padding-right: 0px; padding-left: 0px; text-indent: 10px;"><a
+                        href="acordion" style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id28"
+                        style="font-size: 18px; position: relative; overflow: hidden;"><span
+                        class="mdc-list-item__text">Acordion</span></li></span></a><a href="autocomplete"
+                                                                                      style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id29" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">AutoComplete</span></li></span></a><a href="button"
+                                                                                          style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id30" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Button</span></li></span></a><a href="badge"
+                                                                                    style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id31" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Badge</span></li></span></a><a href="card"
+                                                                                   style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id32" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Card</span></li></span></a><a href="checkbox"
+                                                                                  style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id33" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">CheckBox</span></li></span></a><a href="chip"
+                                                                                      style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id34" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Chip</span></li></span></a><a href="datepicker"
+                                                                                  style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id35" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">DatePicker</span></li></span></a><a href="dialog"
+                                                                                        style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id36" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Dialog</span></li></span></a><a href="drawer"
+                                                                                    style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id37" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Drawer</span></li></span></a><a href="elevation"
+                                                                                    style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id38" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Elevation</span></li></span></a><a href="fab"
+                                                                                       style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id39" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Fab</span></li></span></a><a href="fabmenu"
+                                                                                 style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id40" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">FabMenu</span></li></span></a><a href="icon"
+                                                                                     style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id41" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Icon</span></li></span></a><a href="iconbutton"
+                                                                                  style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id42" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">IconButton</span></li></span></a><a href="icontoggle"
+                                                                                        style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id43" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">IconToggle</span></li></span></a><a href="list"
+                                                                                        style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id44" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">List</span></li></span></a><a href="menu"
+                                                                                  style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id45" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Menu</span></li></span></a><a href="radio"
+                                                                                  style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id46" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Radio Button</span></li></span></a><a href="selectfield"
+                                                                                          style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id47" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">SelectField</span></li></span></a><a href="snackbar"
+                                                                                         style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id48" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Snackar</span></li></span></a><a href="switch"
+                                                                                     style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id49" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Switch</span></li></span></a><a href="tab"
+                                                                                    style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id50" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Tab</span></li></span></a><a href="table"
+                                                                                 style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id51" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Table</span></li></span></a><a href="textfield"
+                                                                                   style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id52" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">TextField</span></li></span></a><a href="waveeffect"
+                                                                                       style="text-decoration: none; color: black;"><span><li
+                        class="mdc-list-item asd rmd-hover-list-item" id="id53" style="font-size: 18px;"><span
+                        class="mdc-list-item__text">Wave Effect</span></li></span></a></ul>
+            </div>
+            <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-10 mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-6-phone"
+                 style="transition: 0.4s;">
+                <div style="padding: 8px; margin: 8px;">
+                    <div class="mdc-card" style="background-color: white; padding: 8px;">
+                        <section class="mdc-card__primary" title="Acordion"><h1
+                                class="mdc-card__title mdc-card__title--large">Acordion</h1></section>
+                        <ul class="mdc-list">
+                            <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id55"><span
+                                    class="mdc-list-item__text">İlk</span></li></span>
+                                <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                    <ul class="mdc-list">
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id56"><span
+                                                class="mdc-list-item__text">İki</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;"></div>
+                                        </div>
+                                    </ul>
+                                    <ul class="mdc-list">
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id57"><span
+                                                class="mdc-list-item__text">Üç</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;"></div>
+                                        </div>
+                                    </ul>
+                                    <ul class="mdc-list">
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id58"><span
+                                                class="mdc-list-item__text">Dört</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;"></div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </ul>
+                        <ul class="mdc-list">
+                            <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id59"><span
+                                    class="mdc-list-item__text">Ana</span></li></span>
+                                <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                    <ul class="mdc-list">
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id60"><span
+                                                class="mdc-list-item__text">İki</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;"></div>
+                                        </div>
+                                    </ul>
+                                    <ul class="mdc-list">
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id61"><span
+                                                class="mdc-list-item__text">Üç</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;"></div>
+                                        </div>
+                                    </ul>
+                                    <ul class="mdc-list">
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id62"><span
+                                                class="mdc-list-item__text">Dört</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;"></div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </ul>
+                        <ul class="mdc-list">
+                            <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id63"><span
+                                    class="mdc-list-item__text">List 1</span></li></span>
+                                <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                    <ul class="mdc-list">
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id64"><span
+                                                class="mdc-list-item__text">List 7</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 7</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id65"><span
+                                                class="mdc-list-item__text">List 8</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 8</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id66"><span
+                                                class="mdc-list-item__text">List 9</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 9</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id67"><span
+                                                class="mdc-list-item__text">List 10</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 10</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id68"><span
+                                                class="mdc-list-item__text">List 11</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 11</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id69"><span
+                                                class="mdc-list-item__text">List 12</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 12</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id70"><span
+                                    class="mdc-list-item__text">List 2</span></li></span>
+                                <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                    <ul class="mdc-list">
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id71"><span
+                                                class="mdc-list-item__text">List 13</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 13</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id72"><span
+                                                class="mdc-list-item__text">List 14</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 14</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id73"><span
+                                                class="mdc-list-item__text">List 15</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 15</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id74"><span
+                                                class="mdc-list-item__text">List 16</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 16</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id75"><span
+                                                class="mdc-list-item__text">List 17</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 17</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id76"><span
+                                                class="mdc-list-item__text">List 18</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 18</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id77"><span
+                                    class="mdc-list-item__text">List 3</span></li></span>
+                                <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                    <ul class="mdc-list">
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id78"><span
+                                                class="mdc-list-item__text">List 19</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 19</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id79"><span
+                                                class="mdc-list-item__text">List 20</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 20</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id80"><span
+                                                class="mdc-list-item__text">List 21</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 21</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id81"><span
+                                                class="mdc-list-item__text">List 22</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 22</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id82"><span
+                                                class="mdc-list-item__text">List 23</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 23</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id83"><span
+                                                class="mdc-list-item__text">List 24</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 24</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id84"><span
+                                    class="mdc-list-item__text">List 4</span></li></span>
+                                <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                    <ul class="mdc-list">
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id85"><span
+                                                class="mdc-list-item__text">List 25</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 25</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id86"><span
+                                                class="mdc-list-item__text">List 26</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 26</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id87"><span
+                                                class="mdc-list-item__text">List 27</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 27</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id88"><span
+                                                class="mdc-list-item__text">List 28</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 28</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id89"><span
+                                                class="mdc-list-item__text">List 29</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 29</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id90"><span
+                                                class="mdc-list-item__text">List 30</span></li></span>
+                                            <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                                <div class="mdc-card"
+                                                     style="background-color: white; justify-content: flex-start; height: 100%;">
+                                                    <section class="mdc-card__primary" title="Title"><h1
+                                                            class="mdc-card__title mdc-card__title--large">Title</h1>
+                                                    </section>
+                                                    <section class="mdc-card__supporting-text">List 30</section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id91"><span
+                                    class="mdc-list-item__text">List 5</span></li></span>
+                                <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                    <span>aaa</span></div>
+                            </div>
+                            <div><span><li class="mdc-list-item asd rmd-hover-list-item" id="id92"><span
+                                    class="mdc-list-item__text">List 6</span></li></span>
+                                <div style="max-height: 0px; margin-left: -40px; opacity: 0; pointer-events: none; transition: 1s;">
+                                    <span>aaa</span></div>
+                            </div>
+                        </ul>
+                        <pre><code class="hljs http">
+
+<span class="xquery">
+const data2 = [
+    {dsc: <span class="hljs-string">"List 7"</span>,id:<span class="hljs-number">1</span>},
+    {dsc: <span class="hljs-string">"List 8"</span>,id:<span class="hljs-number">1</span>},
+    {dsc: <span class="hljs-string">"List 9"</span>,id:<span class="hljs-number">1</span>},
+    {dsc: <span class="hljs-string">"List 10"</span>,id:<span class="hljs-number">1</span>},
+    {dsc: <span class="hljs-string">"List 11"</span>,id:<span class="hljs-number">1</span>},
+    {dsc: <span class="hljs-string">"List 12"</span>,id:<span class="hljs-number">1</span>},
+];
+const data3 = [
+    {dsc: <span class="hljs-string">"List 13"</span>,id:<span class="hljs-number">2</span>},
+    {dsc: <span class="hljs-string">"List 14"</span>,id:<span class="hljs-number">2</span>},
+    {dsc: <span class="hljs-string">"List 15"</span>,id:<span class="hljs-number">2</span>},
+    {dsc: <span class="hljs-string">"List 16"</span>,id:<span class="hljs-number">3</span>},
+    {dsc: <span class="hljs-string">"List 17"</span>,id:<span class="hljs-number">3</span>},
+    {dsc: <span class="hljs-string">"List 18"</span>,id:<span class="hljs-number">3</span>},
+];
+const data4 = [
+    {dsc: <span class="hljs-string">"List 19"</span>},
+    {dsc: <span class="hljs-string">"List 20"</span>},
+    {dsc: <span class="hljs-string">"List 21"</span>},
+    {dsc: <span class="hljs-string">"List 22"</span>},
+    {dsc: <span class="hljs-string">"List 23"</span>},
+    {dsc: <span class="hljs-string">"List 24"</span>},
+];
+
+const data5 = [
+    {dsc: <span class="hljs-string">"List 25"</span>},
+    {dsc: <span class="hljs-string">"List 26"</span>},
+    {dsc: <span class="hljs-string">"List 27"</span>},
+    {dsc: <span class="hljs-string">"List 28"</span>},
+    {dsc: <span class="hljs-string">"List 29"</span>},
+    {dsc: <span class="hljs-string">"List 30"</span>},
+];
+
+
+
+const data1 = [
+    {dsc: <span class="hljs-string">"List 1"</span>,id:<span class="hljs-number">1</span>,children:data2},
+    {dsc: <span class="hljs-string">"List 2"</span>,id:<span class="hljs-number">2</span>,children:data3},
+    {dsc: <span class="hljs-string">"List 3"</span>,id:<span class="hljs-number">3</span>,children:data4},
+    {dsc: <span class="hljs-string">"List 4"</span>,id:<span class="hljs-number">4</span>,children:data5},
+    {dsc: <span class="hljs-string">"List 5"</span>,id:<span class="hljs-number">5</span>},
+    {dsc: <span class="hljs-string">"List 6"</span>,id:<span class="hljs-number">6</span>},
+];
+
+
+&lt;Acordion label=<span class="hljs-string">"İlk"</span>&gt;
+    &lt;Acordion label=<span class="hljs-string">"İki"</span> /&gt;
+    &lt;Acordion label=<span class="hljs-string">"Üç"</span> /&gt;
+    &lt;Acordion label=<span class="hljs-string">"Dört"</span> /&gt;
+&lt;/Acordion&gt;
+&lt;Acordion label=<span class="hljs-string">"Ana"</span>&gt;
+    &lt;Acordion label=<span class="hljs-string">"İki"</span> /&gt;
+    &lt;Acordion label=<span class="hljs-string">"Üç"</span> /&gt;
+    &lt;Acordion label=<span class="hljs-string">"Dört"</span> /&gt;
+&lt;/Acordion&gt;
+
+
+&lt;Acordion itemHeight={<span class="hljs-number">48</span>} data={data1} child={(child,index)=&gt; {
+        if(child.item.children)
+        return(
+            &lt;Acordion data={child.item.children} child={(child2,index2)=&gt;{
+                return(
+                    &lt;Card style={{justifyContent: <span class="hljs-string">"flex-start"</span>,height:<span
+        class="hljs-string">"100%"</span>}}&gt;
+                        &lt;CardHeader title=<span class="hljs-string">"Title"</span>/&gt;
+                        &lt;CardBody&gt;{child2.item.dsc}&lt;/CardBody&gt;
+                    &lt;/Card&gt;
+                )
+            }} /&gt;
+        );
+        else {
+            return(
+            &lt;span&gt;Empty Acordion&lt;/span&gt;
+            )
+        }
+    }
+    }&gt;
+&lt;/Acordion&gt;
+    </span></code></pre>
+                        <section class="mdc-card__primary" title="Acordion properties"><h1
+                                class="mdc-card__title mdc-card__title--large">Acordion properties</h1></section>
+                        <table class="rmd-table" style="width: 100%;">
+                            <thead class="rmd-table-header">
+                            <tr class="rmd-table-row">
+                                <th class="rmd-table-header-column">Props</th>
+                                <th class="rmd-table-header-column">Type</th>
+                                <th class="rmd-table-header-column">Description</th>
+                            </tr>
+                            </thead>
+                            <tbody class="rmd-table-body">
+                            <tr class="rmd-table-row">
+                                <td class="rmd-table-row-column-long-dsc">data</td>
+                                <td class="rmd-table-row-column-long-dsc">Array</td>
+                                <td class="rmd-table-row-column-long-dsc">You can send your json-array data.</td>
+                            </tr>
+                            <tr class="rmd-table-row">
+                                <td class="rmd-table-row-column-long-dsc">label</td>
+                                <td class="rmd-table-row-column-long-dsc">String</td>
+                                <td class="rmd-table-row-column-long-dsc">Label of acordion item.</td>
+                            </tr>
+                            <tr class="rmd-table-row">
+                                <td class="rmd-table-row-column-long-dsc">open</td>
+                                <td class="rmd-table-row-column-long-dsc">Boolean</td>
+                                <td class="rmd-table-row-column-long-dsc">If true, acordion shows open.</td>
+                            </tr>
+                            <tr class="rmd-table-row">
+                                <td class="rmd-table-row-column-long-dsc">child</td>
+                                <td class="rmd-table-row-column-long-dsc">Function</td>
+                                <td class="rmd-table-row-column-long-dsc">Function should return a component.</td>
+                            </tr>
+                            <tr class="rmd-table-row">
+                                <td class="rmd-table-row-column-long-dsc">onClick</td>
+                                <td class="rmd-table-row-column-long-dsc">Function</td>
+                                <td class="rmd-table-row-column-long-dsc">You can set what does do after click the
+                                    acordion item.
+                                </td>
+                            </tr>
+                            <tr class="rmd-table-row">
+                                <td class="rmd-table-row-column-long-dsc">waveEffect</td>
+                                <td class="rmd-table-row-column-long-dsc">Boolean</td>
+                                <td class="rmd-table-row-column-long-dsc">If true, shows wave effect when clicked the
+                                    list item.
+                                </td>
+                            </tr>
+                            <tr class="rmd-table-row">
+                                <td class="rmd-table-row-column-long-dsc">light</td>
+                                <td class="rmd-table-row-column-long-dsc">Boolean</td>
+                                <td class="rmd-table-row-column-long-dsc">If waveEffect props is true, shows wave effect
+                                    lighter when clicked the list item.
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="./static/js/main.d6c45ed4.js"></script>
+
+</body>
+</html>
