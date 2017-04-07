@@ -2,7 +2,7 @@
  * Created by muratguney on 29/03/2017.
  */
 import React from 'react';
-import {Card, CardHeader,Table, TableRow, TableHeaderColumn, TableHeader, TableRowColumn, TableBody,Tabs, Tab} from '../../lib';
+import {Card, CardHeader,Table,TableRow, TableHeaderColumn, TableHeader,TableRowColumn, TableBody,Tab,Tabs} from '../../lib';
 import Highlight from 'react-highlight.js'
 
 

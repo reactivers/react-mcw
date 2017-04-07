@@ -124,9 +124,11 @@ export default class Checkbox extends PureComponent {
         },
     }));
 
+
     render() {
+        const {id,labelId,label,checked,disabled,indeterminate,onChange,...otherProps} = this.props
         return (
-            <div className="mdc-form-field">
+            <div className="mdc-form-field" {...otherProps}>
                 <div ref="root" className={`mdc-checkbox ${this.state.classes.toJS().join(' ')}`}>
                     <input ref="nativeCb"
                            id={this.props.id}

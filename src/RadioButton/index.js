@@ -6,7 +6,7 @@ import '@material/radio/dist/mdc.radio.css'
 import {MDCRadio} from '@material/radio/dist/mdc.radio'
 import generateid from '../utils/generateId'
 
-class RadioButton extends PureComponent {
+export default class RadioButton extends PureComponent {
 
     static propTypes = {
         label: PropTypes.string,
@@ -71,5 +71,3 @@ class RadioButton extends PureComponent {
         )
     }
 }
-
-export {RadioButton}

@@ -35,7 +35,7 @@ export default class AutoComplete extends React.Component {
     };
 
     render() {
-        const {label,error,floatingLabel,helpText,placeholder,disabled,dscField,valueField,onChange,data,className,style} = this.props;
+        const {label,error,floatingLabel,helpText,placeholder,disabled,dscField,valueField,onChange,data,className,style,...otherProps} = this.props;
         let fieldDsc = "dsc";
         let fieldValue = "value";
         if(dscField)
@@ -48,7 +48,7 @@ export default class AutoComplete extends React.Component {
             this.menu.show();
         }
         return (
-            <div className={className} style={style}>
+            <div className={className} style={style} {...otherProps}>
                 <TextField value={this.state.hasVal}
                            disabled={disabled}
                            placeholder={placeholder}

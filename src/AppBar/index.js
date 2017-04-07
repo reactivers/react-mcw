@@ -37,11 +37,11 @@ export class AppBar extends React.PureComponent {
         fixed : PropTypes.bool
     }
     render() {
-        const {className,fixed, style, barColor, leftElements, rightElements, middleElements} = this.props
+        const {className,fixed, style, barColor, leftElements, rightElements, middleElements,...otherProps} = this.props
         const classes = classNames("mdc-toolbar", {"mdc-toolbar--fixed": fixed},className);
         let barStyle = Object.assign({}, style, {backgroundColor: barColor});
         return (
-            <header className={classes} style={barStyle}>
+            <header className={classes} style={barStyle} {...otherProps}>
                 {leftElements &&
                 <section className="mdc-toolbar__section mdc-toolbar__section--align-start">
                     {leftElements}
