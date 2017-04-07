@@ -106,7 +106,7 @@ class Deneme2 extends React.Component{
 ReactDOM.render(
     <Router history={browserHistory}>
         <Route component={App}>
-            <Route path="/" component={Deneme}/>
+            <Route path="/react-material-design/" component={Deneme}/>
             {pages.map((page, index) => {
                 return (
                     <Route key={index} path={page.value}
