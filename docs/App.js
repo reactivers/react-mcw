@@ -127,7 +127,7 @@ class App extends Component {
 
                 <AppBar leftElements={<AppBarTitle icon={this.state.hide ? <IconButton iconColor="white" iconName="menu"
                                                                                        onClick={() => this.setState({open: !this.state.open})}/> :
-                    <span></span>} style={{color: "white"}} className="rmd-centered-item" title={"react-material-designs"}/>}/>
+                    <span></span>} style={{color: "white"}} className="rmd-centered-item" title={"react-material-design"}/>}/>
                 <GridContainer style={{height: "100%", padding: 0, margin: 0}}>
 
                     <Drawer hasButton open={this.state.hide && this.state.open}

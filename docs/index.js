@@ -91,7 +91,7 @@ import {Router,browserHistory,Route} from 'react-router';
 class Deneme extends React.Component{
     render(){
         return(
-            <div>asd</div>
+            <div style={{display:"flex",justifyContent:"center",alignItems:"center",fontFamily:"Roboto SANS-SERIF",fontSize:24,fontWeight:100}}>Welcome to React Material Design</div>
         )
     }
 }
@@ -99,7 +99,7 @@ class Deneme extends React.Component{
 class Deneme2 extends React.Component{
     render(){
         return(
-            <div>sayfa bulunamadık</div>
+            <div style={{display:"flex",justifyContent:"center",alignItems:"center",fontFamily:"Roboto SANS-SERIF",fontSize:24,fontWeight:100}}>We couldn't find the page you looking for.</div>
         )
     }
 }
