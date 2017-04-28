@@ -3,10 +3,10 @@
 
 ## Description
 
-React-Material-Design-Web includes all recommended components and some extra components may need to you use.
+React-MCW Web includes all recommended components and some extra components may need to you use.
 
 ## Requirements
-To use React-Material-Design you need to add the following codes into index.html.
+To use React-MCW you need to add the following codes into index.html.
 
 ```
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -16,7 +16,7 @@ To use React-Material-Design you need to add the following codes into index.html
 ## Installation
 
 ```sh
-$ npm install --save react-material-design
+$ npm install --save react-mcw
 $ npm install --save-dev sass-loader css-loader style-loader node-sass
 $ npm start
 ```
@@ -48,7 +48,7 @@ $ npm start
 
 ```javascript
 import {FABMenu, Card, CardBody} from 'reac-material-design';
-import IconButton from 'react-material-design/lib/IconButton';
+import IconButton from 'react-mcw/lib/IconButton';
 ```
 
 Here is a quick example to get you started:
@@ -69,7 +69,7 @@ ReactDOM.render(
 
 ```
 import React from 'react';
-import {FABMenu} from 'react-material-design'
+import {FABMenu} from 'react-mcw'
 
 
 const App = () => {
