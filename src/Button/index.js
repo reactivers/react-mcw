@@ -1,7 +1,8 @@
 /**
  * Created by Utku on 24/03/2017.
  */
-import React,{PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import '@material/button/dist/mdc.button.css';
 import classNames from 'classnames';
 import generateId from '../utils/generateId';

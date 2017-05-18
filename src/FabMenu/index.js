@@ -1,7 +1,8 @@
 /**
  * Created by muratguney on 27/03/2017.
  */
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Fab from '../FAB/index';
 import IconButton from '../IconButton';
 import '../index.scss'

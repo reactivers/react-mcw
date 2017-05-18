@@ -1,7 +1,8 @@
 /**
  * Created by muratguney on 27/03/2017.
  */
-import React, {PropTypes, PureComponent} from 'react'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import '@material/select/dist/mdc.select.css'
 import '@material/menu/dist/mdc.menu.css'
 import '@material/list/dist/mdc.list.css'

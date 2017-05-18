@@ -1,7 +1,8 @@
 /**
  * Created by muratguney on 01/04/2017.
  */
-import React,{PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import IconButton from '../IconButton';
 import '../index.scss'
 

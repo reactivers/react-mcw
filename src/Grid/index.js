@@ -1,7 +1,8 @@
 /**
  * Created by Utku on 26/03/2017.
  */
-import React,{PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import '@material/layout-grid/dist/mdc.layout-grid.css';
 import classNames from 'classnames';
 

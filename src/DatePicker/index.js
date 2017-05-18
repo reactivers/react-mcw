@@ -2,7 +2,8 @@
  * Created by Utku on 27/03/2017.
  */
 /* eslint-disable */
-import React,{PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 moment.locale("tr");
 import {Card} from '../Card';

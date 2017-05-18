@@ -1,4 +1,4 @@
-   {
+{
   "name": "react-mcw",
   "version": "0.1.0",
   "dependencies": {
@@ -9,6 +9,7 @@
     "markdown": "^0.5.0",
     "material-components-web": "^0.7.0",
     "moment": "^2.18.1",
+    "prop-types": "^15.5.10",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-highlight.js": "^1.0.5",
@@ -65,15 +66,14 @@
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-1": "^6.22.0"
   },
-  "main": "./lib/index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "build":"npm run babel:build && npm run copy:build",
+    "build": "npm run babel:build && npm run copy:build",
     "babel:build": "babel ./src --out-dir ./lib",
     "clean:build": "rimraf lib",
     "copy:build": "node scripts/copy-files",
     "prebuild": "npm run clean:build",
     "start": "node scripts/start.js"
-
   },
   "jest": {
     "collectCoverageFrom": [

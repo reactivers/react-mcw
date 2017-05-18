@@ -1,7 +1,8 @@
 /**
  * Created by Utku on 28/03/2017.
  */
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import '@material/menu/dist/mdc.menu.css'
 import {MDCSimpleMenu} from '@material/menu/dist/mdc.menu';
 import '../index.scss';

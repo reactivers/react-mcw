@@ -2,7 +2,8 @@
  * Created by muratguney on 26/03/2017.
  */
 
-import React, {PureComponent, PropTypes} from 'react';
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import "@material/drawer/dist/mdc.drawer.css";
 import "@material/list/dist/mdc.list.css";
 import {MDCTemporaryDrawer} from  "@material/drawer/dist/mdc.drawer";

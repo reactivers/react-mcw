@@ -2,7 +2,8 @@
  * Created by Utku on 24/03/2017.
  */
 /* eslint-disable */
-import React, {PureComponent, PropTypes} from 'react';
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {Set as ImmutableSet, Map as ImmutableMap} from 'immutable';
 import {getCorrectEventName} from '@material/animation/dist/mdc.animation';
 import {MDCRipple, MDCRippleFoundation} from '@material/ripple/dist/mdc.ripple';

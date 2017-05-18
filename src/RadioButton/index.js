@@ -1,7 +1,8 @@
 /**
  * Created by muratguney on 27/03/2017.
  */
-import React, {PureComponent, PropTypes} from 'react'
+import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types';
 import '@material/radio/dist/mdc.radio.css'
 import {MDCRadio} from '@material/radio/dist/mdc.radio'
 import generateid from '../utils/generateId'

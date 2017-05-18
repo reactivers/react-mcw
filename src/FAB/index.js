@@ -1,7 +1,8 @@
 /**
  * Created by Utku on 25/03/2017.
  */
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import '@material/fab/dist/mdc.fab.css';
 import classNames from 'classnames';
 
