@@ -7,16 +7,94 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 moment.locale("tr");
 import {Card} from '../Card';
+import {MDCSimpleMenu} from '@material/menu/dist/mdc.menu';
+import TextField from '../TextField';
+import {Menu} from '../Menu';
 import IconButton from '../IconButton';
 import Button from '../Button';
 import {Dialog, DialogContent} from '../Dialog';
 
+class DateMenu extends React.PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            tempVal : "",
+            displayVal : "",
+        }
+        this.recoverCloseFunction = this.closeFunction.bind(this);
+    }
+
+    componentDidMount() {
+        this.dateMenu = new MDCSimpleMenu(document.querySelector(".mdc-simple-menu"));
+        if (this.props.onMenuClose) {
+            this.dateMenu.foundation_.adapter_.notifyCancel = () => this.props.onMenuClose();
+        }
+        if (this.props.getSelectedIndex) {
+            this.dateMenu.foundation_.adapter_.notifySelected = (e) => this.props.getSelectedIndex(e);
+        }
+        this.tempClose = this.dateMenu.foundation_.close;
+    }
+    componentWillReceiveProps(nextProps){
+        this.setState({displayVal : moment(nextProps.date).format('MM/DD/YYYY'),tempVal : moment(nextProps.date).format('MM/DD/YYYY')}, () => this.props.onChange(this.state.displayVal));
+    }
+    closeFunction(event) {
+        if (event.target !== this.refs.dateMenuDiv && !this.refs.dateMenuDiv.contains(event.target)) {
+            this.dateMenu.foundation_.close = this.tempClose;
+            this.dateMenu.foundation_.close();
+            document.body.removeEventListener('click', this.recoverCloseFunction, true);
+        } else {
+            this.dateMenu.foundation_.close = () => null;
+        }
+    }
+
+    openMenu(event) {
+        if (this.dateMenu.open === true) {
+            if (event.target.parentElement.id == this.refs.dateTextRef.textFieldId) {
+                document.body.removeEventListener('click', this.recoverCloseFunction, true);
+                this.dateMenu.foundation_.close = this.tempClose;
+                this.dateMenu.foundation_.close();
+            }
+        } else {
+            document.body.addEventListener('click', this.recoverCloseFunction, true);
+            this.dateMenu.show();
+        }
+    }
+
+    render() {
+        return (
+            <div ref="dateMenuDiv">
+                <TextField rightIcon={"date_range"} onChange={ (e) => this.setState({displayVal: e.target.value}) }
+                           value={this.state.displayVal}
+                           onBlur={ () =>{
+                                if(!moment(this.state.displayVal).isValid()){
+                                        window.dvl = this.state.displayVal;
+                                        console.log(this.state.displayVal);
+                                        this.setState({displayVal : ""});
+                                }else{
+                                    console.log("calisti")
+                                    this.props.onChange(this.state.displayVal)
+                                    this.setState({tempVal : ""});
+                                }
+                           }}
+                           ref="dateTextRef"
+                           rightIconClick={ (e) => {
+                               this.openMenu(e)
+                           }}/>
+                <div className="mdc-simple-menu" tabIndex="-1">
+                    <div className="mdc-simple-menu__items deleleteMargin">
+                        {this.props.children}
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
 class DatePick extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            monthCounter:props.value ? moment(props.value).diff(moment(),"months"): 0,
-            selectedDate: props.value ? moment(props.value).format("D")*1 : moment().format("D") * 1,
+            monthCounter: props.value ? moment(props.value).diff(moment(), "months") : 0,
+            selectedDate: props.value ? moment(props.value).format("D") * 1 : moment().format("D") * 1,
             initialValue: props.value,
         };
     }
@@ -69,7 +147,7 @@ class DatePick extends React.PureComponent {
         }
         window.mom = moment;
         return (
-            <Card style={{maxWidth: "310px", maxHeight: "512px"}} shadow={20}>
+            <Card style={{maxWidth: "310px", maxHeight: "512px"}} shadow={this.props.shadow}>
                 <div className="rmd-date-picker" style={{width: "310px", height: "104px"}}>
                     <div style={{padding: "20px"}}>
                         <div style={{
@@ -301,8 +379,18 @@ class DatePick extends React.PureComponent {
                 </div>
                 {this.props.open !== undefined &&
                 <div style={{width: '310px'}}>
-                    <Button primary={true} onClick={()=>{this.props.onChange && this.props.onChange(this.state.initialValue || moment()._d) ;this.state.initialValue ? this.setState({monthCounter:moment(this.props.value).diff(moment(),"months"),selectedDate:moment(this.props.value).format("D")*1}) :  this.setState({monthCounter:0,selectedDate:moment().format("D")*1}) ;this.props.onClose()}}>Cancel</Button>
-                    <Button primary={true} onClick={()=>{this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d) ; this.props.onClose()}}>Ok</Button>
+                    <Button primary={true} onClick={() => {
+                        this.props.onChange && this.props.onChange(this.state.initialValue || moment()._d);
+                        this.state.initialValue ? this.setState({
+                            monthCounter: moment(this.props.value).diff(moment(), "months"),
+                            selectedDate: moment(this.props.value).format("D") * 1
+                        }) : this.setState({monthCounter: 0, selectedDate: moment().format("D") * 1});
+                        this.props.onClose()
+                    }}>Cancel</Button>
+                    <Button primary={true} onClick={() => {
+                        this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d);
+                        this.props.onClose()
+                    }}>Ok</Button>
                 </div>
                 }
             </Card>
@@ -311,26 +399,35 @@ class DatePick extends React.PureComponent {
 }
 
 export default class DatePicker extends React.Component {
-
+    state = {
+        dateVal: null,
+    }
     static propTypes = {
-        open:PropTypes.bool,
-        value:PropTypes.string,
-        onClose:PropTypes.func,
-        onChange:PropTypes.func,
+        open: PropTypes.bool,
+        value: PropTypes.string,
+        onClose: PropTypes.func.isRequired,
+        onChange: PropTypes.func,
     };
 
     render() {
-        if (this.props.open !== undefined)
+        if (this.props.open !== undefined) {
             return (
                 <Dialog style={{width: "auto", minWidth: 0, padding: 0, margin: 0}} {...this.props}>
                     <DialogContent style={{width: "auto", minWidth: 0, padding: 0, margin: 0}}>
-                        <DatePick {...this.props} />
+                        <DatePick {...this.props} shadow="20"/>
                     </DialogContent>
                 </Dialog>
             );
-        else
+        }
+        else {
             return (
-                <DatePick {...this.props} />
+                <div>
+                    <DateMenu date={this.state.dateVal} onChange={ (x) => console.log("x",x) }>
+                        <DatePick {...this.props} onChange={ (e) => this.setState({dateVal: e}, this.props.onChange)}
+                                  shadow="1"/>
+                    </DateMenu>
+                </div>
             )
+        }
     }
 }

@@ -10,13 +10,16 @@ import classNames from 'classnames';
 export default class Card extends React.PureComponent{
     static propTypes={
         className : PropTypes.string,
-        shadow : PropTypes.number,
+        shadow : PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number,
+        ]),
         style: PropTypes.object,
     };
     render(){
         const {className,shadow,style,...rest} = this.props;
         const classes = classNames("mdc-card",{
-            ["mdc-elevation--z"+shadow] : shadow
+            ["mdc-elevation--z"+shadow] : shadow+""
         },className)
         return(
             <div className={classes} style={{backgroundColor:"white",...style}} {...rest}>

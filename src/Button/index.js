@@ -22,7 +22,11 @@ export default class Button extends React.PureComponent{
         dense :PropTypes.bool,
         compact : PropTypes.bool,
     };
-
+    static defaultProps={
+        dense : false,
+        compact : false,
+        disabled : false
+    }
     componentWillMount(){
         this.buttonId = generateId();
     };
@@ -36,7 +40,7 @@ export default class Button extends React.PureComponent{
             "mdc-button--dense" : dense,
             "mdc-button--compact" : compact,
         },className)
-        let buttonStyle = Object.assign({},style,{backgroundColor : buttonColor,color:textColor});
+        let buttonStyle = Object.assign({},style,{backgroundColor : buttonColor,color:textColor,fontWeight : "bold"});
         return(
             <button className={classes} key={this.props.key || this.buttonId} style={buttonStyle} {...rest}>
                 {this.props.children}

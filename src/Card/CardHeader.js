@@ -13,15 +13,15 @@ export default class CardHeader extends React.PureComponent{
         subtitle : PropTypes.string,
     };
     render(){
-        const {className, style,...rest} = this.props;
+        const {className, style,subtitle,...rest} = this.props;
         const classes = classNames("mdc-card__primary", className)
         return(
                 <section className={classes} style={style} {...rest}>
                     {this.props.title ? <h1 className="mdc-card__title mdc-card__title--large">
                             {this.props.title}
                     </h1> : this.props.children}
-                    {this.props.subtitle &&<h2 className="mdc-card__subtitle">
-                            { this.props.subtitle }
+                    {subtitle &&<h2 className="mdc-card__subtitle">
+                            { subtitle }
                     </h2>}
                 </section>
         )

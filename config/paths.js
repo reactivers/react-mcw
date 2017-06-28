@@ -68,9 +68,9 @@ module.exports = {
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveApp('docs/index.js'),
+  appIndexJs: resolveApp('src/index-test.js'),
   appPackageJson: resolveApp('package.json'),
-  appSrc: resolveApp('docs'),
+  appSrc: resolveApp('src'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveApp('docs/setupTests.js'),
   appNodeModules: resolveApp('node_modules'),
@@ -78,3 +78,5 @@ module.exports = {
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json'))
 };
+//appIndexJs: resolveApp('docs/index.js'),
+//    appSrc: resolveApp('docs'),
