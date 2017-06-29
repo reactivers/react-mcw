@@ -11,33 +11,38 @@ import Icon from '../Icon';
 import classNames from 'classnames';
 
 export default class TextField extends React.PureComponent {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            inputFieldWidth : null,
+            inputFieldWidth: null,
         }
     }
+
     static propTypes = {
         label: PropTypes.string,
         error: PropTypes.string,
         floatingLabel: PropTypes.bool,
         helpText: PropTypes.string,
+        value: PropTypes.string,
         placeholder: PropTypes.string,
         disabled: PropTypes.bool,
-        onChange : PropTypes.func,
-        rightIcon : PropTypes.string,
-        rightIconClick : PropTypes.func,
+        textfieldStyle: PropTypes.object,
+        onChange: PropTypes.func,
+        rightIcon: PropTypes.string,
+        rightIconClick: PropTypes.func,
     }
+
     componentWillMount() {
         this.textFieldId = generateId("inputField");
     }
+
     componentDidMount() {
         MDCTextfield.attachTo(document.querySelector('.mdc-textfield'));
-        this.setState({inputFieldWidth : document.getElementById(this.textFieldId).clientWidth});
+        this.setState({inputFieldWidth: document.getElementById(this.textFieldId).clientWidth});
     }
 
     render() {
-        const {label, error, floatingLabel, helpText, style, textfieldStyle,placeholder,rightIcon,rightIconClick, ...rest} = this.props;
+        const {label, error, floatingLabel, helpText, style, textfieldStyle, placeholder, value, onChange, className, rightIcon, rightIconClick, ...rest} = this.props;
         const inputClass = classNames("mdc-textfield__input", {
             "placeholderClass": !!floatingLabel && placeholder,
         });
@@ -45,11 +50,14 @@ export default class TextField extends React.PureComponent {
             "mdc-textfield-helptext--validation-msg": error
         });
         return (
-            <div style={style}>
+            <div style={style} {...rest} className={className}>
                 <div className={"mdc-textfield"} style={style} id={this.textFieldId}>
-                    {rightIcon && this.state.inputFieldWidth && <Icon iconName={rightIcon} onClick={rightIconClick || this.props.onClick} iconColor={"grey"} style={{cursor:'pointer',position:"absolute",left : this.state.inputFieldWidth-25}} />}
-                    <input className={inputClass}
-                           {...rest} style={textfieldStyle}
+                    {rightIcon && this.state.inputFieldWidth &&
+                    <Icon iconName={rightIcon} onClick={rightIconClick || this.props.onClick} iconColor={"grey"}
+                          style={{cursor: 'pointer', position: "absolute", left: this.state.inputFieldWidth - 25}}/>}
+                    <input className={inputClass} style={textfieldStyle}
+                           onChange={onChange}
+                           value={value}
                            placeholder={!floatingLabel ? label : placeholder}/>
                     { !!floatingLabel &&
                     <label htmlFor={this.textFieldId} className="mdc-textfield__label">{label}</label>}

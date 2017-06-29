@@ -1,95 +1,17 @@
-/**
- * Created by muratguney on 27/03/2017.
- */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Fab from '../FAB/index';
+import Fab from '../FAB';
 import IconButton from '../IconButton';
-import '../index.scss'
-import TextField from '../TextField/index';
+import TextBox from '../TextField';
 
-const defaultStyle = {
-    menuOff: {
-        position: "fixed",
-        right: 20,
-        bottom: 20,
-        zIndex: 65,
-        transition: "0.4s",
-    },
-    fabsOff: {
-        position: "fixed",
-        right: -210,
-        bottom: 20,
-        opacity: 0,
-        zIndex: 65,
-        transition: "0.4s",
-    },
-    menu: {
-        position: "fixed",
-        right: 20,
-        bottom: 20,
-        zIndex: 65,
-        transition: "0.4s",
-        transform: "rotate(-450deg)"
-    },
-};
-const style = [
-    {
-        position: "fixed",
-        right: 20,
-        bottom: 20,
-        zIndex: 65,
-        transition: "0.4s",
-    },
-    {
-        position: "fixed",
-        right: 86,
-        bottom: 20,
-        zIndex: 65,
-        transition: "0.4s",
-    },
-    {
-        position: "fixed",
-        right: 152,
-        bottom: 20,
-        zIndex: 65,
-        transition: "0.4s",
-    },
-    {
-        position: "fixed",
-        right: 218,
-        bottom: 20,
-        zIndex: 65,
-        transition: "0.4s",
-    },
-    {
-        position: "fixed",
-        right: 285,
-        bottom: 20,
-        zIndex: 65,
-        transition: "0.4s",
-    },
-    {
-        position: "fixed",
-        right: 352,
-        bottom: 20,
-        zIndex: 65,
-        transition: "0.4s",
-    },
-    {
-        position: "fixed",
-        right: 417,
-        bottom: 20,
-        zIndex: 65,
-        transition: "0.4s",
-    },
+/* FABNav için FabNav.css import et*/
 
-];
+import './FabMenu.css'
 
 class FabMenu extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             open: false,
             new: false,
@@ -99,27 +21,15 @@ class FabMenu extends React.Component {
             ara: '',
             delete: false,
             search: '',
+            hide: 1,
             edit: false,
-            menuSwitcher: false,
+            menuSwitcher: props.initialOpen || false,
             type: '',
         };
-        this.rerender = this.rerender.bind(this);
     }
 
     searchBttn() {
-
         this.setState({ara: !this.state.ara})
-
-    }
-
-    componentWillMount() {
-        this.lastFabIndex()
-    }
-
-    lastFabIndex() {
-        let maxIndex = 0;
-        Object.keys(this.props).map(key => typeof this.props[key] === "number" && this.props[key] > maxIndex ? maxIndex = this.props[key] : maxIndex);
-        return maxIndex
     }
 
     searchField(e) {
@@ -127,123 +37,101 @@ class FabMenu extends React.Component {
         this.setState({search: val}, () => this.props.onSearch && this.props.onSearch(val))
     }
 
-    rerender() {
-        this.setState({_ix: Math.random()});
+    componentWillMount() {
+        this.maxIndexes = [0, 0, 0, 0, 0, 0];
+        this.buttonIndexes = Object.keys(this.props).map(key => typeof  this.props[key] === "number" && this.props[key]).filter(i => i).sort();
+        this.buttonIndexes.forEach((i, ind) => this.maxIndexes[i - 1] += 1);
     }
 
+    componentWillReceiveProps(nextProps, nextState) {
+        if (nextProps != this.props) {
+            this.maxIndexes = [0, 0, 0, 0, 0, 0];
+            this.buttonIndexes = Object.keys(this.props).map(key => typeof  this.props[key] === "number" && this.props[key]).filter(i => i).sort();
+            this.buttonIndexes.forEach((i, ind) => this.maxIndexes[i - 1] += 1);
+        }
+
+    }
     render() {
+        this.maxIndexes = [0, 0, 0, 0, 0, 0];
+        this.buttonIndexes = Object.keys(this.props).map(key => typeof  this.props[key] === "number" && this.props[key]).filter(i => i).sort();
+        this.buttonIndexes.forEach((i, ind) => this.maxIndexes[i - 1] += 1);
+
+        this.index = 0;
+        const {showSearch,showAdd,showPeopleAdd,showCopy,showDelete,showEdit,switcherColor,onSearch,children,onDelete,onPeopleAdd,onEdit,onCopy,onAdd}  =this.props;
+
+        const add = this.state.ara && showSearch <= showAdd ? showAdd - 1 : showAdd;
+        const edit = this.state.ara && showSearch <= showEdit ? showEdit - 1 : showEdit;
+        const remove = this.state.ara && showSearch <= showDelete ? showDelete - 1 : showDelete;
+        const copy = this.state.ara && showSearch <= showCopy ? showCopy - 1 : showCopy;
+        const peopleAdd = this.state.ara && showSearch <= showPeopleAdd ? showPeopleAdd - 1 : showPeopleAdd;
+        const search = this.state.ara ? showSearch - 1 : showSearch;
+
         return (
-
-            <div>
-                <Fab icon="menu" style={this.state.menuSwitcher ? defaultStyle.menu : defaultStyle.menuOff}
-                     buttonColor={this.props.switcherColor}
-                     onClick={() => this.setState({menuSwitcher: !this.state.menuSwitcher, ara: false})}
-                     className="rmd-menu-button"/>
-                {this.props.showAdd > -1 &&
-                <Fab icon="add" className="rmd-add-button"
-                     style={this.state.menuSwitcher ? (!this.state.ara ? style[this.props.showAdd] : (this.props.showAdd > this.props.showSearch ? {
-                         ...style[this.props.showAdd],
-                         right: style[this.props.showAdd].right - 65
-                     } : style[this.props.showAdd] )) : defaultStyle.fabsOff} onClick={this.props.onAdd}/>}
-                {this.props.showEdit > -1 &&
-                <Fab icon="mode_edit" className="rmd-edit-button"
-                     style={this.state.menuSwitcher ? (!this.state.ara ? style[this.props.showEdit] : (this.props.showEdit > this.props.showSearch ? {
-                         ...style[this.props.showEdit],
-                         right: style[this.props.showEdit].right - 65
-                     } : style[this.props.showEdit]) ) : defaultStyle.fabsOff} onClick={this.props.onEdit}/>}
-                {this.props.showDelete > -1 &&
-                <Fab icon={this.props.delete ? "close" : "delete_forever"} className="rmd-delete-button"
-                     style={this.state.menuSwitcher ? (!this.state.ara ? style[this.props.showDelete] : (this.props.showDelete > this.props.showSearch ? {
-                         ...style[this.props.showDelete],
-                         right: style[this.props.showDelete].right - 65
-                     } : style[this.props.showDelete])) : defaultStyle.fabsOff} onClick={this.props.onDelete}/>}
-                {this.props.showPeopleAdd > -1 &&
-                <Fab icon="person_add" className="rmd-person-add"
-                     style={this.state.menuSwitcher ? (!this.state.ara ? style[this.props.showPeopleAdd] : (this.props.showPeopleAdd > this.props.showSearch ? {
-                         ...style[this.props.showPeopleAdd],
-                         right: style[this.props.showPeopleAdd].right - 65
-                     } : style[this.props.showPeopleAdd]) ) : defaultStyle.fabsOff} onClick={this.props.onPeopleAdd}/>}
-                {this.props.showCopy > -1 &&
-                <Fab icon="content_copy" className="rmd-copy-button"
-                     style={this.state.menuSwitcher ? (!this.state.ara ? style[this.props.showCopy] : (this.props.showCopy > this.props.showSearch ? {
-                         ...style[this.props.showCopy],
-                         right: style[this.props.showCopy].right - 65
-                     } : style[this.props.showCopy]) ) : defaultStyle.fabsOff} onClick={this.props.onCopy}/>}
-                {this.props.showSearch > -1 &&
+            <div className="fab-menu" id="fab-menu">
+                <Fab className={this.state.menuSwitcher ? "menu-fab-button" : "menu-fab-button-off"}
+                     icon="menu"
+                     style={{display:"flex",justifyContent:"center",alignItems:"center"}}
+                     onClick={() => this.setState({menuSwitcher: !this.state.menuSwitcher, ara: false})}/>
+                {showAdd > -1 &&
+                <Fab
+                    className={"add-fab-button " + (this.state.menuSwitcher ? "fab-button-" + add : "fab-button-off")}
+                    onClick={onAdd} icon="add"/>}
+                {showEdit > -1 &&
+                <Fab
+                    className={"edit-fab-button " + (this.state.menuSwitcher ? "fab-button-" + edit : "fab-button-off")}
+                    onClick={onEdit} icon="mode_edit"/>}
+                {showDelete > -1 &&
+                <Fab
+                    className={"delete-fab-button " + (this.state.menuSwitcher ? "fab-button-" + remove : "fab-button-off")}
+                    onClick={onDelete} icon={this.props.delete ? "close" : "delete_forever"} /> }
+                {showPeopleAdd > -1 &&
+                <Fab
+                    className={"person-add-fab-button " + (this.state.menuSwitcher ? "fab-button-" + peopleAdd : "fab-button-off")}
+                    onClick={onPeopleAdd} icon="person_add"/>}
+                {showCopy > -1 &&
+                <Fab
+                    className={"copy-fab-button " + (this.state.menuSwitcher ? "fab-button-" + copy : "fab-button-off")}
+                    onClick={onCopy} icon="content_copy"/>}
+                {showSearch > -1 &&
                 <span>
-                        <div style={this.state.ara ? {
-                            ...style[this.props.showSearch],
-                            backgroundColor: 'gray',
-                            width: 280,
-                            opacity: 0.5,
-                            right: 10,
-                            bottom: 80,
-                            position: "fixed",
-                            height: 70,
-                            transition: "0.4s"
-                        } : {...style[this.props.showSearch], opacity: 0, width: 1, right: -320} }>
-
+                        <div
+                            className={this.state.menuSwitcher ? this.state.ara ? "search-textfield-background-fab-button search-textfield-background-fab-button-" + search : "search-textfield-background-fab-off-button search-textfield-background-fab-off-button-" + showSearch : "search-textfield-background-fab-off-button-" + showSearch}>
                         </div>
                             <Fab onClick={this.searchBttn.bind(this)}
-                                 style={this.state.menuSwitcher ? (this.state.ara ? ({
-                                     ...style[this.props.showSearch],
-                                     right: 295,
-                                     bottom: 80
-                                 }) : style[this.props.showSearch]) : defaultStyle.fabsOff}
-                                 className="rmd-search-button"
+                                 className={"search-fab-button " + (this.state.menuSwitcher ? this.state.ara ? "search-on-fab-button search-on-fab-button-" + search : "fab-button-" + search : "fab-button-off")}
+                                 style={{borderRadius: this.state.ara && "50%"}}
                                  icon="search"
                             />
-
-                            <TextField label={"Aramak İstediğiniz Kelimeyi Yazın"}
-                                       floatingLabel={true}
-                                       placeholder={"Ara"}
-                                       value={this.state.search}
-                                       onChange={this.searchField.bind(this)}
-                                       textfieldStyle={{width: "100%"}}
-                                       style={this.state.ara ? {
-                                           ...style[this.props.showSearch],
-                                           opacity: 1,
-                                           width: 230,
-                                           right: 50,
-                                           color: "white",
-                                           zIndex: 67,
-                                           bottom: 80
-                                       } : {...style[this.props.showSearch], opacity: 0, width: 1, right: -320} }
+                            <TextBox label="Aramak İstediğiniz Kelimeyi Yazın"
+                                     onChange={this.searchField.bind(this)}
+                                     value={this.state.search}
+                                     textfieldStyle={{width:290}}
+                                     className={this.state.menuSwitcher ? this.state.ara ? "search-fab-button-textfield search-fab-button-textfield-" + search : "search-fab-off-button-textfield search-fab-off-button-textfield-" + search : "search-fab-off-button-textfield search-fab-off-button-textfield-" + search}
+                                     onKeyPress={e => e.key == 'Enter' && this.setState({ara: false})}
                             />
 
-                                <IconButton
-                                    onClick={this.state.search ? () => this.setState({search: ''}, () => this.props.onSearch && this.props.onSearch('')) : null}
-                                    style={(this.state.search && this.state.ara) ? {
-                                        ...style[this.props.showSearch],
-                                        right: 10,
-                                        color: 'whitesmoke',
-                                        cursor: "pointer",
-                                        bottom: style[this.props.showSearch].bottom + 80,
-                                        zIndex: 68
-                                    } : {
-                                        ...style[this.props.showSearch],
-                                        right: -60,
-                                        bottom: style[this.props.showSearch].bottom + 80
-                                    }} iconName="clear"/>
+                            <IconButton iconName="clear"
+                                        onClick={this.state.search ? () => this.setState({search: ''}, () => onSearch && onSearch('')) : null}
+                                        className={this.state.menuSwitcher ? this.state.ara ? "search-fab-clear-button search-fab-clear-button-" + search : "search-fab-off-clear-button search-fab-off-clear-button-" + search : "search-fab-off-clear-button search-fab-off-clear-button-" + search}/>
 
                     </span>
                 }
-                {this.props.children &&
-                <div style={!this.state.menuSwitcher ? defaultStyle.fabsOff : {...style[this.props.customStyle]}}>
-                    {React.Children.map(this.props.children, (child, index) => {
+                {children &&
+                this.maxIndexes.map((i1, index) => {
+                    if (i1 == 0 && this.index >= 0) {
+                        if(children.length) {
+                            this.index++;
+                        } else {
+                            this.index = -1
+                        }
                         return (
-                            React.cloneElement(child, {
-                                style: this.state.menuSwitcher ? (!this.state.ara ? {
-                                    ...style[this.lastFabIndex()],
-                                    right: style[this.lastFabIndex()].right + (67 * (index + 1))
-                                } : (this.lastFabIndex() + index + 1 > this.props.showSearch ? {
-                                    ...style[this.lastFabIndex()],
-                                    right: style[this.lastFabIndex()].right + (67 * (index))
-                                } : style[index]) ) : defaultStyle.fabsOff
-                            })
+                            <div key={index}
+                                 className={this.state.menuSwitcher ? "fab-button-" + ((this.state.ara && showSearch < index + 1 ) ? index + 1 - 1 : index + 1) : "fab-button-off"}>
+                                {children.length ? children[this.index - 1] : children}
+                            </div>
                         )
-                    })}
-                </div>
+                    }
+                })
                 }
 
             </div>
@@ -266,7 +154,7 @@ class FabMenu extends React.Component {
         onDelete: PropTypes.func,
         onPeopleAdd: PropTypes.func,
         onSearch: PropTypes.func,
-        switcherColor: PropTypes.string,
+        initialOpen: PropTypes.bool,
     };
 }
 
