@@ -9,6 +9,7 @@ export default class ComponentTestPage extends React.Component {
 
     state={custom:false};
 
+
     render() {
         return (
             <Card style={{padding: 8}}>
