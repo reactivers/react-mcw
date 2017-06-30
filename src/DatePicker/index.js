@@ -5,23 +5,102 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-moment.locale("tr");
 import {Card} from '../Card';
 import {MDCSimpleMenu} from '@material/menu/dist/mdc.menu';
 import TextField from '../TextField';
-import {Menu} from '../Menu';
 import IconButton from '../IconButton';
 import Button from '../Button';
 import {Dialog, DialogContent} from '../Dialog';
 
-class DateMenu extends React.PureComponent {
+class DateDialog extends React.PureComponent {
+    static defaultProps = {
+        locale: 'en',
+        disabled: false,
+        disableTextInput: false,
+        onChange: () => null,
+        onClose: () => null,
+        open: false,
+    }
+
     constructor(props) {
         super(props);
+        moment.locale(this.props.locale);
         this.state = {
-            tempVal : "",
-            displayVal : "",
+            isOpen: this.props.open,
+            format: moment.localeData()._longDateFormat.L,
+            displayVal: "",
+        }
+    }
+
+    componentWillMount() {
+        if (this.props.format) {
+            this.setState({format: this.props.format});
+        }
+        if (this.props.value) {
+            this.setState({displayVal: this.props.value}, () => this.props.onChange(this.state.displayVal))
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <TextField
+                    disabled={this.props.disabled || this.props.disableTextInput}
+                    rightIcon={"date_range"}
+                    onChange={ (e) => this.setState({displayVal: e.target.value}) }
+                    value={this.state.displayVal}
+                    onBlur={ () => {
+                        if (!moment(this.state.displayVal, this.state.format).isValid()) {
+                            this.setState({displayVal: ""});
+                        } else {
+                            if (this.props.onChange) {
+                                this.props.onChange(this.state.displayVal);
+                            }
+                        }
+                    }}
+                    rightIconClick={ !this.props.disabled ? () => {
+                        this.setState({isOpen: true})
+                    } : null}/>
+                <Dialog style={{width: "auto", minWidth: 0, padding: 0, margin: 0}} open={this.state.isOpen}
+                        onClose={ () => this.setState({isOpen: false}, () => this.props.onClose())}>
+                    <DialogContent style={{width: "auto", minWidth: 0, padding: 0, margin: 0}}>
+                        <DatePick
+                            format={this.state.format}
+                            minDate={this.props.minDate}
+                            maxDate={this.props.maxDate}
+                            onChange={ (xdate) => this.setState({displayVal: moment(xdate).format(this.state.format)}, () => this.props.onChange(moment(xdate).format(this.state.format)))}
+                            shadow="20"/>
+                    </DialogContent>
+                </Dialog>
+            </div>
+        )
+    }
+}
+class DateMenu extends React.PureComponent {
+    static defaultProps = {
+        locale: 'en',
+        disabled: false,
+        disableTextInput: false,
+        onChange: () => null
+    }
+
+    constructor(props) {
+        super(props);
+        moment.locale(this.props.locale);
+        this.state = {
+            displayVal: "",
+            format: moment.localeData()._longDateFormat.L
         }
         this.recoverCloseFunction = this.closeFunction.bind(this);
+    }
+
+    componentWillMount() {
+        if (this.props.format) {
+            this.setState({format: this.props.format});
+        }
+        if (this.props.value) {
+            this.setState({displayVal: this.props.value}, () => this.props.onChange(this.state.displayVal))
+        }
     }
 
     componentDidMount() {
@@ -34,9 +113,11 @@ class DateMenu extends React.PureComponent {
         }
         this.tempClose = this.dateMenu.foundation_.close;
     }
-    componentWillReceiveProps(nextProps){
-        this.setState({displayVal : moment(nextProps.date).format('MM/DD/YYYY'),tempVal : moment(nextProps.date).format('MM/DD/YYYY')}, () => this.props.onChange(this.state.displayVal));
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({displayVal: moment(nextProps.date).format(this.state.format)}, () => this.props.onChange(this.state.displayVal));
     }
+
     closeFunction(event) {
         if (event.target !== this.refs.dateMenuDiv && !this.refs.dateMenuDiv.contains(event.target)) {
             this.dateMenu.foundation_.close = this.tempClose;
@@ -47,9 +128,9 @@ class DateMenu extends React.PureComponent {
         }
     }
 
-    openMenu(event) {
+    openMenu(event, exitCode) {
         if (this.dateMenu.open === true) {
-            if (event.target.parentElement.id == this.refs.dateTextRef.textFieldId) {
+            if ((typeof event == "object" && event.target.parentElement.id == this.refs.dateTextRef.textFieldId) || event == "menu_buttons") {
                 document.body.removeEventListener('click', this.recoverCloseFunction, true);
                 this.dateMenu.foundation_.close = this.tempClose;
                 this.dateMenu.foundation_.close();
@@ -61,28 +142,36 @@ class DateMenu extends React.PureComponent {
     }
 
     render() {
+        console.log("format", this.props.format, "st", this.state.format)
         return (
             <div ref="dateMenuDiv">
-                <TextField rightIcon={"date_range"} onChange={ (e) => this.setState({displayVal: e.target.value}) }
-                           value={this.state.displayVal}
-                           onBlur={ () =>{
-                                if(!moment(this.state.displayVal).isValid()){
-                                        window.dvl = this.state.displayVal;
-                                        console.log(this.state.displayVal);
-                                        this.setState({displayVal : ""});
-                                }else{
-                                    console.log("calisti")
-                                    this.props.onChange(this.state.displayVal)
-                                    this.setState({tempVal : ""});
-                                }
-                           }}
-                           ref="dateTextRef"
-                           rightIconClick={ (e) => {
-                               this.openMenu(e)
-                           }}/>
+                <TextField
+                    disabled={this.props.disabled || this.props.disableTextInput}
+                    rightIcon={"date_range"}
+                    onChange={ (e) => this.setState({displayVal: e.target.value}) }
+                    value={this.state.displayVal}
+                    onBlur={ () => {
+                        if (!moment(this.state.displayVal, this.state.format).isValid()) {
+                            this.setState({displayVal: ""});
+                        } else {
+                            this.props.onChange(this.state.displayVal);
+                        }
+                    }}
+                    ref="dateTextRef"
+                    rightIconClick={ !this.props.disabled ? (e) => {
+                        this.openMenu(e)
+                    } : null }/>
                 <div className="mdc-simple-menu" tabIndex="-1">
                     <div className="mdc-simple-menu__items deleleteMargin">
-                        {this.props.children}
+                        <DatePick
+                            acceptLabel="Tamam"
+                            cancelLabel="İptal"
+                            onClose={ () => this.openMenu("menu_buttons")}
+                            format={this.state.format}
+                            minDate={this.props.minDate}
+                            maxDate={this.props.maxDate}
+                            onChange={ (xdate) => this.setState({displayVal: moment(xdate).format(this.state.format)}, () => this.props.onChange(moment(xdate).format(this.state.format)))}
+                            shadow="1"/>
                     </div>
                 </div>
             </div>
@@ -132,6 +221,67 @@ class DatePick extends React.PureComponent {
         }
     }
 
+    canChangeDate(currentDate, months,) {
+        let fullDate = Object.assign({}, currentDate);
+        fullDate = moment(fullDate);
+        console.log(fullDate);
+        fullDate.add(months, "months");
+        if (this.props.minDate) {
+            let minDate = moment(this.props.minDate, this.props.format).startOf('day');
+            if (fullDate.year() == minDate.year() && fullDate.month() == minDate.month() && this.state.selectedDate < minDate.date()) {
+                this.setState({selectedDate: minDate.date()})
+            }
+            if (minDate.isAfter(moment().startOf('day').year(fullDate.year()).month(fullDate.month()).date(minDate.date()))) {
+                return false;
+            }
+        }
+        if (this.props.maxDate) {
+            let maxDate = moment(this.props.maxDate, this.props.format);
+            if (fullDate.year() == maxDate.year() && fullDate.month() == maxDate.month() && this.state.selectedDate > maxDate.date()) {
+                this.setState({selectedDate: maxDate.date()})
+            }
+
+            if (maxDate.isBefore(moment().startOf('day').year(fullDate.year()).month(fullDate.month()).date(1))) {
+                return false;
+            }
+        }
+
+        console.log("returned", true)
+        return true;
+    }
+
+    generateDay(year_Today, month_Today, day, index) {
+        let isDisabled = false;
+
+        if ((this.props.minDate || this.props.maxDate) && moment(this.props.maxDate, this.props.format).startOf('day').isBefore(moment().startOf('day').year(year_Today).month(month_Today).date(day))
+            || moment(this.props.minDate, this.props.format).startOf('day').isAfter(moment().startOf('day').year(year_Today).month(month_Today).date(day))) {
+            isDisabled = true;
+        }
+        return <td key={index}
+                   className={isDisabled ? "rmd-days-disabled" : "rmd-days"}
+                   onClick={isDisabled ? null : () => this.setState({selectedDate: day})}
+                   style={{
+                       textAlign: 'center',
+                       verticalAlign: 'middle',
+                       width: 42,
+                       backgroundColor: (this.state.selectedDate) === day && "#eee",
+                       transition: "0.4s",
+                       height: 34
+                   }}>{day}</td>;
+    }
+
+    emptyDay(index) {
+        return <td key={index} style={{
+            textAlign: 'center',
+            verticalAlign: 'middle',
+            width: 42,
+            cursor: "auto",
+            backgroundColor: "white",
+            transition: "0.4s",
+            height: 34
+        }}/>;
+    }
+
     render() {
         let {month_Today, monthFull, year_Today, fullDate} = this.getNextMonth(this.state.monthCounter);
         let firstAndLast = this.getFirstAndLastDay(fullDate)
@@ -170,17 +320,17 @@ class DatePick extends React.PureComponent {
                         padding: "10px 10px 0px 10px"
                     }}>
                         <IconButton iconSize={24}
-                                    onClick={ () => this.setState({monthCounter: this.state.monthCounter - 12}, () => this.props.onChange && this.props.onChange(moment().year(moment().add(this.state.monthCounter, "months").format("Y")).month(moment().add(this.state.monthCounter, "months").format("MMM")).date(this.state.selectedDate)._d))}
+                                    onClick={ () => this.canChangeDate(fullDate, -12) ? this.setState({monthCounter: this.state.monthCounter - 12}) : null}
                                     iconName={"skip_previous"}/>
                         <IconButton iconSize={24}
-                                    onClick={ () => this.setState({monthCounter: this.state.monthCounter - 1}, () => this.props.onChange && this.props.onChange(moment().year(moment().add(this.state.monthCounter, "months").format("Y")).month(moment().add(this.state.monthCounter, "months").format("MMM")).date(this.state.selectedDate)._d))}
+                                    onClick={ () => this.canChangeDate(fullDate, -1) ? this.setState({monthCounter: this.state.monthCounter - 1}) : null }
                                     iconName={"navigate_before"}/>
                         {monthFull + " " + year_Today}
                         <IconButton iconSize={24}
-                                    onClick={ () => this.setState({monthCounter: this.state.monthCounter + 1}, () => this.props.onChange && this.props.onChange(moment().year(moment().add(this.state.monthCounter, "months").format("Y")).month(moment().add(this.state.monthCounter, "months").format("MMM")).date(this.state.selectedDate)._d))}
+                                    onClick={ () => this.canChangeDate(fullDate, +1) ? this.setState({monthCounter: this.state.monthCounter + 1}) : null}
                                     iconName={"navigate_next"}/>
                         <IconButton iconSize={24}
-                                    onClick={ () => this.setState({monthCounter: this.state.monthCounter + 12}, () => this.props.onChange && this.props.onChange(moment().year(moment().add(this.state.monthCounter, "months").format("Y")).month(moment().add(this.state.monthCounter, "months").format("MMM")).date(this.state.selectedDate)._d))}
+                                    onClick={ () => this.canChangeDate(fullDate, +12) ? this.setState({monthCounter: this.state.monthCounter + 12}) : null}
                                     iconName={"skip_next"}/>
                     </div>
                     <div>
@@ -207,169 +357,50 @@ class DatePick extends React.PureComponent {
                             <tbody>
                             <tr>
                                 {dayArr.map((i2, index) => {
+
                                     if (index < 7) {
-                                        if (i2 === -1) {
-                                            return <td key={index} style={{
-                                                textAlign: 'center',
-                                                verticalAlign: 'middle',
-                                                width: 42,
-                                                cursor: "auto",
-                                                backgroundColor: "white",
-                                                transition: "0.4s",
-                                                height: 34
-                                            }}></td>;
-                                        }
-                                        return <td key={index}
-                                                   className="rmd-days"
-                                                   onClick={() => this.setState({selectedDate: i2}, () => this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d))}
-                                                   style={{
-                                                       textAlign: 'center',
-                                                       verticalAlign: 'middle',
-                                                       width: 42,
-                                                       backgroundColor: (this.state.selectedDate) === i2 && "#eee",
-                                                       transition: "0.4s",
-                                                       height: 34
-                                                   }}>{i2}</td>;
+                                        if (i2 === -1) return this.emptyDay(index);
+                                        else return this.generateDay(year_Today, month_Today, i2, index);
                                     }
                                 })}
                             </tr>
                             <tr>
                                 {dayArr.map((i2, index) => {
                                     if (7 <= index && index < 14) {
-                                        if (i2 === -1) {
-                                            return <td key={index} style={{
-                                                textAlign: 'center',
-                                                verticalAlign: 'middle',
-                                                width: 42,
-                                                cursor: "auto",
-                                                backgroundColor: "white",
-                                                transition: "0.4s",
-                                                height: 34
-                                            }}></td>;
-                                        }
-                                        return <td key={index}
-                                                   onClick={() => this.setState({selectedDate: i2}, () => this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d))}
-                                                   className="rmd-days"
-                                                   style={{
-                                                       textAlign: 'center',
-                                                       verticalAlign: 'middle',
-                                                       width: 42,
-                                                       backgroundColor: (this.state.selectedDate) === i2 && "#eee",
-                                                       transition: "0.4s",
-                                                       height: 34
-                                                   }}>{i2}</td>;
+                                        if (i2 === -1) return this.emptyDay(index);
+                                        else return this.generateDay(year_Today, month_Today, i2, index);
                                     }
                                 })}
                             </tr>
                             <tr>
                                 {dayArr.map((i2, index) => {
                                     if (14 <= index && index < 21) {
-                                        if (i2 === -1) {
-                                            return <td key={index} style={{
-                                                textAlign: 'center',
-                                                verticalAlign: 'middle',
-                                                width: 42,
-                                                cursor: "auto",
-                                                backgroundColor: "white",
-                                                transition: "0.4s",
-                                                height: 34
-                                            }}></td>;
-                                        }
-                                        return <td key={index}
-                                                   onClick={() => this.setState({selectedDate: i2}, () => this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d))}
-                                                   className="rmd-days"
-                                                   style={{
-                                                       textAlign: 'center',
-                                                       verticalAlign: 'middle',
-                                                       width: 42,
-                                                       backgroundColor: (this.state.selectedDate) === i2 && "#eee",
-                                                       transition: "0.4s",
-                                                       height: 34
-                                                   }}>{i2}</td>;
+                                        if (i2 === -1) return this.emptyDay(index);
+                                        else return this.generateDay(year_Today, month_Today, i2, index);
                                     }
                                 })}
                             </tr>
                             <tr>
                                 {dayArr.map((i2, index) => {
                                     if (21 <= index && index < 28) {
-                                        if (i2 === -1) {
-                                            return <td key={index} style={{
-                                                textAlign: 'center',
-                                                verticalAlign: 'middle',
-                                                width: 42,
-                                                cursor: "auto",
-                                                backgroundColor: "white",
-                                                transition: "0.4s",
-                                                height: 34
-                                            }}></td>;
-                                        }
-                                        return <td key={index}
-                                                   onClick={() => this.setState({selectedDate: i2}, () => this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d))}
-                                                   className="rmd-days"
-                                                   style={{
-                                                       textAlign: 'center',
-                                                       verticalAlign: 'middle',
-                                                       width: 42,
-                                                       transition: "0.4s",
-                                                       backgroundColor: (this.state.selectedDate) === i2 && "#eee",
-                                                       height: 34
-                                                   }}>{i2}</td>;
+                                        if (i2 === -1) return this.emptyDay(index);
+                                        else return this.generateDay(year_Today, month_Today, i2, index);
                                     }
                                 })}
                             </tr>
                             <tr>
                                 {dayArr.map((i2, index) => {
                                     if (28 <= index && index < 35) {
-                                        if (i2 === -1) {
-                                            return <td key={index} style={{
-                                                textAlign: 'center',
-                                                verticalAlign: 'middle',
-                                                width: 42,
-                                                cursor: "auto",
-                                                backgroundColor: "white",
-                                                transition: "0.4s",
-                                                height: 34
-                                            }}></td>;
-                                        }
-                                        return <td key={index}
-                                                   onClick={() => this.setState({selectedDate: i2}, () => this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d))}
-                                                   className="rmd-days"
-                                                   style={{
-                                                       textAlign: 'center',
-                                                       verticalAlign: 'middle',
-                                                       width: 42,
-                                                       backgroundColor: (this.state.selectedDate) === i2 && "#eee",
-                                                       transition: "0.4s",
-                                                       height: 34
-                                                   }}>{i2}</td>;
+                                        if (i2 === -1) return this.emptyDay(index);
+                                        else return this.generateDay(year_Today, month_Today, i2, index);
                                     }
                                 })}
                             </tr>
                             <tr>
                                 {dayArr.map((i2, index) => {
                                     if (35 <= index && index < 42) {
-                                        if (i2 === -1) {
-                                            return <td key={index} style={{
-                                                textAlign: 'center',
-                                                verticalAlign: 'middle',
-                                                width: 42,
-                                                cursor: "auto",
-                                                backgroundColor: "white",
-                                                transition: "0.4s",
-                                                height: 34
-                                            }}></td>;
-                                        }
-                                        return <td key={index}
-                                                   onClick={() => this.setState({selectedDate: i2}, () => this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d))}
-                                                   className="rmd-days"
-                                                   style={{
-                                                       textAlign: 'center',
-                                                       verticalAlign: 'middle',
-                                                       width: 42,
-                                                       backgroundColor: (this.state.selectedDate) === i2 && "#eee",
-                                                       transition: "0.4s",
-                                                       height: 34
-                                                   }}>{i2}</td>;
+                                        if (i2 === -1) return this.emptyDay(index);
+                                        else return this.generateDay(year_Today, month_Today, i2, index);
                                     }
                                 })}
                             </tr>
@@ -377,40 +408,37 @@ class DatePick extends React.PureComponent {
                         </table>
                     </div>
                 </div>
-                {this.props.open !== undefined &&
                 <div style={{width: '310px'}}>
                     <Button primary={true} onClick={() => {
-                        this.props.onChange && this.props.onChange(this.state.initialValue || moment()._d);
-                        this.state.initialValue ? this.setState({
-                            monthCounter: moment(this.props.value).diff(moment(), "months"),
-                            selectedDate: moment(this.props.value).format("D") * 1
-                        }) : this.setState({monthCounter: 0, selectedDate: moment().format("D") * 1});
-                        this.props.onClose()
-                    }}>Cancel</Button>
+                        this.props.onClose();
+                    }}>{this.props.cancelLabel}</Button>
                     <Button primary={true} onClick={() => {
                         this.props.onChange && this.props.onChange(moment().year(year_Today).month(month_Today).date(this.state.selectedDate)._d);
                         this.props.onClose()
-                    }}>Ok</Button>
+                    }}>{this.props.acceptLabel}</Button>
                 </div>
-                }
             </Card>
         )
     }
 }
-
 export default class DatePicker extends React.Component {
-    state = {
-        dateVal: null,
-    }
     static propTypes = {
+        type: PropTypes.string,
         open: PropTypes.bool,
         value: PropTypes.string,
-        onClose: PropTypes.func.isRequired,
+        onClose: PropTypes.func,
         onChange: PropTypes.func,
+        format: PropTypes.string,
+        locale: PropTypes.string,
+// disableYearSelection: PropTypes.bool,
+        disableTextInput: PropTypes.bool,
+        disabled: PropTypes.bool,
+        minDate: PropTypes.string,
+        maxDate: PropTypes.string,
     };
 
     render() {
-        if (this.props.open !== undefined) {
+        if (this.props.type == "dialog") {
             return (
                 <Dialog style={{width: "auto", minWidth: 0, padding: 0, margin: 0}} {...this.props}>
                     <DialogContent style={{width: "auto", minWidth: 0, padding: 0, margin: 0}}>
@@ -421,12 +449,7 @@ export default class DatePicker extends React.Component {
         }
         else {
             return (
-                <div>
-                    <DateMenu date={this.state.dateVal} onChange={ (x) => console.log("x",x) }>
-                        <DatePick {...this.props} onChange={ (e) => this.setState({dateVal: e}, this.props.onChange)}
-                                  shadow="1"/>
-                    </DateMenu>
-                </div>
+                <DateMenu minDate="30/08/2009" locale="tr" maxDate="23/08/2018"/>
             )
         }
     }

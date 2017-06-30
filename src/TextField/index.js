@@ -47,7 +47,7 @@ export default class TextField extends React.PureComponent {
         return (
             <div style={style}>
                 <div className={"mdc-textfield"} style={style} id={this.textFieldId}>
-                    {rightIcon && this.state.inputFieldWidth && <Icon iconName={rightIcon} onClick={rightIconClick || this.props.onClick} iconColor={"grey"} style={{cursor:'pointer',position:"absolute",left : this.state.inputFieldWidth-25}} />}
+                    {rightIcon && this.state.inputFieldWidth && <Icon iconName={rightIcon} onClick={rightIconClick || this.props.onClick} iconColor={"grey"} style={{cursor: rightIconClick ? 'pointer' : 'default',position:"absolute",left : this.state.inputFieldWidth-25}} />}
                     <input className={inputClass}
                            {...rest} style={textfieldStyle}
                            placeholder={!floatingLabel ? label : placeholder}/>

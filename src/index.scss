@@ -142,6 +142,12 @@ $rmd-wave-effect-initial-background-color: #bbb;
   background-color: $rmd-date-picker-background-color;
   color: $rmd-date-picker-text-color;
 }
+.rmd-days-disabled{
+  cursor : default;
+  color : rgba(0, 0, 0, 0.87);
+  opacity : 0.4;
+}
+
 
 .rmd-edit-button {
   background-color: $rmd-edit-button-background-color !important;
