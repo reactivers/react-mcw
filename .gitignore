@@ -3,6 +3,8 @@ logs
 *.log
 npm-debug.log*
 
+lib/index-test.js
+
 # Runtime data
 pids
 *.pid
