@@ -177,6 +177,7 @@ export default class Acordion extends React.Component {
     }
 }
 
+
 Acordion.defaultProps = {
     parent: [],
     depth: 0,
