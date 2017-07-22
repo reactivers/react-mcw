@@ -47,7 +47,7 @@ $ npm start
 ## Usage
 
 ```javascript
-import {FABMenu, Card, CardBody} from 'reac-material-design';
+import {FABMenu, Card, CardBody} from 'react-mcw';
 import IconButton from 'react-mcw/lib/IconButton';
 ```
 
