@@ -1,0 +1,227 @@
+    .search-on-fab-button{
+        background-color: #9c27b0 !important;
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: 342px;
+        bottom: 90px;
+        z-index: 65;
+    }
+
+    .search-textfield-background-fab-button{
+        background-color: #bbb !important;
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: 10px;
+        width: 320px;
+        height:80px;
+        bottom: 80px;
+        z-index: 65;
+    }
+
+    .search-textfield-background-fab-off-button{
+        background-color: #ddd !important;
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: -400px;
+        bottom: 90px;
+        z-index: 65;
+    }
+
+    .search-fab-button-textfield{
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        width: 300px;
+        right: 10px;
+        bottom: 80px;
+        z-index: 65;
+    }
+
+    .search-fab-off-button-textfield{
+        background-color: #ddd !important;
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: -400px;
+        bottom: 80px;
+        z-index: 65;
+    }
+
+    .search-fab-clear-button{
+        transition: 0.4s;
+        color: black !important;
+        position: fixed;
+        right: 20px;
+        bottom: 100px;
+        z-index: 65;
+    }
+
+    .search-fab-off-clear-button{
+        background-color: #ddd !important;
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: -400px;
+        bottom: 80px;
+        z-index: 65;
+    }
+
+
+    .fab-button-off {
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: -200px;
+        bottom: 10px;
+        z-index: 65;
+    }
+
+    .fab-button-0 {
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: -200px;
+        bottom: 10px;
+        z-index: 65;
+    }
+
+    .fab-button-1 {
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: 76px;
+        bottom: 10px;
+        z-index: 65;
+    }
+
+    .fab-button-2 {
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: 142px;
+        bottom: 10px;
+        z-index: 65;
+    }
+
+    .fab-button-3 {
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: 208px;
+        bottom: 10px;
+        z-index: 65;
+    }
+
+    .fab-button-4 {
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: 274px;
+        bottom: 10px;
+        z-index: 65;
+    }
+
+    .fab-button-5 {
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: 340px;
+        bottom: 10px;
+        z-index: 65;
+    }
+
+    .fab-button-6 {
+        transition: 0.4s;
+        color: white !important;
+        position: fixed;
+        right: 406px;
+        bottom: 10px;
+        z-index: 65;
+    }
+
+    .add-fab-button{
+        background-color: #2196f3 !important;
+        color: white !important;
+        transition: 0.4s;
+    }
+    .edit-fab-button{
+        background-color: #81C784 !important;
+        transition: 0.4s;
+        color: white !important;
+    }
+    .delete-fab-button{
+        background-color: #E57373 !important;
+        color: white !important;
+        transition: 0.4s;
+    }
+    .person-add-fab-button{
+        background-color: #3f51b5 !important;
+        color: white !important;
+        transition: 0.4s;
+    }
+    .copy-fab-button{
+        background-color: #F57F17 !important;
+        color: white !important;
+        transition: 0.4s;
+    }
+    .search-fab-button{
+        background-color: #9c27b0 !important;
+        color: white !important;
+        transition: 0.4s;
+    }
+
+    .filter-fab-button {
+        background-color: #FF7043 !important;
+        color: white !important;
+        transition: 0.4s;
+    }
+
+    .menu-fab-button{
+        background-color: #00BCD4 !important;
+        color: white !important;
+        transition: 0.4s;
+        transform: rotate(-450deg);
+        position: fixed;
+        right:10px;
+        bottom:10px;
+        z-index: 65;
+    }
+    .menu-fab-button-off{
+        background-color: #00BCD4 !important;
+        color: white !important;
+        transition: 0.4s;
+        position: fixed;
+        right:10px;
+        bottom:10px;
+        z-index: 65;
+    }
+
+    .left-fab-menu-label{
+        opacity: 0;
+        transition: 0.4s;
+    }
+
+    /*FAB MENU CLASSES END*/
+    .left-fab-menu {
+        width: 0;
+        min-width:0;
+        transition: 0.4s;
+        background-color: #eee;
+    }
+
+    .left-fab-menu-off{
+        width: 0;
+        min-width:0;
+        transition: 0.4s;
+        background-color: #eee;
+    }
+
+    .page-viewer {
+        width: 100%;
+    }
+    .page-viewer-with-fab {
+        width: calc(100% - 80px);
+    }
