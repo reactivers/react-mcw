@@ -5,10 +5,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {List, ListItem} from '../List'
 import WaveEffect from '../WaveEffect'
-import generateId from '../utils/generateId'
 
 export default class Acordion extends React.Component {
-    state = {height: 0, index: -1};
+
+    constructor(props) {
+        super(props);
+        this.state = {index: -1}
+    }
 
     static propTypes = {
         data: PropTypes.array,
@@ -24,98 +27,46 @@ export default class Acordion extends React.Component {
         onClick: PropTypes.func,
         leftAvatar: PropTypes.any,
         rightAvatar: PropTypes.any,
-        listItemStyle: PropTypes.object
+        listItemStyle: PropTypes.object,
+        bodyStyle: PropTypes.object
     };
 
     componentWillMount() {
-        this.position = "absolute";
-        this.closeChild = {};
-        this.isOpened = true;
-        this.elementHeights = [];
-        this.ids = [];
-        this.firstTime = true;
+        this.isOpened = true
+        this.openInitial()
     }
 
-
-    open(item, depth, index, otherProps) {
-
-        if (this.props.open) {
-            if (typeof this.props.open == "function") {
-                if (this.props.open(item, depth, index, otherProps, [...this.props.parent, item]) && this.isOpened) {
-                    this.isOpened = false;
-                    this.openItem(item, index, this.props.childField);
+    openInitial() {
+        let {data, open, parent, childField, otherProps, depth} = this.props
+        data && data.forEach((item, index) => {
+            if (open && this.isOpened) {
+                if (typeof open == "function") {
+                    if (open(item, depth, index, otherProps, [...parent, item])) {
+                        this.isOpened = false;
+                        return this.setState({index})
+                    }
+                } else {
+                    if (!!open) {
+                        this.isOpened = false;
+                        return this.setState({index})
+                    }
                 }
-                return this.props.open(item, depth, index, otherProps, [...this.props.parent, item])
-            } else {
-                if (!!this.props.open && this.isOpened) {
-                    this.isOpened = false;
-                    this.openItem(item, index, this.props.childField);
-                }
-                return this.props.open
             }
-        } else {
-            return false
-        }
+        });
+        this.isOpened = false
     }
 
 
-    selectItem(item, index) {
+    selectItem(index, item) {
 
-        const childField = this.props.childField;
-        const oldState = this.state.index;
-
+        const {depth, otherProps, parent} = this.props
         if (this.state.index == index) {
-            this.closeAllChild(index);
-            this.closeItem(item, index, childField);
-            this.sendToOnClick(item, this.props.depth, index, this.props.otherProps, this.props.parent);
-        } else if (this.state.index != index && this.state.index == -1) {
-            this.setState({index},
-                () => this.props.getParentHeight && (item[childField] || this.props.child || this.props.children) && this.props.getParentHeight(this.elementHeights[index]));
-            this.sendToOnClick(item, this.props.depth, index, this.props.otherProps, this.props.parent);
-        } else if (this.state.index != index && this.state.index != -1) {
-            this.closeAllChild(oldState);
-            this.setState({index},
-                () => {
-                    this.props.getParentHeight && (this.props.child || item[childField] && this.props.data[oldState][childField]) && this.props.getParentHeight(this.elementHeights[index] - this.elementHeights[oldState])
-                });
-            this.sendToOnClick(item, this.props.depth, index, this.props.otherProps, this.props.parent);
+            this.setState({index: -1});
+        } else {
+            this.setState({index})
         }
-
-        setTimeout(() => {
-            if (this.position == "absolute") {
-                this.position = "initial"
-            } else {
-                this.position = "absolute"
-            }
-        }, 400);
-
-        let height = document.getElementById(this.ids[index]);
-
-        if (this.props.child)
-            setTimeout(() => {
-                this.elementHeights[index] = height.offsetHeight;
-                this.setState({randx: Math.random()})
-            }, 300);
-
-
-    }
-
-    sendToOnClick(item, depth, index, otherProps, parent) {
         this.props.onClick && this.props.onClick(item, depth, index, otherProps, [...parent, item])
     }
-
-    openItem(item, index, childField) {
-        this.setState({index}, () =>
-        this.props.getParentHeight && (item[childField] || this.props.child || this.props.children) && this.props.getParentHeight(this.elementHeights[index]))
-    }
-
-    closeAllChild(index) {
-        if (this.closeChild[index])
-            for (let i = 0; i < this.closeChild[index].length; i++) {
-                this.closeChild[index][i]();
-            }
-    }
-
 
     rightAvatar(rightAvatar, item, index, otherProps) {
         if (typeof rightAvatar == "function") {
@@ -133,48 +84,13 @@ export default class Acordion extends React.Component {
         }
     }
 
-    closeItem(item, index, childField) {
-        this.setState({index: -1},
-            () => this.props.getParentHeight && (item[childField] || this.props.child || this.props.children) && this.props.getParentHeight(-1 * this.elementHeights[index]))
-    }
-
     componentDidMount() {
+        this.openInitial()
         this.isOpened = false;
-        let {data, childField, child, children} = this.props;
-        if (data || children) {
-            for (let i = 0; i < (data || children).length; i++) {
-                let height = document.getElementById(this.ids[i]);
-                if (height && (data ? data[i][childField] : children ? children[i] : child)) {
-                    this.elementHeights.push(height.offsetHeight);
-                } else {
-                    this.elementHeights.push(0);
-                }
-            }
-        } else if (child) {
-            let height = document.getElementById(this.ids[0]);
-            this.elementHeights[0] = height.offsetHeight;
-        }
-        this.firstTime = false;
     };
 
-
-    componentWillReceiveProps(nextProps, nextState) {
-        if (nextProps.data) {
-            for (let i = 0; i < nextProps.data.length; i++)
-                if (nextProps.data[i] != this.props.data[i]) {
-                    let height = document.getElementById(this.ids[i]);
-                    if (height && nextProps.data[i][nextProps.childField])
-                        this.elementHeights[i] = height.offsetHeight;
-                }
-        } else if (nextProps.child) {
-            let height = document.getElementById(this.ids[0]);
-            this.elementHeights[0] = height.offsetHeight;
-        }
-    }
-
     render() {
-        let {label, data, open, dscLabel, dscField, index, child, children, closeChild, parent, dispatch, getParentHeight, id, getHeight, depth, otherProps, waveEffect, rightAvatar, childField, light, leftAvatar, listItemStyle, borderBottom, selectedBackgroundColor, ...rest} = this.props;
-
+        let {label, data, open, dscLabel, dscField, bodyStyle, style, index, child, children, parent, dispatch, depth, otherProps, waveEffect, rightAvatar, childField, light, leftAvatar, listItemStyle, selectedBackgroundColor, ...rest} = this.props;
         if (!data) {
             if (label)
                 data = [{dsc: label}];
@@ -186,86 +102,64 @@ export default class Acordion extends React.Component {
                 dscField = "dsc";
             }
         }
-
-        let close = [];
         return (
-            <List {...rest} id={id}>
+            <List {...rest} style={{padding: 0, ...style}}>
                 {data && data.map((item, index) => {
-                        if ((item[childField] || this.props.child || this.props.children) && this.firstTime)
-                            this.ids.push(generateId());
-                        else if (this.firstTime)
-                            this.ids.push(0);
-
-                        if (this.state.index == -1 && this.isOpened)
-                            this.open(item, depth, index, otherProps);
-                        close = [...close, () => {
-                            this.state.index == index && this.closeItem(item, index, childField);
-                            this.closeAllChild(index)
-                        }];
-                        this.props.closeChild(close);
                         return (
-                            <div key={index}>
+                            <div style={{marginLeft: depth * 4, ...bodyStyle}} key={index}>
                                 {waveEffect ?
                                     <WaveEffect light={light}>
                                         <ListItem
                                             avatar={!!leftAvatar && this.leftAvatar(leftAvatar, item, index, otherProps) || ""}
-                                            action={!!rightAvatar && this.rightAvatar(rightAvatar, item, index, otherProps)}
                                             style={{
                                                 backgroundColor: (this.state.index === index) && "#eee" || selectedBackgroundColor, ...listItemStyle,
-                                                borderBottom: borderBottom && "1px solid #bbb"
+                                                borderBottom: "1px solid #bbb",
+                                                padding: 6
                                             }}
+                                            action={rightAvatar ? this.rightAvatar(rightAvatar, item, index, otherProps) : <span/>}
                                             className={this.props.child || this.props.onClick ? "iota-expandable-list" : null}
-                                            onClick={(e) => (item[childField] || this.props.child || this.props.children) ? this.selectItem(item, index) : this.sendToOnClick(item, depth, index, otherProps, parent)}>
-                                            {dscLabel ? item[dscField] + dscLabel : item[dscField]}
+                                            onClick={(e) => this.selectItem(index, item)}>
+                                                {dscLabel ? item[dscField] + dscLabel : item[dscField]}
                                         </ListItem>
                                     </WaveEffect>
                                     :
                                     <ListItem
-                                        avatar={!!leftAvatar && this.leftAvatar(leftAvatar, item, index, otherProps) || ""}
-                                        action={!!rightAvatar && this.rightAvatar(rightAvatar, item, index, otherProps)}
+                                        action={this.rightAvatar ? this.rightAvatar(rightAvatar, item, index, otherProps) : <span/>}
+                                        avatar={leftAvatar && this.leftAvatar(leftAvatar, item, index, otherProps) || ""}
                                         style={{
                                             backgroundColor: (this.state.index === index) && "#eee" || selectedBackgroundColor, ...listItemStyle,
-                                            borderBottom: borderBottom && "1px solid #bbb"
+                                            borderBottom: "1px solid #bbb",
+                                            padding: 6
                                         }}
                                         className={this.props.child || this.props.onClick ? "iota-expandable-list" : null}
-                                        onClick={(e) => (item[childField] || this.props.child || this.props.children) ? this.selectItem(item, index) : this.sendToOnClick(item, depth, index, otherProps, parent)}>
-                                        {dscLabel ? item[dscField] + dscLabel : item[dscField]}
+                                        onClick={() => (item[childField] || this.props.child || this.props.children) ? this.selectItem(index, item) : this.sendToOnClick(item, depth, index, otherProps, parent)}>
+                                            {item[dscField]}
                                     </ListItem>
                                 }
-                                <div style={{
-                                    height: (this.state.index === index) && (item[childField] || this.props.child || this.props.children) ? ((item[childField] || this.props.child || this.props.children) ? this.elementHeights[index] : 0) + (this.state.height || 0) || (this.state.height) : 0,
-                                    position: (this.state.index === index) && (item[childField] || this.props.child || this.props.children) ? "initial" : (this.position || "absolute"),
+                                <div className="armut" style={{
+                                    maxHeight: (this.state.index === index) && (item[childField] || this.props.child || this.props.children) ? "10000px" : 0,
+                                    height: "100%",
                                     marginLeft: (this.state.index === index) && (item[childField] || this.props.child || this.props.children) ? 0 : -400,
                                     opacity: (this.state.index === index) && (item[childField] || this.props.child || this.props.children) ? 1 : 0,
                                     pointerEvents: (this.state.index === index) && (item[childField] || this.props.child || this.props.children) ? "auto" : "none",
                                     overflowY: "hidden",
-                                    transition: "0.4s",
+                                    transition: "1s",
                                 }}>
                                     {this.props.child ?
-                                        <div id={this.ids[index]}>
+                                        <div>
                                             <this.props.child item={item}
                                                               key={index}
                                                               otherProps={otherProps}
                                                               index={index}/>
                                         </div>
                                         :
-                                        this.props.children ?
-                                            <div id={this.ids[index]}>
-                                                {this.props.children}
-                                            </div>
+                                        this.props.children ? this.props.children
                                             : item[childField] ?
                                             <div>
                                                 <Acordion {...this.props}
                                                           data={item[childField]}
                                                           parent={[...parent, item]}
-                                                          childField={childField}
-                                                          closeChild={(e) => this.closeChild[index] = e}
-                                                          id={this.ids[index]}
                                                           key={index}
-                                                          getParentHeight={height => this.setState({height: this.state.height + height}, () => {
-                                                              this.props.getParentHeight && this.props.getParentHeight(height);
-                                                          })}
-                                                          otherProps={otherProps}
                                                           depth={depth + 1}
                                                           index={index}
                                                 />
@@ -284,8 +178,6 @@ export default class Acordion extends React.Component {
 }
 
 Acordion.defaultProps = {
-    closeChild: (e) => {
-    },
     parent: [],
     depth: 0,
 };
